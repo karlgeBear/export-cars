@@ -18,7 +18,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    'assets/sass/reset.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -35,38 +36,84 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/style-resources' // 在所有样式文件中共享变量、mixin、函数（@import不需要），配合styleResources来使用
   ],
+  styleResources: {
+    scss: [
+      'assets/sass/global.scss' // 全局 scss 变量
+    ]
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^element-ui/],
-    module: {
-      rules: [
-        {
-          test: /\.(gif|png|jpg|woff|svg|ttf|eot)$/ ,
-          use:[
-            {
-              loader:'url-loader',
-              options: {
-               limit:6000,
-              }
-            }
-          ]
-        }
-      ]
-    },
-    /*
+      /*
     ** Run ESLint on save
     */
-    extend(config, {isDev, isClient}) {
+    extend (config, { isDev, isClient }) {
       if (isDev && isClient) {
-        config.module.rules.push({
+        config.module.rules.push(...[{
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
-        })
+        },{
+          // https://github.com/nuxt/nuxt.js/blob/dev/packages/webpack/src/config/base.js#L382-L411
+          test: /\.(png|jpe?g|gif|svg|webp|avif)$/i,
+          use: [{
+            loader: 'url-loader',
+            options: {
+              esModule: false,
+              limit: 1000, // 1kB
+              name: 'img/[name].[contenthash:7].[ext]'
+            }
+          }]
+        },
+        {
+          test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+          use: [{
+            loader: 'url-loader',
+            options: {
+               esModule: false,
+               limit: 1000, // 1kB
+               name: 'fonts/[name].[contenthash:7].[ext]'
+            }
+          }]
+        },
+    //  {
+    //    loader: 'image-webpack-loader',
+    //    options: {
+    //      bypassOnDebug: true,
+    //      mozjpeg: {
+    //        progressive: true,
+    //        quality: 65
+    //      },
+    //      // optipng.enabled: false will disable optipng
+    //      optipng: {
+    //        enabled: true,
+    //      },
+    //      pngquant: {
+    //        quality: '65-90',
+    //        speed: 4
+    //      },
+    //      gifsicle: {
+    //        interlaced: false,
+    //      },
+    //      // the webp option will enable WEBP
+    //      webp: {
+    //        quality: 75
+    //      }
+    //    },
+    //  },
+        ])
       }
     }
+  },
+
+  // 这使您可以为 Nuxt 服务器实例指定主机和端口
+  server: {
+    port: 8888, // default: 3000
+    // host: '0.0.0.0', // default: localhost,
+    timing: false
   }
 }

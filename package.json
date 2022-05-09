@@ -21,11 +21,13 @@
     "webpack": "^4.46.0"
   },
   "devDependencies": {
+    "@nuxtjs/style-resources": "^1.2.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^5.0.0",
     "eslint-loader": "^3.0.0",
     "eslint-plugin-nuxt": "^2.0.0",
-    "less": "^3.10.3",
-    "less-loader": "^5.0.0"
+    "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^10.2.1"
   }
 }
