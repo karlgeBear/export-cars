@@ -50,28 +50,124 @@
    3. 搜索引擎可以利用这类信息在搜索结果中以有用的（且吸引用户的）方式显示您的内容
    4. 这也有助于为您的业务吸引到理想的客户
 2. 理解
-   1. 就是在&#60;title&#62;下添加一段结构化数据
+   1. 就是在网页添加一段结构化数据
    2. 数据内容是描述网页的精要（标题，描述，作者，时间，其它详情等等）
-   3. 当用户搜索数据化数据里的内容，Google就会启用*特殊的搜索结果功能和增强功能*，Google就会以特定的方式显示我们的内容，以便于吸引客户（复合式结构搜索）
-3. 验证结构化数据
-   1. <a href="https://search.google.com/test/rich-results?utm_source=support.google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>工具可以验证数据结构化数据的语法，在开发时非常有用，在上线钱确保结构数据的有效性，在某些情况下，还能提供示例，以说明Google Search中可能出现的相应结果
-   2. 在 Google 搜索结果中的实际显示效果可能会有不同。您可以使用<a href="https://search.google.com/test/rich-results?utm_source=support.google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>来预览大多数功能
-   3. <a href="https://search.google.com/test/rich-results?utm_source=support.google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>是一种简单实用的工具，可用于验证结构化数据；在某些情况下，还可用于预览 Google 搜索中的功能
-4. 复合式结构搜索：
-   1. 前言：当使用Google搜索引擎会看到各种不同的结果
-      1. 如：文本字段以及复合式搜寻结果
-   2. 复合式搜寻结果实例理解：
-      1. 搜索任1地点或者乐团，可能会看到附近是否有相关活动
-      2. 搜索豆丸子等食物，可能会看到相关的食谱之类的图片和相关视频
-   3. 要使网站能出现在复合式搜寻结果中，以增加网站对用户的吸引力，因此就要执行*结构化数据标记*
-   4. 如何执行：看开发文档，已深入了解执行结构化数据相关的定义、方法及理由
-   5. 如何去看文档以及决策：
+   3. 当用户搜索数据化数据里的内容，Google就会启用*特殊的搜索结果功能和增强功能*，Google就会以特定的方式显示我们的内容，以便于吸引客户（富媒体搜索结果）
+3. 结构化数据的构建
+    1. 所有的数据标记属性都要符合https://schema.org中的规范，要搭建起来必须理解里边的type和property体系
+    2. 结构化数据分为两层
+       1. A Schema.org Type: 
+          1. 理解：也就是@type，可以一次声明多个类型
+          2. 作用：标记的信息进行分类(Product,brand下的Brand)
+          3. 可以通过来url的方式来快速查找https://schema.orgtypeName，找到的就是一系列该类可用的属性
+        1. property
+          1. 就是Type中可用的属性(sku,gtin14...等),
+          2. 作用：标记每个详细的内容
+    1. HTML部署
+        1. JSON-LD 结构标注是一种放在 &#60;<head>&#62; 或者是 &#60;<body>&#62; 部分的代码
+        2. 将URL或它们的类别映对应到不同的结构，并突出显示静态和动态值（考虑品牌与产品架构的价格）
+```
+// 例如车
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",          
+      "sku": "trinket-12345",      // 库存单位 (SKU)，即产品或服务或报价所指产品的商家特定标识符。
+      "gtin14": "12345678901234",
+      "image": [
+        "https://example.com/photos/16x9/trinket.jpg",
+        "https://example.com/photos/4x3/trinket.jpg",
+        "https://example.com/photos/1x1/trinket.jpg"
+      ],
+      "name": "Nice trinket",
+      "description": "Trinket with clean lines",
+      "brand": {
+        "@type": "Brand",
+        "name": "MyBrand"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "http://www.example.com/trinket_offer",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "price": "39.99",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2020-11-20",
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "3.49",
+            "currency": "USD"
+          },
+          "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "US",
+            "postalCodeRange": {
+              "postalCodeBegin": "98100",
+              "postalCodeEnd": "98199"
+            }
+          },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {
+              "@type": "QuantitativeValue",
+              "minValue": "0",
+              "maxValue": "1"
+            },
+            "transitTime": {
+              "@type": "QuantitativeValue",
+              "minValue": "1",
+              "maxValue": "5"
+            },
+            "cutOffTime": "19:30-08:00",
+            "businessDays": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [ "https://schema.org/Monday", "https://schema.org/Tuesday", "https://schema.org/Wednesday", "https://schema.org/Thursday" ]
+            }
+          }
+        }
+      },
+      "review": {
+        "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "4",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Fred Benson"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.4",
+          "reviewCount": "89"
+        }
+      }
+    </script>
+```
+4. 验证结构化数据
+  1. <a href="https://search.google.com/test/rich-results?utm_source=support.google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>工具可以验证数据结构化数据的语法，在开发时非常有用，在上线钱确保结构数据的有效性，在某些情况下，还能提供示例，以说明Google Search中可能出现的相应结果
+  2. 在 Google 搜索结果中的实际显示效果可能会有不同。您可以使用<a href="https://search.google.com/test/rich-results?utm_source=support.google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>来预览大多数功能
+  3. <a href="https://search.google.com/test/rich-results?utm_source=support.google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>是一种简单实用的工具，可用于验证结构化数据；在某些情况下，还可用于预览 Google 搜索中的功能
+5. 富媒体搜索结果：
+  1. 前言：当使用Google搜索引擎会看到各种不同的结果
+     1. 如：文本字段(就是蓝色链接)以及富媒体搜索结果(带图片还有视频，一个软件的评分等等一特定的形式在谷歌搜索展现出来，可以看<a href="https://developers.google.com/search/docs/advanced/structured-data/search-gallery">搜索浏览功能库</a>除了里边的也还有其它的写法)
+  2. 富媒体搜索结果实例理解：
+     1. 搜索任1地点或者乐团，可能会看到附近是否有相关活动
+     1. 搜索豆丸子等食物，可能会看到相关的食谱之类的图片和相关视频
+   1. 要使网站能出现在富媒体搜索结果中，以增加网站对用户的吸引力，因此就要执行*结构化数据标记*
+   2. 如何实现？
+      1. 使用结构化数据标记来实现
+   3. 如何去看文档以及决策：
       1. Review Search Gallery(检视搜索功能示例)
       2. Find a structued data type(找到适合所属内容的结构化数据类型)
       3. Check guidelines and requirements(查阅纳入搜寻结果的相关指引与规章以符合要求)
       4. Implement the markup(在自家网站执行标记)
       5. 完成后即可使用 <a href="https://search.google.com/search-console/about">Search Console</a>,以优化执行效能并管控网页与搜索结果的表现
-   6. 怎么看复合式搜寻结果的表现
+   4. 怎么看富媒体搜索结果的表现
       1. 当内含结构数据的页面纳入Google搜索索引后，Search Console 便会显示这类结构数据类型的相关报告，完成其设置，并确定页面已编入搜索索引后，。接下来就是监视搜寻结果的表现了
       2. 网站登入Search Console,以观察具体表现
 ```
@@ -130,5 +226,5 @@
 2. 添加alt属性，为图片提供说明性文件名
 
 
-## 参考文献：<a href="https://developers.google.com/search/docs/beginner/seo-starter-guide?hl=zh-cn#uniquepagetitles">SEO新手入门指南</a>
+## 参考文献：<a href="https://developers.google.com/search/docs/beginner/seo-starter-guide?hl=zh-cn#uniquepagetitles">Google搜索中心</a>
 
