@@ -11,6 +11,6 @@ export default {
 
 <style lang="scss" scoped>
 h1{
-  color: $highlight-color;
+  color: $theme-color;
 }
 </style>

@@ -19,7 +19,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    'assets/sass/reset.css'
+    {src: '~assets/css/global.scss', lang: 'scss'}
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -40,7 +40,7 @@ export default {
   ],
   styleResources: {
     scss: [
-      'assets/sass/global.scss' // 全局 scss 变量
+      'assets/css/global.scss' // 全局 scss 变量
     ]
   },
 
@@ -57,29 +57,7 @@ export default {
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
-        },{
-          // https://github.com/nuxt/nuxt.js/blob/dev/packages/webpack/src/config/base.js#L382-L411
-          test: /\.(png|jpe?g|gif|svg|webp|avif)$/i,
-          use: [{
-            loader: 'url-loader',
-            options: {
-              esModule: false,
-              limit: 1000, // 1kB
-              name: 'img/[name].[contenthash:7].[ext]'
-            }
-          }]
-        },
-        {
-          test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
-          use: [{
-            loader: 'url-loader',
-            options: {
-               esModule: false,
-               limit: 1000, // 1kB
-               name: 'fonts/[name].[contenthash:7].[ext]'
-            }
-          }]
-        },
+        }
     //  {
     //    loader: 'image-webpack-loader',
     //    options: {

@@ -54,23 +54,24 @@
    2. 数据内容是描述网页的精要（标题，描述，作者，时间，其它详情等等）
    3. 当用户搜索数据化数据里的内容，Google就会启用*特殊的搜索结果功能和增强功能*，Google就会以特定的方式显示我们的内容，以便于吸引客户（富媒体搜索结果）
 3. 结构化数据的构建
-    1. 所有的数据标记属性都要符合https://schema.org中的规范，要搭建起来必须理解里边的type和property体系
+    1. 所有的数据标记属性都要符合https://schema.org中的规范，要搭建起来必须理解里边的type和property体系，而schema.org是一个共享词汇表，其使命是创建、维护和推广 Internet、网页、电子邮件等信息中的结构化数据的模式
     2. 结构化数据分为两层
        1. A Schema.org Type: 
           1. 理解：也就是@type，可以一次声明多个类型
           2. 作用：标记的信息进行分类(Product,brand下的Brand)
-          3. 可以通过来url的方式来快速查找https://schema.orgtypeName，找到的就是一系列该类可用的属性
-        1. property
-          1. 就是Type中可用的属性(sku,gtin14...等),
-          2. 作用：标记每个详细的内容
-    1. HTML部署
+          3. 可以通过来url的方式来快速查找https://schema.org/typeName，找到的就是一系列该类可用的属性
+       2. property
+             1. 就是Type中可用的属性(sku,gtin14...等),
+             2. 作用：标记每个详细的内容
+    3. HTML部署
         1. JSON-LD 结构标注是一种放在 &#60;<head>&#62; 或者是 &#60;<body>&#62; 部分的代码
         2. 将URL或它们的类别映对应到不同的结构，并突出显示静态和动态值（考虑品牌与产品架构的价格）
+        3. 其它用法具体可以查看<a href="https://ahrefs.com/blog/zh/schema-markup/#generate-markup">什么是Schema Markup (结构标记)? 它对SEO有什么用？</a>
 ```
 // 例如车
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org/",
+      "@context": "https://schema.org/",  
       "@type": "Product",          
       "sku": "trinket-12345",      // 库存单位 (SKU)，即产品或服务或报价所指产品的商家特定标识符。
       "gtin14": "12345678901234",
@@ -149,27 +150,29 @@
     </script>
 ```
 4. 验证结构化数据
-  1. <a href="https://search.google.com/test/rich-results?utm_source=support.google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>工具可以验证数据结构化数据的语法，在开发时非常有用，在上线钱确保结构数据的有效性，在某些情况下，还能提供示例，以说明Google Search中可能出现的相应结果
-  2. 在 Google 搜索结果中的实际显示效果可能会有不同。您可以使用<a href="https://search.google.com/test/rich-results?utm_source=support.google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>来预览大多数功能
-  3. <a href="https://search.google.com/test/rich-results?utm_source=support.google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>是一种简单实用的工具，可用于验证结构化数据；在某些情况下，还可用于预览 Google 搜索中的功能
-5. 富媒体搜索结果：
-  1. 前言：当使用Google搜索引擎会看到各种不同的结果
-     1. 如：文本字段(就是蓝色链接)以及富媒体搜索结果(带图片还有视频，一个软件的评分等等一特定的形式在谷歌搜索展现出来，可以看<a href="https://developers.google.com/search/docs/advanced/structured-data/search-gallery">搜索浏览功能库</a>除了里边的也还有其它的写法)
-  2. 富媒体搜索结果实例理解：
-     1. 搜索任1地点或者乐团，可能会看到附近是否有相关活动
-     1. 搜索豆丸子等食物，可能会看到相关的食谱之类的图片和相关视频
-   1. 要使网站能出现在富媒体搜索结果中，以增加网站对用户的吸引力，因此就要执行*结构化数据标记*
-   2. 如何实现？
+    1. <a href="https://search.google.com/test/rich-results?utm_source=support. google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索  结果测试</a>工具可以验证数据结构化数据的语法，在开发时非常有用，在上线钱确保  结构数据的有效性，在某些情况下，还能提供示例，以说明Google Search中可能出现的 相应结果
+    2. 在 Google 搜索结果中的实际显示效果可能会有不同。您可以使用<a href="https:/ /search.google.com/test/rich-results?utm_source=support.google.com/  webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索结果测试</a>  来预览大多数功能
+    3. <a href="https://search.google.com/test/rich-results?utm_source=support. google.com/webmasters/&utm_medium=referral&utm_campaign=7445569">富媒体搜索  结果测试</a>是一种简单实用的工具，可用于验证结构化数据；在某些情况下，还可用于预览 Google 搜索中的功能
+    4. 如何详细使用：
+5. 富媒体搜索结果: 
+   1. 前言：当使用Google搜索引擎会看到各种不同的结果
+        1. 如：文本字段(就是蓝色链接)以及富媒体搜索结果(带图片还有视频，一个软件的评分等等一特定的形式在谷歌搜索展现出来，可以看<a href="https://developers.google.com/search/docs/advanced/structured-data/search-gallery">搜索浏览功能库</a>除了里边的也还有其它的写法)
+   2. 富媒体搜索结果实例理解：
+        1. 搜索任1地点或者乐团，可能会看到附近是否有相关活动
+        2. 搜索豆丸子等食物，可能会看到相关的食谱之类的图片和相关视频
+   3. 要使网站能出现在富媒体搜索结果中，以增加网站对用户的吸引力，因此就要执行*结构化数据标记*
+   4. 如何实现？
       1. 使用结构化数据标记来实现
-   3. 如何去看文档以及决策：
+   5. 如何去看文档以及决策：
       1. Review Search Gallery(检视搜索功能示例)
       2. Find a structued data type(找到适合所属内容的结构化数据类型)
       3. Check guidelines and requirements(查阅纳入搜寻结果的相关指引与规章以符合要求)
       4. Implement the markup(在自家网站执行标记)
       5. 完成后即可使用 <a href="https://search.google.com/search-console/about">Search Console</a>,以优化执行效能并管控网页与搜索结果的表现
-   4. 怎么看富媒体搜索结果的表现
+   6. 怎么看富媒体搜索结果的表现
       1. 当内含结构数据的页面纳入Google搜索索引后，Search Console 便会显示这类结构数据类型的相关报告，完成其设置，并确定页面已编入搜索索引后，。接下来就是监视搜寻结果的表现了
       2. 网站登入Search Console,以观察具体表现
+      3. <a href="https://hrefgo.com/blog/google-search-console-guide">什么是谷歌站长工具(Google Search Console)：SEO教程</a>
 ```
 <html>
   <head>
@@ -226,5 +229,7 @@
 2. 添加alt属性，为图片提供说明性文件名
 
 
-## 参考文献：<a href="https://developers.google.com/search/docs/beginner/seo-starter-guide?hl=zh-cn#uniquepagetitles">Google搜索中心</a>
+## 参考文献：
+1. <a href="https://developers.google.com/search/docs/beginner/seo-starter-guide?hl=zh-cn#uniquepagetitles">Google搜索中心</a>
+2. <a href="https://ahrefs.com/blog/zh/schema-markup/#generate-markup">什么是Schema Markup (结构标记)? 它对SEO有什么用？</a>
 
