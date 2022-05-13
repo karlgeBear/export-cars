@@ -3,6 +3,7 @@
   - assets
     - 放sass文件做需要全局引入的变量，比如各种颜色要在各个组件中使用(在nuxt.config.js中配置)
     - 放一些静态文件
+    - font文件是来自https://fontawesome.com/icons上的icon
   - layouts
   - sever
   - .eslintrc.js

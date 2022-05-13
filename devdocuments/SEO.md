@@ -170,7 +170,7 @@
       4. Implement the markup(在自家网站执行标记)
       5. 完成后即可使用 <a href="https://search.google.com/search-console/about">Search Console</a>,以优化执行效能并管控网页与搜索结果的表现
    6. 怎么看富媒体搜索结果的表现
-      1. 当内含结构数据的页面纳入Google搜索索引后，Search Console 便会显示这类结构数据类型的相关报告，完成其设置，并确定页面已编入搜索索引后，。接下来就是监视搜寻结果的表现了
+      1. 当内含结构数据的页面纳入Google搜索索引后，Search Console(add--->search apperance) 便会显示这类结构数据类型的相关报告，完成其设置，并确定页面已编入搜索索引后，。接下来就是监视搜寻结果的表现了
       2. 网站登入Search Console,以观察具体表现
       3. <a href="https://hrefgo.com/blog/google-search-console-guide">什么是谷歌站长工具(Google Search Console)：SEO教程</a>
 ```

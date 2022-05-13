@@ -36,6 +36,7 @@
 
       </div>
     </div>
+    <h1>Welcome to the 17ziti www.17ziti.com</h1>
   </div>
 </template>
 
@@ -93,6 +94,9 @@ export default {
 }
 </style>
 <style lang="scss">
+h1{
+  font-family: 'Muli';
+}
 .el-menu-item{
   font-size: 16px;
   margin-left: 25px;

@@ -41,7 +41,7 @@ export default {
 </script>
 <style>
 html {
-  font-family: Helvetica,sans-serif;
+  font-family: 'Muli', Arial,Helvetica,sans-serif !important;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
