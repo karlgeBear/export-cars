@@ -50,15 +50,15 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
+body, textarea, input, button{font-family:'Muli', Arial,Helvetica,sans-serif!important;}h1, h2, h3, h4, h5, h6{font-family:'Muli', Arial,Helvetica,sans-serif}:root{--primary:#ff4605;--primary-light:#fff0eb}
 
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
 }
-
 @media screen and (min-width: 1023px) {
   .default {
-    padding-top: 70px;
+    /* padding-top: 70px; */
   }
 }
 @media screen and (min-width: 320px) and (max-width: 1023px) {
