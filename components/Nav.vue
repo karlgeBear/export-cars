@@ -8,8 +8,9 @@
           </div>
           <div class="nav-menu">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-              <el-menu-item index="1"><a href="" title="Home">Home</a></el-menu-item>
-              <el-menu-item index="2">Search</el-menu-item>
+              <el-menu-item index="1"><a href="" title="Home" class="nav-link">Home</a></el-menu-item>
+              <el-menu-item index="2"><a href="" title="Home" class="nav-link">New car</a></el-menu-item>
+              <el-menu-item index="2"><a href="" title="Home" class="nav-link">Used car</a></el-menu-item>
               <el-submenu index="3">
                 <template slot="title">Pages</template>
                 <el-menu-item index="3-1">Our team</el-menu-item>
@@ -19,8 +20,8 @@
                 <el-menu-item index="3-3">FAQ</el-menu-item>
                 <el-menu-item index="3-3">About us</el-menu-item>
               </el-submenu>
-              <el-menu-item index="4">Blog</el-menu-item>
-              <el-menu-item index="5"><a href="https://www.ele.me" target="_blank">Contact</a></el-menu-item>
+              <el-menu-item index="4"><a href="#" class="nav-link">Blog</a></el-menu-item>
+              <el-menu-item index="5"><a href="#" class="nav-link">Contact</a></el-menu-item>
             </el-menu>
           </div>
         </div>
@@ -43,8 +44,9 @@
           </div>
           <div class="nav-menu">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-              <el-menu-item index="1"><a href="" title="Home">Home</a></el-menu-item>
-              <el-menu-item index="2">Search</el-menu-item>
+              <el-menu-item index="1"><a href="" title="Home" class="nav-link">Home</a></el-menu-item>
+              <el-menu-item index="2"><a href="" title="Home" class="nav-link">New car</a></el-menu-item>
+              <el-menu-item index="2"><a href="" title="Home" class="nav-link">Used car</a></el-menu-item>
               <el-submenu index="3">
                 <template slot="title">Pages</template>
                 <el-menu-item index="3-1">Our team</el-menu-item>
@@ -54,8 +56,8 @@
                 <el-menu-item index="3-3">FAQ</el-menu-item>
                 <el-menu-item index="3-3">About us</el-menu-item>
               </el-submenu>
-              <el-menu-item index="4">Blog</el-menu-item>
-              <el-menu-item index="5"><a href="https://www.ele.me" target="_blank">Contact</a></el-menu-item>
+              <el-menu-item index="4"><a href="#" class="nav-link">Blog</a></el-menu-item>
+              <el-menu-item index="5"><a href="#" class="nav-link">Contact</a></el-menu-item>
             </el-menu>
           </div>
         </div>
@@ -72,7 +74,6 @@
       </div>
       </transition>
     </div>
-    <button @click.stop="navshow=!navshow" style="margin-top:888px">test</button>
   </div>
 </template>
 
@@ -123,11 +124,7 @@ export default {
 
 <style lang="scss" scoped>
 .navDIY{
-   position: absolute;
-   top:0;
-   width: 100%;
-   padding: 0 30px;
-   height: 100px;
+   position: relative;
   .nav-PC{
     position: relative;
     .nav-scrolldown-show{
@@ -138,6 +135,20 @@ export default {
       right: 0;
       padding:0 30px;
       box-shadow: 0 2px 7px 0 rgba(196,196,196,0.34);
+      background-color: #fff;
+      height: 70px !important;
+      .nav-link{
+        font-weight: 600;
+      }
+      .add-listing{
+        color: var(--primary);
+      }
+      .el-menu--horizontal > .el-menu-item,/deep/ .el-submenu__title{
+         color: #0f141e;
+      }
+      .el-menu--horizontal > .el-menu-item:hover{
+        color: var(--primary);
+      }
     }
     /* 可以设置不同的进入和离开动画 */
     /* 设置持续时间和动画函数 */
@@ -156,12 +167,16 @@ export default {
       justify-content: space-between;
       height: 100px;
       align-items: center;
+      padding: 0 30px;
       .nav-left{
         display: flex;
         align-items: center;
-        .nav-logo img{
-          max-height: 32px;
-          height: 32px;
+        .nav-logo{
+          padding-top: 10px;
+          img{
+            max-height: 32px;
+            height: 32px;
+          }
         }
       }
       .nav-right{
@@ -181,11 +196,21 @@ export default {
           border-radius: 5px;
           padding: 13px 20px;
           font-family: "Font Awesome 5 Free" !important;
-          font-weight: 900 !important;
+          .fa-plus:before{
+            font-weight: 600;
+          }
           .add-listing-text{
             padding-left: 10px;
           }
         }
+      }
+    }
+    .nav{
+      .nav-link{
+        font-weight: 600;
+      }
+      .add-listing,.login-text{
+        color: #fff;
       }
     }
     
@@ -197,15 +222,20 @@ export default {
   font-size: 16px;
   margin: 0 25px;
   padding: 0 8px;
+  color: #fff;
 }
 .el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover{
   color: $theme-color;
+  background-color: transparent;
 }
 .el-menu--horizontal>.el-submenu:hover .el-submenu__title{
   color: $theme-color;
+  background-color: transparent;
 }
 .el-menu--horizontal>.el-submenu .el-submenu__title{
   font-size: 16px;
+  color: #FFF;
+  font-weight: 600;
 }
 .el-menu--popup-bottom-start{
   display: block !important;
@@ -240,8 +270,11 @@ export default {
 }
 .el-menu.el-menu--horizontal{
   border-bottom: none;
+  color: #FFF;
+  background-color: transparent;
 }
 .el-menu--horizontal>.el-menu-item.is-active{
   border-bottom: 1px solid $theme-color !important;
+  color: #fff;
 }
 </style>

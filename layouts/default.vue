@@ -56,9 +56,18 @@ body, textarea, input, button{font-family:'Muli', Arial,Helvetica,sans-serif!imp
   box-sizing: border-box;
   margin: 0;
 }
+.highColor{
+  color: var(--primary);
+}
 @media screen and (min-width: 1023px) {
   .default {
     /* padding-top: 70px; */
+  }
+  .container{
+    max-width: 1468px;
+    margin: auto;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 @media screen and (min-width: 320px) and (max-width: 1023px) {
