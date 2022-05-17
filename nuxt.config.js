@@ -21,7 +21,8 @@ export default {
     'element-ui/lib/theme-chalk/index.css',
     {src: '~assets/css/global.scss', lang: 'scss'},
     '~assets/css/fontawesome.min.css',
-    '~assets/css/reset.css'
+    '~assets/css/reset.css',
+    '~assets/css/muli.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
