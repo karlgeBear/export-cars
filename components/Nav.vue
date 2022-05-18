@@ -125,6 +125,7 @@ export default {
 <style lang="scss" scoped>
 .navDIY{
    position: relative;
+   z-index: 9999;
   .nav-PC{
     position: relative;
     .nav-scrolldown-show{

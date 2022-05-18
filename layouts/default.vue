@@ -50,7 +50,17 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
-body, textarea, input, button{font-family:'Muli', Arial,Helvetica,sans-serif!important;}h1, h2, h3, h4, h5, h6{font-family:'Muli', Arial,Helvetica,sans-serif}:root{--primary:#ff4605;--primary-light:#fff0eb}
+body, textarea, input, button{
+  font-family:'Muli', Arial,Helvetica,sans-serif!important;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family:'Muli', Arial,Helvetica,sans-serif
+}
+:root{
+  --primary:#ff4605;
+  --primary-light:#fff0eb;
+  --bg:#EFF3FA;
+}
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -58,6 +68,11 @@ body, textarea, input, button{font-family:'Muli', Arial,Helvetica,sans-serif!imp
 }
 .highColor{
   color: var(--primary);
+}
+input::placeholder{
+  font-size: 16px;
+  color: #2f3b48 !important;
+  font-weight: 600;
 }
 @media screen and (min-width: 1023px) {
   .default {

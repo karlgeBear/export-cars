@@ -7,13 +7,13 @@
         <h1 class="search__box-title">Find Your <span class="highColor">Perfect</span> Car</h1>
         <div class="filter">
           <div class="cars-type">
-            <div class="all type-item">All</div>
-            <div class="new type-item">New</div>
-            <div class="used type-item">Used</div>
+            <div class="all type-item" v-for="(item,index) in ['All','New','Used']" :key="index"
+            :class="{triangle:isTriangle==index}"
+            @click="isTriangle = isTriangle==index ? isTriangle : index">{{item}}</div>
           </div>
           <div class="select">
             <div class="select__box">
-            <el-select v-model="value" placeholder="请选择">
+            <el-select v-model="value" placeholder="All Makes">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -21,7 +21,7 @@
               :value="item.value">
             </el-option>
             </el-select>
-            <el-select v-model="value" disabled placeholder="请选择">
+            <el-select v-model="value" disabled placeholder="All Models">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -29,7 +29,7 @@
               :value="item.value">
             </el-option>
             </el-select>
-            <el-select v-model="value" placeholder="请选择">
+            <el-select v-model="value" placeholder="Max price">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -88,9 +88,167 @@
         </div>
     </div>
   </section>
-  <section>
-    
+  <section class="featured-listings">
+    <div class="container">
+      <div class="featured-title">
+        <div class="handy-picked">Handy picked</div>
+        <h1 class="title">Featured Listings</h1>
+      </div>
+      <div class="featured-items">
+        <div class="featured-large-items">
+          <div class="item-img">
+            <a href="#">
+              <div class="single-car-img">
+                <img src="~/assets/imgs/cars/car-768x600.jpg" alt="car" class="scaling">
+              </div>
+              <div class="img-inner">
+                <div class="img-inner__favorite">
+                  <i class="far fa-star"></i>
+                </div>
+                <div class="img-inner__num">
+                  <i class="far fa-images"><span>7</span></i>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="item-text">
+            <div class="item-text-top">
+              <div class="car-title">Ferrari LaFerrari 2-door coupe red</div>
+            </div>
+            <div class="item-text-bottom">
+              <div>
+                <div class="btn vehica-car-card__info__single">2021</div>
+                <div class="vehica-car-card__info__single">Automatic</div>
+                <div class="vehica-car-card__info__single">Petrol</div>
+                <div class="vehica-car-card__info__single">Front Wheel Drive</div>
+              </div>
+              <div>
+                <div class="single-car-price">$810,000</div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="featured-small-items">
+          <div class="featured-item">
+            <div class="item-img">
+              <a href="#">
+                <div class="single-car-img">
+                  <img src="~/assets/imgs/cars/audi3-670x372.jpg" alt="car" class="scaling">
+                </div>
+                <div class="img-inner">
+                  <div class="img-inner__favorite">
+                    <i class="far fa-star"></i>
+                  </div>
+                  <div class="img-inner__num">
+                    <i class="far fa-images"><span>6</span></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="item-text">
+              <div class="item-text-top">
+                <div class="single-car-title">Ferrari LaFerrari 2-door coupe red</div>
+                <div class="single-car-price">$810,000</div>
+              </div>
+              <div class="item-text-bottom">
+                <div class="btn vehica-car-card__info__single">2021</div>
+                <div class="vehica-car-card__info__single">Automatic</div>
+                <div class="vehica-car-card__info__single">Diesel</div>
+              </div>
+            </div>
+          </div>
+                    <div class="featured-item">
+            <div class="item-img">
+              <a href="#">
+                <div class="single-car-img">
+                  <img src="~/assets/imgs/cars/audi3-670x372.jpg" alt="car" class="scaling">
+                </div>
+                <div class="img-inner">
+                  <div class="img-inner__favorite">
+                    <i class="far fa-star"></i>
+                  </div>
+                  <div class="img-inner__num">
+                    <i class="far fa-images"><span>6</span></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="item-text">
+              <div class="item-text-top">
+                <div class="single-car-title">Ferrari LaFerrari 2-door coupe red</div>
+                <div class="single-car-price">$810,000</div>
+              </div>
+              <div class="item-text-bottom">
+                <div class="btn vehica-car-card__info__single">2021</div>
+                <div class="vehica-car-card__info__single">Automatic</div>
+                <div class="vehica-car-card__info__single">Diesel</div>
+              </div>
+            </div>
+          </div>
+                    <div class="featured-item">
+            <div class="item-img">
+              <a href="#">
+                <div class="single-car-img">
+                  <img src="~/assets/imgs/cars/audi3-670x372.jpg" alt="car" class="scaling">
+                </div>
+                <div class="img-inner">
+                  <div class="img-inner__favorite">
+                    <i class="far fa-star"></i>
+                  </div>
+                  <div class="img-inner__num">
+                    <i class="far fa-images"><span>6</span></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="item-text">
+              <div class="item-text-top">
+                <div class="single-car-title">Ferrari LaFerrari 2-door coupe red</div>
+                <div class="single-car-price">$810,000</div>
+              </div>
+              <div class="item-text-bottom">
+                <div class="btn vehica-car-card__info__single">2021</div>
+                <div class="vehica-car-card__info__single">Automatic</div>
+                <div class="vehica-car-card__info__single">Diesel</div>
+              </div>
+            </div>
+          </div>
+                    <div class="featured-item">
+            <div class="item-img">
+              <a href="#">
+                <div class="single-car-img">
+                  <img src="~/assets/imgs/cars/audi3-670x372.jpg" alt="car" class="scaling">
+                </div>
+                <div class="img-inner">
+                  <div class="img-inner__favorite">
+                    <i class="far fa-star"></i>
+                  </div>
+                  <div class="img-inner__num">
+                    <i class="far fa-images"><span>6</span></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="item-text">
+              <div class="item-text-top">
+                <div class="single-car-title">Ferrari LaFerrari 2-door coupe red</div>
+                <div class="single-car-price">$810,000</div>
+              </div>
+              <div class="item-text-bottom">
+                <div class="btn vehica-car-card__info__single">2021</div>
+                <div class="vehica-car-card__info__single">Automatic</div>
+                <div class="vehica-car-card__info__single">Diesel</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+  <section class="popular-makes"></section>
+  <section class="why-choose-us"></section>
+  <section class="download-our-app"></section>
   <Footer/>
 </div>
 </template>
@@ -101,21 +259,22 @@ export default {
   name: 'IndexPage',
   data(){
     return{
+      isTriangle: 0,
       options: [{
-          value: '选项1',
-          label: '黄金糕'
+          value: '1',
+          label: 'Audi'
         }, {
-          value: '选项2',
-          label: '双皮奶'
+          value: '2',
+          label: 'BMW'
         }, {
-          value: '选项3',
-          label: '蚵仔煎'
+          value: '3',
+          label: 'Bentley'
         }, {
-          value: '选项4',
-          label: '龙须面'
+          value: '4',
+          label: 'Porsche'
         }, {
-          value: '选项5',
-          label: '北京烤鸭'
+          value: '5',
+          label: 'Cadillac'
         }],
         value: ''
     }
@@ -124,6 +283,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title{
+  font-size: 50px;
+  line-height: 63px;
+  text-align: left;
+  font-weight: 900;
+}
+.scaling{
+  width: 100%;
+  transform: scale(1);
+  transition: transform 0.6s ease-in-out;
+  &:hover{
+    transform: scale(1.11);
+  }
+}
 .search{
   height: 620px;
   background-color: #222732;
@@ -153,15 +326,43 @@ export default {
           margin: 0 18px 18px;
           font-size: 17px;
           font-weight: 600;
+          cursor: pointer;
+          position: relative;
+          &::after{
+            opacity: 0;
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid #fff;
+            position: absolute;
+            bottom: -26px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            display: inline-block;
+            transition: bottom 0.3s ease-in-out;
+          }
+        }
+        .triangle{
+          position: relative;
+          color: var(--primary);
+          &::after{
+            opacity: 1;
+            bottom: -18px;
+          }
         }
       }
       .select{
         position:relative;
+        z-index: 10;
         .select__box{
           padding: 15px;
           background-color: #ffffff;
           border-radius: 20px;
-          z-index: 2;
+          display: flex;
+          justify-content: center;
           .btn{
             width: 57px;
             height: 53px;
@@ -186,7 +387,7 @@ export default {
           border-bottom-left-radius: 20px;
           border-bottom-right-radius: 20px;
           opacity: 0.59;
-          z-index: 0;
+          z-index: -1;
         }
       }
  
@@ -221,5 +422,228 @@ export default {
     }
   }
     
+}
+.featured-listings{
+  padding-top: 48px;
+  padding-bottom: 48px;
+  .handy-picked{
+    font-size: 22px;
+    line-height: 1.64;
+    color: var(--primary);
+  }
+  .featured-items{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    .featured-large-items{
+      width: 50%;
+      margin-left: 10px;
+      margin-right: 10px;
+      .item-img{
+        width: 100%;
+        a{
+          display: inline-block;
+          position: relative;
+          width: 100%;
+          .single-car-img{
+            overflow: hidden;
+          }
+          .img-inner{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            bottom: 0;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0) linear-gradient(0deg, rgba(0, 0, 0, 0.6) 8%, rgba(0, 0, 0, 0) 94%) repeat scroll 0 0;
+            z-index: 2;
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 25px;
+            color: #a7a7a7;
+            .img-inner__favorite{
+              border-radius: 50%;
+              z-index: 20;
+              width: 40px;
+              height: 40px;
+              text-align: center;
+              opacity: 1;
+              transition: all 0.5s ease;
+              background: transparent;
+              i{
+                line-height: 40px;
+              }
+              &:hover{
+                background: #ffffff;
+                line-height: 40px;
+              }
+            }
+            .img-inner__num{
+              span{
+                margin-left: 5px;
+                font-weight: 900;
+              }
+            }
+
+          }
+        }
+      }
+      .item-text{
+        background-color: #222732;
+        margin-top: -2px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        padding: 30px 35px;
+        .item-text-top{
+          border-bottom: 1px solid #343B4A;
+          .car-title{
+            font-size: 22px;
+            line-height: 28px;
+            margin-bottom: 20px;
+          }
+        }
+        .item-text-bottom{
+          display: flex;
+          justify-content: space-between;
+          margin-top: 20px;
+          div:first-child{
+            display: flex;
+            div{
+              margin-right: 15px;
+            }
+          }
+          .vehica-car-card__info__single{
+            line-height: 34px;
+            font-size: 17px;
+            &:not(:first-child){
+              color: #99A1B2;
+            }
+          }
+          .btn{
+            padding: 0 11px;
+            color: #fff;
+            background: var(--primary);
+            border-radius: 5px;
+            font-weight: 500;
+          }
+          .single-car-price{
+            line-height: 35px;
+            font-size: 28px;
+            font-weight: 900;
+          }
+        }
+      }
+    }
+    .featured-small-items{
+      width: 50%;
+      display: flex;
+      flex-wrap:wrap;
+      .featured-item{
+        width: 45%;
+        margin-left: 10px;
+        margin-right: 10px;
+        .item-img{
+          position: relative;
+          a{
+            width: 100%;
+            display: inline-block;
+            overflow: hidden;
+            .img-inner{
+              width: 100%;
+              position: absolute;
+              bottom: 2px;
+              padding: 0 22px 19px 22px;
+              display: flex;
+              justify-content: space-between;
+              background: rgba(0, 0, 0, 0) linear-gradient(0deg, rgba(0, 0, 0, 0.6) 8%, rgba(0, 0, 0, 0) 94%) repeat scroll 0 0;
+              z-index: 2;
+              line-height: 25px;
+              color: #a7a7a7;
+              span{
+                margin-left: 5px;
+                font-weight: 900;
+              }
+            }
+          }
+        }
+        .item-text{
+          background-color: #222732;
+          margin-top: -2px;
+          color: #ffffff;
+          display: flex;
+          flex-direction: column;
+          padding: 18px 24px;
+          .item-text-top{
+            padding-bottom: 10px;
+            border-bottom: 1px solid #343B4A;
+            .single-car-title{
+              font-size: 17px;
+              line-height: 21px;
+              margin-bottom: 10px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              color: #fff;
+            }
+            .single-car-price{
+              line-height: 35px;
+              font-size: 20px;
+              font-weight: 900;
+            }
+          }
+          .item-text-bottom{
+            display: flex;
+            margin-top: 15px;
+            div:first-child{
+              display: flex;
+            }
+            .vehica-car-card__info__single{
+              line-height: 28px;
+              font-size: 14px;
+              margin-right: 12px;
+              &:not(:first-child){
+                color: #99A1B2;
+              }
+            }
+            .btn{
+              padding: 0 11px;
+              color: #fff;
+              background: var(--primary);
+              border-radius: 5px;
+              font-size: 14px;
+              font-weight: 500;
+              margin-right: 20px;
+              line-height: 28px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>
+<style>
+.el-select{
+  padding-right: 10px;
+}
+.el-input--suffix .el-input__inner{
+  min-height: 51px;
+  font-size: 14px;
+  line-height: 16px;
+  width: 100%;
+  color: #2f3b48;
+  border-radius: 10px;
+}
+.el-select .el-input .el-select__caret{
+  color: #222732;
+  font-weight: 600;
+}
+.el-select .el-input__inner:focus{
+  border-color: var(--primary);
+}
+.el-select-dropdown__item{
+  color:#222732;
 }
 </style>
