@@ -1815,6 +1815,8 @@ export default {
               width: 100%;
               vertical-align: middle;
             }
+
+            
           }
         }
       }
