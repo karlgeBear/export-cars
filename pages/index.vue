@@ -794,6 +794,7 @@
       </div>
     </section>
     <section class="our-team">
+      <div class="bg-modify"></div>
       <div class="container">
         <div class="our-team__info">
           <div class="our-team-info__left">
@@ -807,45 +808,187 @@
             </ul>
             <div class="learn-btn"><a href="#" class="vahica-buttom">Learn more</a></div>
             <div class="slideshow">
-              <div class="slideshow-left-btn"><i class="far fa-chevron-left"></i></div>
-              <div class="slideshow-right-btn"><i class="far fa-chevron-right"></i></div>
+              <div class="slideshow-left-btn" @click="swiperLeft(0)"><i class="far fa-chevron-left"></i></div>
+              <div class="slideshow-right-btn" @click="swiperRight(0)"><i class="far fa-chevron-right"></i></div>
             </div>
           </div>
         </div>
         <div class="our-team-info__right">
           <div class="our-team-member-card-list">
-            <div class="our-team-member-card-item">
-              <div class="card-member-img">
-                <a href="#">
-                  <img src="~/assets/imgs/ourTeamMember/p7-1-336x284.jpg" alt="Emily">
-                </a>
+            <div class="vehica-swiper-wrapper" :style="{left:cardPosi + 'px'}">
+              <div class="our-team-member-card-item">
+                <div class="card-member-img">
+                  <a href="#">
+                    <img src="~/assets/imgs/ourTeamMember/p7-1-336x284.jpg" alt="Emily">
+                  </a>
+                </div>
+                <div class="card-member-info">
+                  <div class="contact-click-methods">
+                    <div class="phone-btn"><a href="#"><i class="fas fa-phone-alt"></i></a></div>
+                    <div class="email-btn"><a href="#"><i class="fas fa-envelope"></i></a></div>
+                  </div>
+                  <div class="member-info">
+                    <div class="member-name"><a href="#">Emily Ress</a></div>
+                    <div class="member-profession">Customer Advisor</div>
+                  </div>
+                  <div class="contact-methods">
+                    <div class="emial"><a href="#">george@vehica.com</a></div>
+                    <div class="phone"><a href="#">(123) 345-6789</a></div>
+                  </div>
+                </div>
               </div>
-              <div class="card-member-info">
-                <div class="contact-click-methods">
-                  <div class="phone-btn"><a href="#"><i class="fas fa-phone-alt"></i></a></div>
-                  <div class="email-btn"><a href="#"><i class="fas fa-envelope"></i></a></div>
+              <div class="our-team-member-card-item">
+                <div class="card-member-img">
+                  <a href="#">
+                    <img src="~/assets/imgs/ourTeamMember/p6-1-336x284.jpg" alt="Emily">
+                  </a>
                 </div>
-                <div class="member-info">
-                  <div class="member-name"><a href="#">Emily Ress</a></div>
-                  <div class="member-profession">Customer Advisor</div>
+                <div class="card-member-info">
+                  <div class="contact-click-methods">
+                    <div class="phone-btn"><a href="#"><i class="fas fa-phone-alt"></i></a></div>
+                    <div class="email-btn"><a href="#"><i class="fas fa-envelope"></i></a></div>
+                  </div>
+                  <div class="member-info">
+                    <div class="member-name"><a href="#">Emily Ress</a></div>
+                    <div class="member-profession">Customer Advisor</div>
+                  </div>
+                  <div class="contact-methods">
+                    <div class="emial"><a href="#">george@vehica.com</a></div>
+                    <div class="phone"><a href="#">(123) 345-6789</a></div>
+                  </div>
                 </div>
-                <div class="contact-methods">
-                  <div class="emial"><a href="#">george@vehica.com</a></div>
-                  <div class="phone"><a href="#">(123) 345-6789</a></div>
+              </div>
+              <div class="our-team-member-card-item">
+                <div class="card-member-img">
+                  <a href="#">
+                    <img src="~/assets/imgs/ourTeamMember/p4-1-336x284.jpg" alt="Emily">
+                  </a>
+                </div>
+                <div class="card-member-info">
+                  <div class="contact-click-methods">
+                    <div class="phone-btn"><a href="#"><i class="fas fa-phone-alt"></i></a></div>
+                    <div class="email-btn"><a href="#"><i class="fas fa-envelope"></i></a></div>
+                  </div>
+                  <div class="member-info">
+                    <div class="member-name"><a href="#">Emily Ress</a></div>
+                    <div class="member-profession">Customer Advisor</div>
+                  </div>
+                  <div class="contact-methods">
+                    <div class="emial"><a href="#">george@vehica.com</a></div>
+                    <div class="phone"><a href="#">(123) 345-6789</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="our-team-member-card-item">
+                <div class="card-member-img">
+                  <a href="#">
+                    <img src="~/assets/imgs/ourTeamMember/p3-1-336x284.jpg" alt="Emily">
+                  </a>
+                </div>
+                <div class="card-member-info">
+                  <div class="contact-click-methods">
+                    <div class="phone-btn"><a href="#"><i class="fas fa-phone-alt"></i></a></div>
+                    <div class="email-btn"><a href="#"><i class="fas fa-envelope"></i></a></div>
+                  </div>
+                  <div class="member-info">
+                    <div class="member-name"><a href="#">Emily Ress</a></div>
+                    <div class="member-profession">Customer Advisor</div>
+                  </div>
+                  <div class="contact-methods">
+                    <div class="emial"><a href="#">george@vehica.com</a></div>
+                    <div class="phone"><a href="#">(123) 345-6789</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="our-team-member-card-item">
+                <div class="card-member-img">
+                  <a href="#">
+                    <img src="~/assets/imgs/ourTeamMember/p2-1-336x284.jpg" alt="Emily">
+                  </a>
+                </div>
+                <div class="card-member-info">
+                  <div class="contact-click-methods">
+                    <div class="phone-btn"><a href="#"><i class="fas fa-phone-alt"></i></a></div>
+                    <div class="email-btn"><a href="#"><i class="fas fa-envelope"></i></a></div>
+                  </div>
+                  <div class="member-info">
+                    <div class="member-name"><a href="#">Emily Ress</a></div>
+                    <div class="member-profession">Customer Advisor</div>
+                  </div>
+                  <div class="contact-methods">
+                    <div class="emial"><a href="#">george@vehica.com</a></div>
+                    <div class="phone"><a href="#">(123) 345-6789</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="our-team-member-card-item">
+                <div class="card-member-img">
+                  <a href="#">
+                    <img src="~/assets/imgs/ourTeamMember/p1-1-336x284.jpg" alt="Emily">
+                  </a>
+                </div>
+                <div class="card-member-info">
+                  <div class="contact-click-methods">
+                    <div class="phone-btn"><a href="#"><i class="fas fa-phone-alt"></i></a></div>
+                    <div class="email-btn"><a href="#"><i class="fas fa-envelope"></i></a></div>
+                  </div>
+                  <div class="member-info">
+                    <div class="member-name"><a href="#">Emily Ress</a></div>
+                    <div class="member-profession">Customer Advisor</div>
+                  </div>
+                  <div class="contact-methods">
+                    <div class="emial"><a href="#">george@vehica.com</a></div>
+                    <div class="phone"><a href="#">(123) 345-6789</a></div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="our-team-member-card-item">hahha</div>
-            <div class="our-team-member-card-item">hahha</div>
-            <div class="our-team-member-card-item">hahha</div>
-            <div class="our-team-member-card-item">hahha</div>
-            <div class="our-team-member-card-item">hahha</div>
+
           </div>
         </div>
 
       </div>
     </section>
-    <section class="download-our-app"></section>
+    <section class="how-to-buy-car">
+      <div class="container">
+        <div class="how-to-buy-car-top swiper">
+          <div class="swiper-wraper">
+            <div class="slideshow-left-btn" @click="swiperLeft(1)"><i class="far fa-chevron-left"></i></div>
+            <div class="swiper-content">
+              <ul class="swiper-list">
+                <li class="swiper-list-item"><a href="#" class="swiper-list-item-link"><img src="~/assets/imgs/themeforest.png" alt="a"></a></li>
+                <li class="swiper-list-item"><a href="#" class="swiper-list-item-link"><img src="~/assets/imgs/themeforest.png" alt="b"></a></li>
+                <li class="swiper-list-item"><a href="#" class="swiper-list-item-link"><img src="~/assets/imgs/themeforest.png" alt="v"></a></li>
+                <li class="swiper-list-item"><a href="#" class="swiper-list-item-link"><img src="~/assets/imgs/themeforest.png" alt="d"></a></li>
+                <li class="swiper-list-item"><a href="#" class="swiper-list-item-link"><img src="~/assets/imgs/themeforest.png" alt="s"></a></li>
+              </ul>
+            </div>
+            <div class="slideshow-right-btn" @click="swiperRight(1)"><i class="far fa-chevron-right"></i></div>
+          </div>
+        </div>
+        <div class="how-to-buy-car-bottom">
+            <div class="how-to-buy-car-sub"></div>
+            <div class="how-to-buy-car-main">
+              <div class="main-title">
+                <h1 class="title">How to buy a car</h1>
+                <div class="buttom">
+                  <a href="" class="vahica-buttom">Read more</a>
+                </div>
+              </div>
+              <div class="main-info">
+                <ul class="main-info-list">
+                  <li class="main-info-item">best deals</li>
+                  <li class="main-info-item">sell your car</li>
+                  <li class="main-info-item">car book values</li>
+                  <li class="main-info-item">car dealers</li>
+                  <li class="main-info-item">compare prices</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      </div>
+
+    </section>
     <Footer />
   </div>
 </template>
@@ -857,6 +1000,7 @@ export default {
   data() {
     return {
       isTriangle: 0,
+      cardPosi:0,
       options: [
         {
           value: "1",
@@ -882,6 +1026,30 @@ export default {
       value: "",
     };
   },
+  methods: {
+    swiperLeft(item){
+      let singleCardWidth = 356
+      if(!item){
+        //card swiper
+        if(this.cardPosi === 0){
+          this.cardPosi -= singleCardWidth*2
+        }else if(this.cardPosi < 0){
+          this.cardPosi += singleCardWidth
+        }
+      }
+    },
+    swiperRight(item){
+      let singleCardWidth = 356
+      if(!item){
+        //card swiper
+        if(Math.abs(this.cardPosi) == Math.abs(singleCardWidth*2)){
+          this.cardPosi = 0
+        }else if(this.cardPosi <= 0){
+          this.cardPosi -= singleCardWidth
+        }
+      }
+    }
+  }
 };
 </script>
 
@@ -1010,6 +1178,21 @@ export default {
   align-items: center;
   transform: translateZ(0);
   text-decoration: none;
+}
+.slideshow-left-btn,.slideshow-right-btn{
+  background-color: #fff;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.2s ease;
+  i{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #2f3b48;
+    line-height: 55px;
+  }
 }
 
 .search {
@@ -1431,7 +1614,18 @@ export default {
   }
 }
 .our-team{
-  padding-bottom: 50px;
+  padding-bottom: 100px;
+  position: relative;
+  overflow: hidden;
+  .bg-modify{
+    width: 100%;
+    height: 80%;
+    background-color: var(--bg);
+    position: absolute;
+    top: 20%;
+    z-index: -1;
+    padding-bottom: 50px;
+  }
   .our-team__info{
     display: flex;
     position: relative;
@@ -1489,24 +1683,11 @@ export default {
       .slideshow{
         margin-top: 50px;
         div{
-          background-color: #fff;
-          border-radius: 50%;
-          width: 55px;
-          height: 55px;
-          display: inline-block;
-          text-align: center;
-          transition: all 0.2s ease;
           &:last-child{
             margin-left: 6px;
           }
           &:hover{
             box-shadow: 0px 3px 40px 0 #dbe0e8;
-          }
-          i{
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            color: #2f3b48;
-            line-height: 55px;
           }
         }
       }
@@ -1518,90 +1699,131 @@ export default {
       position: absolute;
       top: 50px;
       left: 35%;
-      width: 1600px;
+      width: 2200px;
       height: 500px;
-      border: 1px solid var(--primary);
+      overflow: hidden;
       .our-team-member-card-list{
-        display: flex;
-        .our-team-member-card-item{
-          border-radius: 10px;
-          overflow: hidden;
-          .card-member-img{
-            max-width: 336px;
-            a{
-              display: inline-block;
-              width: 100%;
-              height: 100%;
-              img{
+        width: 100%;
+        position: relative;
+        .vehica-swiper-wrapper{
+          display: flex;
+          position: absolute;
+          transition: all .3s ease;
+          width: 100%;
+          .our-team-member-card-item{
+            border-radius: 10px;
+            overflow: hidden;
+            margin-right: 20px;
+            .card-member-img{
+              max-width: 336px;
+              a{
+                display: inline-block;
                 width: 100%;
+                height: 100%;
+                img{
+                  width: 100%;
+                }
+              }
+            }
+            .card-member-info{
+              background-color: #fff;
+              margin-top: -2px;
+              padding: 45px 30px 30px;
+              .contact-click-methods{
+                margin-top: -72px;
+                display: flex;
+                div{
+                  width: 47px;
+                  height: 47px;
+                  line-height: 47px;
+                  font-size: 20px;
+                  border-radius: 10px;
+                  color: #fff;
+                  text-align: center;
+                  display: inline-block;
+                  margin-bottom: 25px;
+                  margin-right: 10px;
+                  background-color: var(--primary);
+                }
+              }
+              .member-info{
+                border-bottom: 1px solid #ecf0f3;
+                .member-name{
+                  font-size: 23px;
+                  line-height: 29px;
+                  font-weight: bold;
+                  font-stretch: normal;
+                  font-style: normal;
+                  letter-spacing: normal;
+                  text-align: left;
+                  margin-bottom: 7px;
+                  color: #222732;
+                }
+                .member-profession{
+                  opacity: 0.5;
+                  font-size: 15px;
+                  line-height: 19px;
+                  font-weight: 500;
+                  text-align: left;
+                  color: #222732;
+                  margin-bottom: 15px;
+                }
+              }
+              .contact-methods{
+                margin-top: 19px;
+                .emial{
+                  font-size: 16px;
+                  line-height: 24px;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                  color: var(--primary);
+                }
+                .phone{
+                  font-size: 16px;
+                  color: #99a1b2;
+                  line-height: 24px;
+                }
               }
             }
           }
-          .card-member-info{
-            background-color: #fff;
-            margin-top: -2px;
-            padding: 45px 30px 30px;
-            .contact-click-methods{
-              margin-top: -72px;
-              display: flex;
-              div{
-                width: 47px;
-                height: 47px;
-                line-height: 47px;
-                font-size: 20px;
-                border-radius: 10px;
-                color: #fff;
-                text-align: center;
-                display: inline-block;
-                margin-bottom: 25px;
-                margin-right: 10px;
-                background-color: var(--primary);
-              }
-            }
-            .member-info{
-              border-bottom: 1px solid #ecf0f3;
-              .member-name{
-                font-size: 23px;
-                line-height: 29px;
-                font-weight: bold;
-                font-stretch: normal;
-                font-style: normal;
-                letter-spacing: normal;
-                text-align: left;
-                margin-bottom: 7px;
-                color: #222732;
-              }
-              .member-profession{
-                opacity: 0.5;
-                font-size: 15px;
-                line-height: 19px;
-                font-weight: 500;
-                text-align: left;
-                color: #222732;
-                margin-bottom: 15px;
-              }
-            }
-            .contact-methods{
-              .emial{
-                font-size: 16px;
-                line-height: 24px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                color: var(--primary);
-              }
-              .phone{
-                font-size: 16px;
-                color: #99a1b2;
-                line-height: 24px;
-              }
+        }
+        
+      }
+    }
+  }
+
+}
+.how-to-buy-car{
+  padding: 90px 0 65px;
+  .swiper-wraper{
+    display: flex;
+    .swiper-content{
+      width: 100%;
+      overflow: hidden;
+      .swiper-list{
+        display: flex;
+        height: 55px;
+        line-height: 55px;
+        .swiper-list-item{
+          width: 280.5px;
+          padding: 0 30px;
+          a{
+            display: inline-block;
+            width: 100%;
+            img{
+              width: 100%;
+              vertical-align: middle;
             }
           }
         }
       }
     }
-  }
+    .slideshow-left-btn,.slideshow-right-btn{
+      box-shadow: 0 3px 40px 0 #dbe0e8;;
+    }
 
+  }
 }
 </style>
 <style>
