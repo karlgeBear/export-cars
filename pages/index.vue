@@ -808,8 +808,8 @@
             </ul>
             <div class="learn-btn"><a href="#" class="vahica-buttom">Learn more</a></div>
             <div class="slideshow">
-              <div class="slideshow-left-btn" @click="swiperLeft(0)"><i class="far fa-chevron-left"></i></div>
-              <div class="slideshow-right-btn" @click="swiperRight(0)"><i class="far fa-chevron-right"></i></div>
+              <div class="slideshow-left-btn" @click="swiperLeft(1)"><i class="far fa-chevron-left"></i></div>
+              <div class="slideshow-right-btn" @click="swiperRight(1)"><i class="far fa-chevron-right"></i></div>
             </div>
           </div>
         </div>
@@ -953,9 +953,9 @@
       <div class="container">
         <div class="how-to-buy-car-top swiper">
           <div class="swiper-wraper">
-            <div class="slideshow-left-btn" @click="swiperLeft(1)"><i class="far fa-chevron-left"></i></div>
+            <div class="slideshow-left-btn" @click="swiperLeft(2)"><i class="far fa-chevron-left"></i></div>
             <div class="swiper-content">
-              <ul class="swiper-list">
+              <ul class="swiper-list" :style="{left:imgPosi + 'px'}">
                 <li class="swiper-list-item"><a href="#" class="swiper-list-item-link"><img src="~/assets/imgs/themeforest.png" alt="a"></a></li>
                 <li class="swiper-list-item"><a href="#" class="swiper-list-item-link"><img src="~/assets/imgs/themeforest.png" alt="b"></a></li>
                 <li class="swiper-list-item"><a href="#" class="swiper-list-item-link"><img src="~/assets/imgs/themeforest.png" alt="v"></a></li>
@@ -963,7 +963,7 @@
                 <li class="swiper-list-item"><a href="#" class="swiper-list-item-link"><img src="~/assets/imgs/themeforest.png" alt="s"></a></li>
               </ul>
             </div>
-            <div class="slideshow-right-btn" @click="swiperRight(1)"><i class="far fa-chevron-right"></i></div>
+            <div class="slideshow-right-btn" @click="swiperRight(2)"><i class="far fa-chevron-right"></i></div>
           </div>
         </div>
         <div class="how-to-buy-car-bottom">
@@ -1001,6 +1001,7 @@ export default {
     return {
       isTriangle: 0,
       cardPosi:0,
+      imgPosi:0,
       options: [
         {
           value: "1",
@@ -1029,24 +1030,46 @@ export default {
   methods: {
     swiperLeft(item){
       let singleCardWidth = 356
-      if(!item){
+      let singleImgWidth = 320
+      switch(item) {
+      case 1:
         //card swiper
         if(this.cardPosi === 0){
           this.cardPosi -= singleCardWidth*2
         }else if(this.cardPosi < 0){
           this.cardPosi += singleCardWidth
         }
-      }
+        break;
+      case 2:
+        // img swiper
+        if(this.imgPosi === 0){
+          this.imgPosi -= singleImgWidth
+        }else{
+          this.imgPosi = 0
+        }
+        break;
+      } 
     },
     swiperRight(item){
       let singleCardWidth = 356
-      if(!item){
-        //card swiper
-        if(Math.abs(this.cardPosi) == Math.abs(singleCardWidth*2)){
-          this.cardPosi = 0
-        }else if(this.cardPosi <= 0){
-          this.cardPosi -= singleCardWidth
-        }
+      let singleImgWidth = 320
+      switch(item) {
+        case 1:
+          //card swiper
+          if(Math.abs(this.cardPosi) == Math.abs(singleCardWidth*2)){
+            this.cardPosi = 0
+          }else if(this.cardPosi <= 0){
+            this.cardPosi -= singleCardWidth
+          }
+          break;
+        case 2:
+          // img swiper
+          if(this.imgPosi === 0){
+            this.imgPosi -= singleImgWidth
+          }else{
+            this.imgPosi = 0
+          }
+          break;
       }
     }
   }
@@ -1801,12 +1824,16 @@ export default {
     .swiper-content{
       width: 100%;
       overflow: hidden;
+      position: relative;
       .swiper-list{
         display: flex;
         height: 55px;
         line-height: 55px;
+        position: absolute;
+        margin-left: 15px;
+        transition: all .3s ease;
         .swiper-list-item{
-          width: 280.5px;
+          width: 320px;
           padding: 0 30px;
           a{
             display: inline-block;
@@ -1814,9 +1841,14 @@ export default {
             img{
               width: 100%;
               vertical-align: middle;
+              filter: grayscale(1);
+              opacity: 0.4;
+              transition: all 0.2s ease;
+              &:hover{
+                filter: grayscale(0);
+                opacity: 1;
+              }
             }
-
-            
           }
         }
       }
@@ -1825,6 +1857,62 @@ export default {
       box-shadow: 0 3px 40px 0 #dbe0e8;;
     }
 
+  }
+  .how-to-buy-car-bottom{
+    display: flex;
+    margin: 90px 0;
+    div{
+      width: 50%;
+      margin: 0 15px;
+      color: #fff;
+    }
+    .how-to-buy-car-sub{
+      border: 1px solid var(--primary);
+    }
+    .how-to-buy-car-main{
+      padding: 50px;
+      background: #222732;
+      border-radius: 5px;
+      display: flex;
+      .main-title{
+        width: 75%;
+        .buttom{
+          margin: 40px 0;
+          .vahica-buttom{
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            &:hover{
+              background-color: var(--primary);
+            }
+          }
+        }
+      }
+      .main-info{
+        margin: 20px 0;
+        .main-info-list{
+          padding: 20px 0;
+          .main-info-item{
+            margin: 15px 0;
+            font-size: 20px;
+            color: #99A1B2;
+            position: relative;
+            padding-left: 30px;
+            &::before{
+              position: absolute;
+              left: 0;
+              top: 5px;
+              content: "\f058";
+              font-weight: 900;
+              font-family: "Font Awesome 5 Free";
+              display: inline-block;
+              color: var(--primary);
+              padding-right: 20px;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>
