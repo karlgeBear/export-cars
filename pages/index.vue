@@ -967,7 +967,7 @@
           </div>
         </div>
         <div class="how-to-buy-car-bottom">
-            <div class="how-to-buy-car-sub"></div>
+            <div class="how-to-buy-car-sub">download APP</div>
             <div class="how-to-buy-car-main">
               <div class="main-title">
                 <h1 class="title">How to buy a car</h1>
@@ -1723,7 +1723,7 @@ export default {
       top: 50px;
       left: 35%;
       width: 2200px;
-      height: 500px;
+      height: 510px;
       overflow: hidden;
       .our-team-member-card-list{
         width: 100%;
@@ -1737,6 +1737,11 @@ export default {
             border-radius: 10px;
             overflow: hidden;
             margin-right: 20px;
+            transition: all .3s ease;
+            margin-top: 10px;
+            &:hover{
+              margin-top: 0;
+            }
             .card-member-img{
               max-width: 336px;
               a{
@@ -1752,6 +1757,8 @@ export default {
               background-color: #fff;
               margin-top: -2px;
               padding: 45px 30px 30px;
+              border-bottom-left-radius: 10px;
+              border-bottom-right-radius: 10px;
               .contact-click-methods{
                 margin-top: -72px;
                 display: flex;
@@ -1868,6 +1875,7 @@ export default {
     }
     .how-to-buy-car-sub{
       border: 1px solid var(--primary);
+      color: var(--primary);
     }
     .how-to-buy-car-main{
       padding: 50px;

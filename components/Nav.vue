@@ -1,27 +1,27 @@
 <template>
   <div class="navDIY">
     <div class="nav-PC">
-      <div class="nav" v-show="navshow">
+      <div class="nav" v-show="navshow" :class="{navbg:diynavbg==1}">
         <div class="nav-left">
           <div class="nav-logo">
             <img src="~assets/imgs/vehica-logo-white.png" alt="logo">
           </div>
           <div class="nav-menu">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-              <el-menu-item index="1"><a href="" title="Home" class="nav-link">Home</a></el-menu-item>
-              <el-menu-item index="2"><a href="" title="Home" class="nav-link">New car</a></el-menu-item>
-              <el-menu-item index="2"><a href="" title="Home" class="nav-link">Used car</a></el-menu-item>
-              <el-submenu index="3">
+              <el-menu-item index="1"><NuxtLink to="/" title="Home" class="nav-link" :class="{selected:diyrate==1}">Home</NuxtLink></el-menu-item>
+              <el-menu-item index="2"><NuxtLink to="/new-cars" title="new-cars" class="nav-link" :class="{selected:diyrate==2}">New car</NuxtLink></el-menu-item>
+              <el-menu-item index="3"><NuxtLink to="/used-cars" title="used-cars" class="nav-link" :class="{selected:diyrate==3}">Used car</NuxtLink></el-menu-item>
+              <el-submenu index="4">
                 <template slot="title">Pages</template>
-                <el-menu-item index="3-1">Our team</el-menu-item>
-                <el-menu-item index="3-2">Our team - advanced</el-menu-item>
-                <el-menu-item index="3-3">Sold</el-menu-item>
-                <el-menu-item index="3-3">Loan Calculator</el-menu-item>
-                <el-menu-item index="3-3">FAQ</el-menu-item>
-                <el-menu-item index="3-3">About us</el-menu-item>
+                <el-menu-item index="4-1">Our team</el-menu-item>
+                <el-menu-item index="4-2">Our team - advanced</el-menu-item>
+                <el-menu-item index="4-3">Sold</el-menu-item>
+                <el-menu-item index="4-3">Loan Calculator</el-menu-item>
+                <el-menu-item index="4-3">FAQ</el-menu-item>
+                <el-menu-item index="4-3">About us</el-menu-item>
               </el-submenu>
-              <el-menu-item index="4"><a href="#" class="nav-link">Blog</a></el-menu-item>
-              <el-menu-item index="5"><a href="#" class="nav-link">Contact</a></el-menu-item>
+              <el-menu-item index="5"><NuxtLink to="/blog" title="blog" class="nav-link" :class="{selected:diyrate==5}">Blog</NuxtLink></el-menu-item>
+              <el-menu-item index="6"><NuxtLink to="/contact" title="contact" class="nav-link" :class="{selected:diyrate==6}">Contact</NuxtLink></el-menu-item>
             </el-menu>
           </div>
         </div>
@@ -43,21 +43,21 @@
             <img src="~assets/imgs/vehica-logo-dark.png" alt="logo">
           </div>
           <div class="nav-menu">
-            <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-              <el-menu-item index="1"><a href="" title="Home" class="nav-link">Home</a></el-menu-item>
-              <el-menu-item index="2"><a href="" title="Home" class="nav-link">New car</a></el-menu-item>
-              <el-menu-item index="2"><a href="" title="Home" class="nav-link">Used car</a></el-menu-item>
-              <el-submenu index="3">
+             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+              <el-menu-item index="1"><NuxtLink to="/" title="Home" class="nav-link">Home</NuxtLink></el-menu-item>
+              <el-menu-item index="2"><NuxtLink to="/new-cars" title="new-cars" class="nav-link">New car</NuxtLink></el-menu-item>
+              <el-menu-item index="3"><NuxtLink to="/used-cars" title="used-cars" class="nav-link">Used car</NuxtLink></el-menu-item>
+              <el-submenu index="4">
                 <template slot="title">Pages</template>
-                <el-menu-item index="3-1">Our team</el-menu-item>
-                <el-menu-item index="3-2">Our team - advanced</el-menu-item>
-                <el-menu-item index="3-3">Sold</el-menu-item>
-                <el-menu-item index="3-3">Loan Calculator</el-menu-item>
-                <el-menu-item index="3-3">FAQ</el-menu-item>
-                <el-menu-item index="3-3">About us</el-menu-item>
+                <el-menu-item index="4-1">Our team</el-menu-item>
+                <el-menu-item index="4-2">Our team - advanced</el-menu-item>
+                <el-menu-item index="4-3">Sold</el-menu-item>
+                <el-menu-item index="4-3">Loan Calculator</el-menu-item>
+                <el-menu-item index="4-3">FAQ</el-menu-item>
+                <el-menu-item index="4-3">About us</el-menu-item>
               </el-submenu>
-              <el-menu-item index="4"><a href="#" class="nav-link">Blog</a></el-menu-item>
-              <el-menu-item index="5"><a href="#" class="nav-link">Contact</a></el-menu-item>
+              <el-menu-item index="5"><NuxtLink to="/blog" title="blog" class="nav-link">Blog</NuxtLink></el-menu-item>
+              <el-menu-item index="6"><NuxtLink to="/contact" title="contact" class="nav-link">Contact</NuxtLink></el-menu-item>
             </el-menu>
           </div>
         </div>
@@ -80,7 +80,7 @@
 <script>
 export default {
   name: 'ExportCarsNav',
-
+  props:['diynavbg','diyrate'],
   data() {
     return {
       activeIndex: '1',
@@ -124,10 +124,14 @@ export default {
 
 <style lang="scss" scoped>
 .navDIY{
-   position: relative;
-   z-index: 9999;
   .nav-PC{
-    position: relative;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    .navbg{
+      background-color: #0F141E;
+    }
     .nav-scrolldown-show{
       position: fixed;
       width: 100%;
@@ -155,7 +159,7 @@ export default {
     /* 设置持续时间和动画函数 */
     .slide-nav-enter-active {
       top: 0;
-      transition: top .3s ease;
+      transition: top .4s ease-in-out;
     }
     .slide-nav-leave-active {
       transition: top .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
@@ -172,6 +176,9 @@ export default {
       .nav-left{
         display: flex;
         align-items: center;
+        .selected{
+          color: var(--primary);
+        }
         .nav-logo{
           padding-top: 10px;
           img{

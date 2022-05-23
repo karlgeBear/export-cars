@@ -76,13 +76,18 @@ input::placeholder{
 }
 @media screen and (min-width: 1023px) {
   .default {
-    /* padding-top: 70px; */
+    padding-top: 100px;
   }
   .container{
     max-width: 1468px;
     margin: auto;
     padding-left: 30px;
     padding-right: 30px;
+  }
+  .test{
+    font-size: 36px;
+    text-align: center;
+    color: var(--primary);
   }
 }
 @media screen and (min-width: 320px) and (max-width: 1023px) {
