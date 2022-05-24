@@ -1,6 +1,7 @@
 <template>
   <div class="used-cars">
     <Nav :diyrate="3" :diynavbg="1"/>
+    <h1>USED CARS</h1>
     <Footer />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div id="Home">
-    <Nav />
+    <Nav :diyrate="1" />
     <section class="search">
       <div class="container">
         <div class="search__box">

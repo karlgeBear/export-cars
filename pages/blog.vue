@@ -1,6 +1,8 @@
 <template>
-  <div class="test">
-    Blog
+  <div class="blog">
+    <Nav :diyrate="4" :diynavbg="1"/>
+    <h1>BLOG</h1>
+    <Footer />
   </div>
 </template>
 

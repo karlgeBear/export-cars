@@ -1,6 +1,8 @@
 <template>
-  <div class="test">
-    contact
+  <div class="contact">
+    <Nav :diyrate="5" :diynavbg="1"/>
+    <h1>CONTACT US</h1>
+    <Footer />
   </div>
 </template>
 
