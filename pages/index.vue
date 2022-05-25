@@ -1924,26 +1924,29 @@ export default {
   }
 }
 </style>
-<style>
-.el-select {
-  padding-right: 10px;
+<style lang="scss">
+.search{
+  .el-select {
+    padding-right: 10px;
+  }
+  .el-input--suffix .el-input__inner {
+    min-height: 51px;
+    font-size: 14px;
+    line-height: 16px;
+    width: 100%;
+    color: #2f3b48;
+    border-radius: 10px;
+  }
+  .el-select .el-input .el-select__caret {
+    color: #222732;
+    font-weight: 600;
+  }
+  .el-select .el-input__inner:focus {
+    border-color: var(--primary);
+  }
+  .el-select-dropdown__item {
+    color: #222732;
+  }
 }
-.el-input--suffix .el-input__inner {
-  min-height: 51px;
-  font-size: 14px;
-  line-height: 16px;
-  width: 100%;
-  color: #2f3b48;
-  border-radius: 10px;
-}
-.el-select .el-input .el-select__caret {
-  color: #222732;
-  font-weight: 600;
-}
-.el-select .el-input__inner:focus {
-  border-color: var(--primary);
-}
-.el-select-dropdown__item {
-  color: #222732;
-}
+
 </style>

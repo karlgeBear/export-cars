@@ -61,3 +61,6 @@ export default {
    1. 关键区别是是否需要webpack打包，打包后项目结构会变化
    2. 建议Static中放一些第三方(如robots.txt,stiemap.xml等等)，自己文件放在assets（例如自己写的js,css,字体文件，图片都放到assets）
    3. 理解：assets文件夹下是页面和组件中用到的静态资源，比如公共样式文件，字体图标文件，图片等。放在assets中的文件会进行压缩体积、代码格式化，压缩后会放置在static中一同上传服务器。因此建议样式文件放在assets中进行打包，引入的第三方文件放到static中，因为引入的文件已经做过打包处理。使用assets下面的资源，在js中使用的话，路径要经过webpack中file-loader编译，路径不能直接写。static中的文件，不会经过编译。项目在经过打包后，会生成dist文件夹，static中的文件只是复制一遍而已
+# element-ui踩坑系列
+## el-select
+1. 改变css样式，为了
