@@ -26,7 +26,7 @@ export default {
   },
 
   mounted() {
-    console.log('test: ',this.props)
+
   },
 
   methods: {
@@ -38,8 +38,9 @@ export default {
 <style lang="scss">
 .filter-car-select{
   width: 20%;
+  padding: 0 6px;
   .el-select{
-    width: 95%;
+    width: 100%;
     box-shadow: 1px 1px 0 0 rgbg(196 196 196 / 24%);
     background: #fff;
     border-radius: 10px;
