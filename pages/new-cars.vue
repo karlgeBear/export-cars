@@ -2,9 +2,9 @@
   <div class="new-cars">
     <Nav :diyrate="2" :diynavbg="1"/>
     <BreadNav />
-    <div class="filter-car">
+    <section class="filter-car-items">
       <div class="container">
-        <div class="filter-list">
+        <div class="filter-list" :class="{showMoreFilters:showMoreFiters}">
           <div class="first-row row">
               <div class="filter-car-select">
                 <el-select v-model="type" filterable placeholder="Type" clearable :popper-append-to-body="false" :class="{selectedHighBorder:type}">
@@ -193,24 +193,84 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="filter-clear-more" :class="{showMoreFilers:showMoreFiters}">
+           <div class="filter-clear-more">
           <div class="clear-all" @click='clearAll'>Clear all</div>
           <div class="more-filters" @click="showMoreFiters=!showMoreFiters">
             <span><i class="fas fa-angle-double-down"></i>More filters</span>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </section>
+    <section class="filter-car-bar">
+      <div class="container">
+        <div class="filter-compare-search__key">
+          <div class="compare"><i class="fas fa-exchange-alt"></i>Compare</div>
+          <div class="search__key" :class="{SelectedHighBorder:keyword}">
+            <input type="text" maxlength="25" placeholder="Enter keyword" v-model="keyword"> 
+            <div class="keyword-icon">
+              <i class="fas fa-search" v-show="!keyword"></i>
+              <i class="el-icon-circle-close" v-show="keyword"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="filter-results">
+      <div class="container">
+        <div class="filter-sort">
+          <div class="filter-sort-left">
+            <span class="filter-results-num">12</span>
+            Results
+          </div>
+          <div class="filter-sort-right">
+            <div class="filter-results-layout">
+              <button :class="{buttonHighColor:carlistLayout}" @click="carlistLayout = !carlistLayout"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g transform="translate(-819 -493)"><rect data-name="Rectangle 5" width="9" height="8" rx="3" transform="translate(819 493)" fill="#888e95"></rect> <rect data-name="Rectangle 6" width="9" height="8" rx="3" transform="translate(830 493)" fill="#888e95"></rect> <rect data-name="Rectangle 7" width="9" height="8" rx="3" transform="translate(830 505)" fill="#888e95"></rect> <rect data-name="Rectangle 8" width="9" height="8" rx="3" transform="translate(819 505)" fill="#888e95"></rect></g></svg></button>
+              <button :class="{buttonHighColor:!carlistLayout}" @click="carlistLayout = !carlistLayout" class="vehica-inventory-v1__view__button-active"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 25 20"><g id="lista" transform="translate(-830 -493)"><rect data-name="Rectangle 6" width="25" height="8" rx="3" transform="translate(830 493)" fill="#888e95"></rect> <rect data-name="Rectangle 7" width="25" height="8" rx="3" transform="translate(830 505)" fill="#888e95"></rect></g></svg></button>
+            </div>
+            <div class="filter-sort-select">
+              <div class="label">Sort by:</div>
+              <div class="filter-car-select">
+                <el-select v-model="sortValue" filterable placeholder="Most Relevant" clearable :popper-append-to-body="false">
+                    <el-option
+                      v-for="item in sortOptionData"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                      >
+                    </el-option>
+                  </el-select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+    <selection class="carlist-loading">
+      <div class="container">
+        <div :class="{carlistLayout:carlistLayout}">
+          <Carlist :carlistLayout="carlistLayout"/>
+          <Carlist :carlistLayout="carlistLayout"/>
+          <Carlist :carlistLayout="carlistLayout"/>
+          <Carlist :carlistLayout="carlistLayout"/>
+          <Carlist :carlistLayout="carlistLayout"/>
+          <Carlist :carlistLayout="carlistLayout"/>
+          <Carlist :carlistLayout="carlistLayout"/>
+        </div>
+      </div>
+    </selection>
     <Footer />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ExportCarsNewCars',
+  name: 'NewCars',
   data() {
     return {
+      showMoreFiters:false,
+      carlistLayout: false,
       value:'',
       type:'',
       make:'',
@@ -229,7 +289,8 @@ export default {
       minYear:'',
       maxYear:'',
       vin:'',
-      showMoreFiters:false,
+      keyword:'',
+      sortValue:'',
       typeOptionData: [
         {
           value: "1",
@@ -251,6 +312,33 @@ export default {
           value: "5",
           label: "Cadillac",
         },
+      ],
+      sortOptionData: [
+        {
+          value:'Relevant',
+          label: 'Most Relevant'
+        },
+        {
+          value:'Newest',
+          label: 'Date list: Newest'
+        },
+        {
+          value:'lowestPrice',
+          label: 'Price: Lowest'
+        },
+        {
+          value:'highestPrice',
+          label: 'Price: Highest'
+        },
+        {
+          value:'lowestMileage',
+          label: 'Mileage: Lowest'
+        },
+        {
+          value:'highestMileage',
+          label: 'Mileage: Highest'
+        },
+
       ]
     };
   },
@@ -289,19 +377,23 @@ export default {
 .SelectedHighBorder{
   border-color: var(--primary) !important;
 }
-.showMoreFilers{
-  bottom: -50px !important;
+.carlistLayout{
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.filter-car{
+.el-icon-circle-close{
+  color: var(--primary);
+}
+
+.filter-car-items{
   background-color: #F2F5FB;
   padding: 30px 0;
-  .container{
-    position:relative;
-  }
   .filter-list{
     display: flex;
     flex-direction: column;
+    position:relative;
+        transition: all .3s ease;
     .row{
       display: flex;
       justify-content: space-around;
@@ -330,7 +422,6 @@ export default {
             position: absolute;
             right: 10px;
             top: 35%;
-            color: var(--primary);
           }
         }
         .filter-car-input-left{
@@ -351,12 +442,12 @@ export default {
         }
       }
     }
-  }
-  .filter-clear-more{
+    .filter-clear-more{
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding: 6px 6px 0;
-    width: 96%;
+    width: 100%;
     height: 30%;
     position: absolute;
     bottom: 6px;
@@ -376,9 +467,62 @@ export default {
         color: var(--primary);
       }
     }
+    }
+  }
+  .showMoreFilters{
+    margin-bottom: 50px;
+    .filter-clear-more{
+      bottom: -50px !important;
+    }
   }
 }
+.filter-results{
+  .filter-sort{
+    padding: 37px 30px 46px 30px;
+    display: flex;
+    justify-content: space-between;
+    .filter-sort-left{
+      font-size: 30px;
+      line-height: 53px;
+      font-weight: 900;
+    }
+    .filter-sort-right{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      max-height: 53px;
+      .filter-results-layout{
+        margin-right: 60px;
+        button{
+          padding-right: 20px;
+          background-color: #fff;
+          transition: all .3s ease-in-out;
+          &:hover *{
+            fill: var(--primary);
+          }
+        }
+        .buttonHighColor *{
+          fill: var(--primary);
+        }
+      }
+      .filter-sort-select{
+        display: flex;
+        align-items: center;
+        .label{
+          font-size: 15px;
+          font-weight: 500;
+          width: 90px;
+        }
+        .filter-car-select{
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
 </style>
+
 <style lang="scss">
 .filter-car-select{
   width: 20%;
@@ -422,6 +566,59 @@ export default {
   }
   .el-input.is-focus .el-input__inner,.selectedHighBorder .el-input--suffix .el-input__inner{
     border-color: var(--primary);
+  }
+}
+.filter-car-bar{
+  color:#f2f5fb;
+  background-color: #F2F5FB;
+  border-bottom: 1px solid #e7e9ee;
+  border-top:1px solid #e7e9ee;
+  .filter-compare-search__key{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 22px 0;
+    .compare{
+      color: #2f3b48;
+      font-size: 19px;
+      font-weight: 600px;
+      margin-right: 27px;
+      transition: all .3s ease-in-out;
+      cursor: pointer;
+      i{
+        padding-right: 10px;
+      }
+      &:hover{
+        color: var(--primary);
+      }
+    }
+    .search__key{
+      display: flex;
+      color: #2f3b48;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #fff;
+      input{
+        border-radius: 10px;
+        height: 51px;
+        padding-left: 26px;
+        font-size: 17px;
+        &::placeholder{
+          color: #8B929B !important;
+          font-weight: 400;
+          font-size: 17px;
+        }
+      }
+      .keyword-icon{
+        padding: 4px 10px 0 40px !important;
+        display: flex;
+        align-items: center;
+        border-top-right-radius: 10px;
+        i{
+          
+        }
+      }
+    }
   }
 }
 </style>
