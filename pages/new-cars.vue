@@ -7,7 +7,18 @@
         <div class="filter-list" :class="{showMoreFilters:showMoreFiters}">
           <div class="first-row row">
               <div class="filter-car-select">
-                <el-select v-model="type" filterable placeholder="Type" clearable :popper-append-to-body="false" :class="{selectedHighBorder:type}">
+                <el-select v-model="type" @change="getSelectVal" filterable placeholder="Type" clearable :popper-append-to-body="false" :class="{selectedHighBorder:type}">
+                  <el-option
+                    v-for="item in type0OptionData"
+                    :key="item.type"
+                    :label="item.label"
+                    :value="item.type"
+                    >
+                  </el-option>
+                </el-select>
+            </div>
+            <div class="filter-car-select">
+                <el-select v-model="make" @change="getSelectVal" @clear="clearModel" filterable placeholder="Make" clearable :popper-append-to-body="false" :class="{selectedHighBorder:make}">
                   <el-option
                     v-for="item in typeOptionData"
                     :key="item.value"
@@ -18,18 +29,7 @@
                 </el-select>
             </div>
             <div class="filter-car-select">
-                <el-select v-model="make" filterable placeholder="Make" clearable :popper-append-to-body="false" :class="{selectedHighBorder:make}">
-                  <el-option
-                    v-for="item in typeOptionData"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                    >
-                  </el-option>
-                </el-select>
-            </div>
-            <div class="filter-car-select">
-                <el-select v-model="model" filterable placeholder="Model" clearable :popper-append-to-body="false" :class="{selectedHighBorder:model}">
+                <el-select v-model="model" @change="getSelectVal" :disabled="make == ''" filterable placeholder="Model" clearable :popper-append-to-body="false" :class="{selectedHighBorder:model}">
                   <el-option
                     v-for="item in typeOptionData"
                     :key="item.value"
@@ -247,7 +247,23 @@
       </div>
       
     </section>
-    <selection class="carlist-loading">
+    <div class="container">
+      <p>Final Page</p>
+      <ul>
+        <li><NuxtLink to="/new-cars/">Go to /new-cars</NuxtLink></li>
+        <li><NuxtLink to="/new-cars/index">Go to /index</NuxtLink></li>
+        <li><NuxtLink to="/new-cars/make1">Go to /child</NuxtLink></li>
+        <li><NuxtLink to="/new-cars/make2">Go to /child2</NuxtLink></li>
+        <li><NuxtLink to="/new-cars/make/model">Go to /make/model</NuxtLink></li>
+      </ul>
+        <hr>
+      <div class="box">
+          <p>嵌套子页面内容区</p>
+          <!-- <nuxt-child>标签在父页面组件中相当于是子页面组件的占位符；嵌套中这个不可少 -->
+          <nuxt-child keep-alive></nuxt-child>
+      </div>
+    </div>
+    <section class="carlist-loading">
       <div class="container">
         <div :class="{carlistLayout:carlistLayout}">
           <Carlist :carlistLayout="carlistLayout"/>
@@ -259,7 +275,7 @@
           <Carlist :carlistLayout="carlistLayout"/>
         </div>
       </div>
-    </selection>
+    </section>
     <Footer />
   </div>
 </template>
@@ -267,6 +283,10 @@
 <script>
 export default {
   name: 'NewCars',
+  // 当前组件对象将要更新前调用, 可以访问this
+  // beforeRouteUpdate (to, from, next) {
+  //   console.log('',this.getQueryUrl)
+  // },
   data() {
     return {
       showMoreFiters:false,
@@ -291,25 +311,26 @@ export default {
       vin:'',
       keyword:'',
       sortValue:'',
-      typeOptionData: [
+      // value值应该与v-model中的值一致
+      type0OptionData: [
         {
-          value: "1",
+          type: "Audi",
           label: `Audi`,
         },
         {
-          value: "2",
+          type: "BMW",
           label: "BMW",
         },
         {
-          value: "3",
+          type: "Bentley",
           label: "Bentley",
         },
         {
-          value: "4",
+          type: "Porsche",
           label: "Porsche",
         },
         {
-          value: "5",
+          tyep: "Cadillac",
           label: "Cadillac",
         },
       ],
@@ -339,11 +360,77 @@ export default {
           label: 'Mileage: Highest'
         },
 
-      ]
+      ],
+      typeOptionData: [
+        {
+          value: "Audi",
+          label: `Audi`,
+        },
+        {
+          value: "BMW",
+          label: "BMW",
+        },
+        {
+          value: "Bentley",
+          label: "Bentley",
+        },
+        {
+          value: "Porsche",
+          label: "Porsche",
+        },
+        {
+          value: "Cadillac",
+          label: "Cadillac",
+        },
+      ],
     };
   },
-
+  computed: {
+    getQueryUrl(){
+      // if(this.make && this.model) return;
+      let param = {
+        'type': this.type,
+        'price-from': this.minPrice,
+        'price-to': this.maxPrice,
+        'mileage': this.mileage,
+        'drive-type': this.driveType,
+        'fuel-type': this.fuelType,
+        'features': this.features,
+        'transmission': this.transmission,
+        'color': this.color,
+        'door': this.doors,
+        'safety-features': this.safetyFeatures,
+        'cylinders': this.cylinders,
+        'year-from': this.minYear,
+        'year-to': this.maxYear
+      }
+      let paramStr = ''
+      let route = ''
+      let defaultParamStr = 'current-page=1&sort-by=newest'
+      Object.keys(param).forEach((item,index) => {
+        if(!param[item] == ''){
+          paramStr += item +'='+ param[item] + '&'
+        }
+      })
+      if(!this.make == ''){
+        route = `/${this.make}${this.model == '' ? '/?' : '/' + this.model + '/?'}`
+      }else{
+        paramStr = '/?' + paramStr
+      }
+      console.log('testRoute:',route)
+      return route + paramStr + defaultParamStr
+    }
+  },
   methods: {
+    getSelectVal(value){
+      console.log('------------urlparam---------',this.getQueryUrl)
+      console.log('目前选中的值是：',value)
+      this.$router.push(`/new-cars${this.getQueryUrl}`)
+      // this.$router.push({path: '/new-cars/',query:param})
+    },
+    clearModel(){
+      this.model = ''
+    },
     clearAll(){
       this.type=""
       this.make=""
@@ -362,11 +449,30 @@ export default {
       this.minYear=""
       this.maxYear=""
       this.vin=""
+    },
+    deconstructUrl(){
+      this.type =  this.$route.query.type == undefined || null ? '' : this.$route.query.type,
+      this.make = this.$route.params.make == undefined || null ? '' : this.$route.params.make,
+      this.model = this.$route.params.model == undefined || null ? '' : this.$route.params.model
+      // this.minPrice =  this.$route.query.minPrice,
+      // this.maxPrice =  this.$route.query.maxPrice,
+      // this.mileage =  this.$route.query.mileage,
+      // this.driveType =  this.$route.query.driveType,
+      // this.fuelType =  this.$route.query.fuelType,
+      // this.features =  this.$route.query.features,
+      // this.transmission =  this.$route.query.transmission,
+      // this.color =  this.$route.query.color,
+      // this.door =  this.$route.query.doors,
+      // this.safety-features =  this.$route.query.safetyFeatures,
+      // this.cylinders =  this.$route.query.cylinders,
+      // this.minYear =  this.$route.query.minYear,
+      // this.maxYear =  this.$route.query.maxYear
     }
   },  
   
   mounted() {
-    
+    console.log('随机改变的url为: ',this.getQueryUrl)
+    this.deconstructUrl()
   },
 
 

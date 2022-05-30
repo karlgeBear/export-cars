@@ -228,8 +228,17 @@
    2. 使用 &#60;<picture>&#62; 元素，您还可以针对不同屏幕尺寸为自适应图片指定多个选项。您还可以在图片上使用 loading="lazy" 属性，提高用户的网页加载速度。
 2. 添加alt属性，为图片提供说明性文件名
 
+## 8. URL最后斜杠的作用
+```
+1.http://www.abc.com/abc
+2.http://www.abc.com/abc/
+- 当Web服务器接收到对某个末尾不含斜杠的url请求时，例如“http://www.abc.com/abc”，这时服务器会搜索网站根目录下有没有名为“abc”的文件，如果没有就把abc当做目录处理，然后返回abc目录下的默认首页。当Web服务器接收到的是末尾带斜杠的请求时就会直接当做目录处理。
+- 当浏览器解析 /ie 这样的url时，服务器会执行301转向到/ie/，两个链接都有效，但是第二种更快。当然这个转向的时间一般是感觉不到的，几乎可以忽略。
+- 
+```
 
 ## 参考文献：
 1. <a href="https://developers.google.com/search/docs/beginner/seo-starter-guide?hl=zh-cn#uniquepagetitles">Google搜索中心</a>
 2. <a href="https://ahrefs.com/blog/zh/schema-markup/#generate-markup">什么是Schema Markup (结构标记)? 它对SEO有什么用？</a>
 
+## 未总结文献<a href="https://www.zhidaow.com/post/5-seo-tips-for-front-end-engineers">给前端工程师的五个 SEO 建议</a>
