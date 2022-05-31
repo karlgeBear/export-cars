@@ -19,21 +19,34 @@ export default {
   },
   watch: {
     $route(){
-      this.breadData = this.$route.matched.map((item) => {
-        return {name:item.name,path:item.path}
-      })
+      this.parseBreadUrl()
+      console.log('路由监听',this.breadData)
     }
+  },
+  computed: {
+
   },
 
   mounted() {
-    this.breadData=this.$route.matched.map((item) => {
-      return {name:item.name,path:item.path}
-    })
-    console.log('路由匹配：', this.breadData)
+    this.parseBreadUrl()
+    console.log('路由匹配：', this.breadData,this.$route.matched,this.$route)
   },
 
   methods: {
-    
+    parseBreadUrl(){
+      if(JSON.stringify(this.$route.params) == '{}'){
+        this.breadData = [{path:this.$route.path,name:this.$route.name}]
+        return
+      };
+      let path = this.$route.path
+      let singleParams = ''
+      this.breadData= path.split('/').map((item,index) => {
+        singleParams += item + '/'
+        return {path:singleParams,name:item}
+      }).filter((item) => {
+        return item.name != ''
+      })
+    }
   },
 };
 </script>

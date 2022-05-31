@@ -47,6 +47,10 @@ export default {
     ]
   },
 
+  router: {
+    middle: ['metaTitle']
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^element-ui/],

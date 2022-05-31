@@ -4,6 +4,11 @@
     - 放sass文件做需要全局引入的变量，比如各种颜色要在各个组件中使用(在nuxt.config.js中配置)
     - 放一些静态文件
     - font文件是来自https://fontawesome.com/icons上的icon
+    - middleware
+      - 路由切换之前也就是进入页面前运行的自定义函数。可以在三个位置设置中间件，执行顺序如下：
+        1. 全局设置nuxt.config.js
+        2. layouts 文件的 middleware 属性
+        3. pages 文件的 middleware 属性
   - layouts
   - sever
   - .eslintrc.js

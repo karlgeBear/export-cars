@@ -1,12 +1,12 @@
 <template>
   <div>
-    加上make条件显示的列表页
+    make下的默认路由
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ExportCarsMake',
+  name: 'ExportCarsIndex',
 
   data() {
     return {

@@ -251,8 +251,8 @@
       <p>Final Page</p>
       <ul>
         <li><NuxtLink to="/new-cars/">Go to /new-cars</NuxtLink></li>
-        <li><NuxtLink to="/new-cars/index">Go to /index</NuxtLink></li>
-        <li><NuxtLink to="/new-cars/make1">Go to /child</NuxtLink></li>
+        <li><NuxtLink to="/new-cars/index">Go to /new-cars/index</NuxtLink></li>
+        <li><NuxtLink to="/new-cars/make1/">Go to /new-cars/make1/</NuxtLink></li>
         <li><NuxtLink to="/new-cars/make2">Go to /child2</NuxtLink></li>
         <li><NuxtLink to="/new-cars/make/model">Go to /make/model</NuxtLink></li>
       </ul>
@@ -282,7 +282,7 @@
 
 <script>
 export default {
-  name: 'NewCars',
+  name: 'ExportNewCars',
   // 当前组件对象将要更新前调用, 可以访问this
   // beforeRouteUpdate (to, from, next) {
   //   console.log('',this.getQueryUrl)
@@ -386,6 +386,13 @@ export default {
     };
   },
   computed: {
+    breadData(){
+      return [
+        this.$route.name,
+        this.make,
+        this.model
+      ]
+    },
     getQueryUrl(){
       // if(this.make && this.model) return;
       let param = {
@@ -467,6 +474,9 @@ export default {
       // this.cylinders =  this.$route.query.cylinders,
       // this.minYear =  this.$route.query.minYear,
       // this.maxYear =  this.$route.query.maxYear
+    },
+    changeFilter(value){
+      
     }
   },  
   
