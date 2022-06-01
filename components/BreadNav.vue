@@ -1,9 +1,9 @@
 <template>
   <div class="bread-nav">
     <div class="container">
-      <el-breadcrumb separator="-">
+      <el-breadcrumb separator="-" >
         <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
-        <el-breadcrumb-item v-for="(item,index) in breadData" :key="index" :to="item.path">{{item.name}}</el-breadcrumb-item>
+        <el-breadcrumb-item v-for="(item,index) in breadData" :key="index" :to="item.path" >{{item.name}}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
   </div>

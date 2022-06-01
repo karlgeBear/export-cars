@@ -43,24 +43,24 @@
               <div class="price-input">
                 <div class="input-content filter-car-input-left ">
                   <input type="text" placeholder="min Price" 
-                    v-model="minPrice" 
-                    @input="minPrice=minPrice.replace(/[^0-9]/g,'')" 
+                    v-model.number="minPrice"  
+                    @input="throttle(getSelectVal,minPrice, 1000)"
                     :class="{SelectedHighBorder:minPrice}"
                   >
-                  <span class="close-icon" v-show="minPrice" @click="minPrice=''"><i class="el-icon-circle-close"></i></span>
+                  <span class="close-icon" v-show="minPrice" @click="clearInput(1)"><i class="el-icon-circle-close"></i></span>
                 </div>
                 <div class="input-content filter-car-input-right">
                   <input type="text" placeholder="max Price" 
-                    v-model="maxPrice" 
-                    @input="macPrice=maxPrice.replace(/[^0-9]/g,'')" 
+                    v-model.number="maxPrice" 
+                    @input="throttle(getSelectVal,mixPrice, 1000)"
                     :class="{SelectedHighBorder:maxPrice}"
                   >
-                  <span class="close-icon" v-show="maxPrice" @click="maxPrice=''"><i class="el-icon-circle-close"></i></span>
+                  <span class="close-icon" v-show="maxPrice" @click="clearInput(2)"><i class="el-icon-circle-close"></i></span>
                 </div>
               </div>
             </div>
             <div class="filter-car-select">
-                <el-select v-model="mileage" filterable placeholder="Mileage" clearable :popper-append-to-body="false" :class="{selectedHighBorder:mileage}">
+                <el-select v-model="mileage" @change="getSelectVal" filterable placeholder="Mileage" clearable :popper-append-to-body="false" :class="{selectedHighBorder:mileage}">
                   <el-option
                     v-for="item in typeOptionData"
                     :key="item.value"
@@ -130,7 +130,7 @@
           </div>
           <div class="third-row row">
              <div class="filter-car-select">
-                <el-select v-model="doors" filterable placeholder="Doors" clearable :popper-append-to-body="false" :class="{selectedHighBorder:doors}">
+                <el-select v-model="doors" @change="getSelectVal" filterable placeholder="Doors" clearable :popper-append-to-body="false" :class="{selectedHighBorder:doors}">
                   <el-option
                     v-for="item in typeOptionData"
                     :key="item.value"
@@ -141,7 +141,7 @@
                 </el-select>
             </div>
              <div class="filter-car-select">
-                <el-select v-model="safetyFeatures" filterable placeholder="Safety Features" clearable :popper-append-to-body="false" :class="{safetyFeatures:cylinders}">
+                <el-select v-model="safetyFeatures" @change="getSelectVal" filterable placeholder="Safety Features" clearable :popper-append-to-body="false" :class="{safetyFeatures:cylinders}">
                   <el-option
                     v-for="item in typeOptionData"
                     :key="item.value"
@@ -152,7 +152,7 @@
                 </el-select>
             </div>
              <div class="filter-car-select">
-                <el-select v-model="cylinders" filterable placeholder="Cylinders" clearable :popper-append-to-body="false" :class="{selectedHighBorder:value}">
+                <el-select v-model="cylinders" @change="getSelectVal" filterable placeholder="Cylinders" clearable :popper-append-to-body="false" :class="{selectedHighBorder:value}">
                   <el-option
                     v-for="item in typeOptionData"
                     :key="item.value"
@@ -166,30 +166,30 @@
               <div class="year-input">
                 <div class="input-content filter-car-input-left ">
                   <input type="text" placeholder="min Year" 
-                    v-model="minYear" 
-                    @input="minYear=minYear.replace(/[^0-9]/g,'')" 
+                    v-model.number="minYear" 
+                    @input="throttle(getSelectVal,minYear, 1000)" 
                     :class="{SelectedHighBorder:minYear}"
                   >
-                  <span class="close-icon" v-show="minYear" @click="minYear=''"><i class="el-icon-circle-close"></i></span>
+                  <span class="close-icon" v-show="minYear" @click="clearInput(3)"><i class="el-icon-circle-close"></i></span>
                 </div>
                 <div class="input-content filter-car-input-right">
                   <input type="text" placeholder="max Year" 
-                    v-model="maxYear" 
-                    @input="macYear=maxYear.replace(/[^0-9]/g,'')" 
+                    v-model.number="maxYear" 
+                    @input="throttle(getSelectVal,maxYear, 1000)"
                     :class="{SelectedHighBorder:maxYear}"
                   >
-                  <span class="close-icon" v-show="maxYear" @click="maxYear=''"><i class="el-icon-circle-close"></i></span>
+                  <span class="close-icon" v-show="maxYear" @click="clearInput(4)"><i class="el-icon-circle-close"></i></span>
                 </div>
               </div>
             </div>
             <div class="filter-car-input">
               <div class="input-content vin">
                 <input type="text" placeholder="VIN" 
-                  v-model="vin" 
-                  @input="vin=vin.replace(/[^0-9]/g,'')" 
+                  v-model.number="vin" 
+                  @input="throttle(getSelectVal,maxYear, 1000)" 
                   :class="{SelectedHighBorder:vin}"
                 >
-                <span class="close-icon" v-show="vin" @click="vin=''"><i class="el-icon-circle-close"></i></span>
+                <span class="close-icon" v-show="vin" @click="clearInput(5)"><i class="el-icon-circle-close"></i></span>
               </div>
             </div>
           </div>
@@ -284,9 +284,17 @@
 export default {
   name: 'ExportNewCars',
   // 当前组件对象将要更新前调用, 可以访问this
-  // beforeRouteUpdate (to, from, next) {
-  //   console.log('',this.getQueryUrl)
-  // },
+  beforeRouteUpdate (to, from, next) {
+    console.log('查看to和from',to,from)
+    if(to.name == 'new-cars'){
+      this.make = ''
+      this.model = ''
+    }else if(to.name == 'new-cars-make'){
+      this.make = to.params.make
+      this.model = ''
+    }
+    next()
+  },
   data() {
     return {
       showMoreFiters:false,
@@ -311,6 +319,7 @@ export default {
       vin:'',
       keyword:'',
       sortValue:'',
+      timer: null, 
       // value值应该与v-model中的值一致
       type0OptionData: [
         {
@@ -457,6 +466,32 @@ export default {
       this.maxYear=""
       this.vin=""
     },
+    clearInput(value){
+      switch (value) {
+        case 1:
+          this.minPrice = '';
+          this.getSelectVal('')
+          break;
+        case 2:
+          this.maxPrice = '';
+          this.getSelectVal('');
+          break;
+        case 3:
+          this.minYear = '';
+          this.getSelectVal('');
+          break;
+        case 2:
+          this.maxYear = '';
+          this.getSelectVal('');
+          break;
+        case 2:
+          this.vin = '';
+          this.getSelectVal('');
+          break;
+        default:
+          break;
+      }
+    },
     deconstructUrl(){
       this.type =  this.$route.query.type == undefined || null ? '' : this.$route.query.type,
       this.make = this.$route.params.make == undefined || null ? '' : this.$route.params.make,
@@ -474,15 +509,24 @@ export default {
       // this.cylinders =  this.$route.query.cylinders,
       // this.minYear =  this.$route.query.minYear,
       // this.maxYear =  this.$route.query.maxYear
+
     },
-    changeFilter(value){
-      
-    }
+    breadClear(value){
+      console.log('bread emits value:',value)
+    },
+    throttle(fn,value, delay){
+      // console.log(fn,delay)
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        fn(value)
+      },delay)
+    },
   },  
   
   mounted() {
     console.log('随机改变的url为: ',this.getQueryUrl)
-    this.deconstructUrl()
+    // this.deconstructUrl()
+
   },
 
 
