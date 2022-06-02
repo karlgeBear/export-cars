@@ -12,8 +12,27 @@
               1/1
             </div>
           </div>
-          <div class="car-info-description"></div>
+          <div class="car-info-description">
+            <div class="description head-title">
+              Description
+            </div>
+            <div class="vin">123</div>
+          </div>
           <div class="car-info__vehicle-history">
+            <div class="card-border-top"></div>
+            <div class="card-bottom">
+              <div class="download-report">
+                <h1 class="download-report__title head-title">Vehicle history</h1>
+                <div class="download-report__btn"><a href="#"> DownLoad report</a></div>
+                <div class="download-report-imgs">
+                  <img src="~/assets/imgs/icon/carfax_logo_eu_2.png" alt="car-arfax_logo_eu_2">
+                  <img src="~/assets/imgs/icon/paypal.png" alt="paypal">
+                </div>
+              </div>
+              <div class="read-history">
+                Before you decide to buy a car, read its <a href="#" class="highColor">history</a> for free.
+              </div>
+            </div>
 
           </div>
         </div>
@@ -60,6 +79,15 @@
         </div>
         
       </section>
+      <section class="send-message">
+          <div class="send-message-content">
+            <div class="form">
+            <h1 class="head-title">Send message</h1>
+          </div>
+          <div class="card-introduce"></div>
+        </div>
+
+      </section>
     </div>
     
   </div>
@@ -86,13 +114,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.head-title{
+    color: #222732;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 28px;
+}
 .car-info{
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
-  >div{
-    border: 1px solid var(--primary);
-  }
   .car-info-left{
     position: relative;
     margin-right: 15px;
@@ -101,13 +132,9 @@ export default {
       cursor: pointer;
       width: 100%;
       overflow: hidden;
+      position: relative;
       img{
-        position: absolute;
-        left: 0;
-        top: 0;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
         border-radius: 10px;
       }
       .picture-num{
@@ -120,6 +147,74 @@ export default {
         i{
           opacity: 0.5;
           margin-right: 5px;
+        }
+      }
+    }
+    .description{
+      padding: 30px 0;
+    }
+    .vin{
+      margin-bottom: 30px;
+    }
+    .car-info__vehicle-history{
+      .card-border-top{
+        padding: 32px 35px 16px 34px;
+        background: var(--bg);
+        margin-bottom: 1px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      .card-bottom{
+        display: flex;
+        background-color: var(--bg);
+        background-color: #F2F5FB;
+        background-image: url('~assets/imgs/Layer-56.png');
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        background-size: initial;
+        margin-bottom: 50px;
+        .download-report{
+          display: flex;
+          flex-direction: column;
+          padding: 0px 10px 35px 34px;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          .download-report__title{
+            padding: 30px 0;
+          }
+          .download-report__btn a{
+            display: inline-block;
+            font-size: 16px;
+            line-height: 21px;
+            border-style: solid;
+            border-width: 1px 1px 1px 1px;
+            border-radius: 10px 10px 10px 10px;
+            padding: 13px 25px 13px 25px;
+            border-radius: 10px;
+            border: 1px solid var(--primary);
+            background-color: #FFF0EB;
+            transition: all ease-in-out .3s;
+            margin-bottom: 35px;
+            &:hover{
+              background-color: var(--primary);
+            }
+          }
+          .download-report-imgs{
+            display: flex;
+            img{
+              height: 25px;
+              &:last-child{
+                height: 30px;
+              }
+            }
+          }
+        }
+        .read-history{
+          align-self: center;
+          width: 35%;
+          padding-left: 25px;
+          line-height: 27px;
+          margin-left: 45px;
         }
       }
     }
@@ -192,6 +287,7 @@ export default {
     .pay-mothods{
       display: flex;
       justify-content: center;
+      padding: 30px 0;
       a{
         display: inline-block;
         font-size: 14px;
@@ -212,5 +308,8 @@ export default {
       }
     }
   }
+}
+.send-message{
+  background-color: var(--primary);
 }
 </style>
