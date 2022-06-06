@@ -31,9 +31,9 @@
 ...
 ```
 3. 如TKD设置
-   1. <title><title>
-   2. <meta name="description" content="对该网页的精要描述">
-   3. <meta name="keywords" content="写一些关键词">
+   1. &#60;title&#62;&#60;/title&#62;
+   2. < meta name="description" content="对该网页的精要描述" >
+   3. < meta name="keywords" content="写一些关键词">
 4. content内容填写建议
    1. 准确总结网页内容
    2. 为每个网页使用不同的说明
@@ -240,6 +240,9 @@
 - 当浏览器解析 /ie 这样的url时，服务器会执行301转向到/ie/，两个链接都有效，但是第二种更快。当然这个转向的时间一般是感觉不到的，几乎可以忽略。
 - 
 ```
+
+## 工具：
+- <a href="https://web.archive.org/web/20220316095739/your website address">测试谷歌网站中网页快照的抓取</a>
 
 ## 参考文献：
 1. <a href="https://developers.google.com/search/docs/beginner/seo-starter-guide?hl=zh-cn#uniquepagetitles">Google搜索中心</a>
