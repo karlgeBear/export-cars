@@ -2,94 +2,125 @@
   <div class="new-cars-detail">
     <Nav :diyrate="2" :diynavbg="1"/>
     <BreadNav />
-    <div class="container">
-      <section class="car-info">
-        <div class="car-info-left">
-          <div class="car-info-imgs">
-            <img src="~/assets/imgs/cars/car-detail.jpg" alt="car">
-            <div class="picture-num">
-              <i class="far fa-images"></i>
-              1/1
+    <section class="new-cars-detail-content">
+      <div class="container">
+        <div class="car-info">
+          <div class="car-info-left">
+            <div class="car-info-imgs">
+              <img src="~/assets/imgs/cars/car-detail.jpg" alt="car">
+              <div class="picture-num">
+                <i class="far fa-images"></i>
+                1/1
+              </div>
             </div>
-          </div>
-          <div class="car-info-description">
-            <div class="description head-title">
-              Description
+            <div class="car-info-description">
+              <div class="description head-title">
+                Description
+              </div>
+              <div class="vin">123</div>
             </div>
-            <div class="vin">123</div>
-          </div>
-          <div class="car-info__vehicle-history">
-            <div class="card-border-top"></div>
-            <div class="card-bottom">
-              <div class="download-report">
-                <h1 class="download-report__title head-title">Vehicle history</h1>
-                <div class="download-report__btn"><a href="#"> DownLoad report</a></div>
-                <div class="download-report-imgs">
-                  <img src="~/assets/imgs/icon/carfax_logo_eu_2.png" alt="car-arfax_logo_eu_2">
-                  <img src="~/assets/imgs/icon/paypal.png" alt="paypal">
+            <div class="car-info__vehicle-history">
+              <div class="card-border-top"></div>
+              <div class="card-bottom">
+                <div class="download-report">
+                  <h1 class="download-report__title head-title">Vehicle history</h1>
+                  <div class="download-report__btn"><a href="#"> DownLoad report</a></div>
+                  <div class="download-report-imgs">
+                    <img src="~/assets/imgs/icon/carfax_logo_eu_2.png" alt="car-arfax_logo_eu_2">
+                    <img src="~/assets/imgs/icon/paypal.png" alt="paypal">
+                  </div>
+                </div>
+                <div class="read-history">
+                  Before you decide to buy a car, read its <a href="#" class="highColor">history</a> for free.
                 </div>
               </div>
-              <div class="read-history">
-                Before you decide to buy a car, read its <a href="#" class="highColor">history</a> for free.
+
+            </div>
+          </div>
+          <div class="car-info-right">
+            <h1 class="car-title">TESR</h1>
+            <div class="car-features">
+              <span class="car-feature">2012<i class="fas fa-circle"></i></span>
+              <span class="car-feature">0 miles<i class="fas fa-circle"></i></span>
+              <span class="car-feature">Coupe<i class="fas fa-circle"></i></span>
+              <span class="car-feature">Electric</span>
+            </div>
+            <div class="car-price">$22,222</div>
+            <div class="favorites"><i class="far fa-star"></i>Add to favorites</div>
+            <div class="car-info-detail">
+              <div class="car-info-detail__key">
+                <ul>
+                  <li>Make:</li>
+                  <li>Model:</li>
+                  <li>Color:</li>
+                  <li>Drive Type:</li>
+                  <li>Transmission:</li>
+                  <li>Condition:</li>
+                  <li>Year:</li>
+                  <li>Mileage:</li>
+                  <li>Fuel Type:</li>
+                  <li>Engine Size:</li>
+                  <li>Doors:</li>
+                  <li>VIN:</li>
+                  <li>NEDC pure electric cruising range(km):</li>
+                </ul>
+              </div>
+              <div class="car-info-detail__value">
+                <ul>
+                  <li v-for="(item,index) in carInfo" :key="index">{{item}}</li>
+                </ul>
               </div>
             </div>
-
-          </div>
-        </div>
-        <div class="car-info-right">
-          <h1 class="car-title">TESR</h1>
-          <div class="car-features">
-            <span class="car-feature">2012<i class="fas fa-circle"></i></span>
-            <span class="car-feature">0 miles<i class="fas fa-circle"></i></span>
-            <span class="car-feature">Coupe<i class="fas fa-circle"></i></span>
-            <span class="car-feature">Electric</span>
-          </div>
-          <div class="car-price">$22,222</div>
-          <div class="favorites"><i class="far fa-star"></i>Add to favorites</div>
-          <div class="car-info-detail">
-            <div class="car-info-detail__key">
-              <ul>
-                <li>Make:</li>
-                <li>Model:</li>
-                <li>Color:</li>
-                <li>Drive Type:</li>
-                <li>Transmission:</li>
-                <li>Condition:</li>
-                <li>Year:</li>
-                <li>Mileage:</li>
-                <li>Fuel Type:</li>
-                <li>Engine Size:</li>
-                <li>Doors:</li>
-                <li>VIN:</li>
-                <li>NEDC pure electric cruising range(km):</li>
-              </ul>
-            </div>
-            <div class="car-info-detail__value">
-              <ul>
-                <li v-for="(item,index) in carInfo" :key="index">{{item}}</li>
-              </ul>
+            <div class="send-message btn"><a class="send-message-link" href="#">send-message btn</a></div>
+            <div class="offer-car-id">offter ID #20482</div>
+            <div class="pay-mothods">
+              <a class="share"><i class="fab fa-facebook"></i>Share</a>
+              <a class="tweet"><i class="fab fa-twitter"></i>Tweet</a>
             </div>
           </div>
-          <div class="send-message btn"><a class="send-message-link" href="#">send-message btn</a></div>
-          <div class="offer-car-id">offter ID #20482</div>
-          <div class="pay-mothods">
-            <a class="share"><i class="fab fa-facebook"></i>Share</a>
-            <a class="tweet"><i class="fab fa-twitter"></i>Tweet</a>
-          </div>
         </div>
-        
-      </section>
-      <section class="send-message">
-          <div class="send-message-content">
-            <div class="form">
+      </div>
+    </section>
+    <section class="send-message">
+      <div class="container">
+        <div class="send-message-content">
+          <div class="form">
             <h1 class="head-title">Send message</h1>
           </div>
-          <div class="card-introduce"></div>
-        </div>
+          <div class="card-introduce">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+              <div class="form-input">
+                <el-form-item prop="name" label="Name">
+                  <el-input v-model="ruleForm.name"></el-input>
+                </el-form-item>
+                <el-form-item prop="email" label="Email"
+                  :rules="[
+                    { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+                    { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+                  ]"
+                >
+                  <el-input v-model="ruleForm.email"></el-input>
+                </el-form-item>
+                <el-form-item prop="phone" label="Phone"
+                  :rules="[
+                    { required: true, message: '请输入您的电话', trigger: 'blur' },
+                    { type: 'number', message: '请输入正确的手机号码格式', trigger: ['blur', 'change'] }
+                  ]"
+                >
+                  <el-input v-model="ruleForm.phone"></el-input>
+                </el-form-item>
+              </div>
 
-      </section>
-    </div>
-    
+              <el-form-item>
+                <el-button type="primary" @click="submitForm(ruleForm)">立即创建</el-button>
+                <el-button>取消</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+        </div>
+      </div>
+
+    </section>
   </div>
 </template>
 
@@ -99,16 +130,48 @@ export default {
 
   data() {
     return {
-      carInfo: ['Bentley','Continental','Continental','Continental','Continental','Continental','Continental','Continental','Continental','Continental','Continental']
+      carInfo: [
+        'Bentley',
+        'Continental',
+        'Continental',
+        'Continental',
+        'Continental',
+        'Continental',
+        'Continental',
+        'Continental',
+        'Continental',
+        'Continental',
+        'Continental'
+      ],
+      ruleForm: {
+        emial: '',
+        phone: '',
+      },
+      rules: {
+        emial: [
+          {type: 'email', message: '请输入您的邮箱',trigger: 'bulr'}
+        ]
+      },
+      name:'',
+      sendText: '',
     };
   },
 
   mounted() {
-    
+
   },
 
   methods: {
-    
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
   },
 };
 </script>
@@ -310,6 +373,7 @@ export default {
   }
 }
 .send-message{
-  background-color: var(--primary);
+  background-color: var(--bg);
+  padding: 50px 0;
 }
 </style>
