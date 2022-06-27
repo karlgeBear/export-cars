@@ -83,44 +83,67 @@
     </section>
     <section class="send-message">
       <div class="container">
+        <h1 class="head-title">Send message</h1>
         <div class="send-message-content">
           <div class="form">
-            <h1 class="head-title">Send message</h1>
-          </div>
-          <div class="card-introduce">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
               <div class="form-input">
-                <el-form-item prop="name" label="Name">
-                  <el-input v-model="ruleForm.name"></el-input>
+                <el-form-item prop="name">
+                  <el-input v-model="ruleForm.name" placeholder="Name"></el-input>
                 </el-form-item>
-                <el-form-item prop="email" label="Email"
-                  :rules="[
-                    { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-                    { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
-                  ]"
-                >
-                  <el-input v-model="ruleForm.email"></el-input>
+                <el-form-item prop="email">
+                  <el-input v-model="ruleForm.email" placeholder="Email*"></el-input>
                 </el-form-item>
-                <el-form-item prop="phone" label="Phone"
-                  :rules="[
-                    { required: true, message: '请输入您的电话', trigger: 'blur' },
-                    { type: 'number', message: '请输入正确的手机号码格式', trigger: ['blur', 'change'] }
-                  ]"
-                >
-                  <el-input v-model="ruleForm.phone"></el-input>
+                <el-form-item prop="phone">
+                  <el-input v-model.number="ruleForm.phone" maxlength="11" show-word-limit placeholder="Phone*"></el-input>
                 </el-form-item>
               </div>
-
-              <el-form-item>
-                <el-button type="primary" @click="submitForm(ruleForm)">立即创建</el-button>
-                <el-button>取消</el-button>
-              </el-form-item>
+              <div class="form-text-area">
+                <el-form-item prop="message" >
+                  <el-input type="textarea" :rows="9" placeholder="Messge" v-model="ruleForm.message">
+                  </el-input>
+                </el-form-item>
+              </div>
+              <div class="from-submit">
+                <el-form-item prop="accept">
+                  <el-checkbox v-model="ruleForm.accept">I accept the <a href="#" class="highColor">privacy policy</a></el-checkbox> 
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="primary" @click="submitForm(ruleForm)">send</el-button>
+                </el-form-item>
+              </div>
             </el-form>
           </div>
+          <div class="seller">
+            <div class="seller-top">
+              <div class="seller-name"><a href="#">admin</a></div>
+              <div class="seller-desc"><span class="highColor">Bussiness seller</span></div>
+            </div>
+            <div class="seller-bottom">
+              <div class="seller-email">
+                <a href="#"><i class="fa fa-envelope highColor"></i></a>
+                <a href="#">business@aucn.net.au</a>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
 
     </section>
+    <section class="related-listings">
+      <div class="container">
+        <h1 class="head-title">Related Listings</h1>
+        <div class="related-listings-car-list">
+          <CommonCard />
+          <CommonCard />
+          <CommonCard />
+          <CommonCard />
+        </div>
+
+      </div>
+    </section>
+    <Footer />
   </div>
 </template>
 
@@ -144,16 +167,23 @@ export default {
         'Continental'
       ],
       ruleForm: {
-        emial: '',
+        email: '',
         phone: '',
+        name:'',
+        message: '',
+        accept: false
       },
       rules: {
-        emial: [
-          {type: 'email', message: '请输入您的邮箱',trigger: 'bulr'}
+        email: [
+          { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+          { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
+        ],
+        phone: [
+          { required: true, message: '请输入您的手机号码', trigger: 'blur' },
+          {pattern: /^1[3456789]\d{9}$/, message: '手机号码格式不正确', trigger: ['blur', 'change']}
         ]
       },
-      name:'',
-      sendText: '',
+
     };
   },
 
@@ -328,6 +358,8 @@ export default {
       }
     }
     .send-message.btn{
+      background: none;
+      padding: 0;
       .send-message-link{
         font-size: 17px;
         display: inline-block;
@@ -375,5 +407,100 @@ export default {
 .send-message{
   background-color: var(--bg);
   padding: 50px 0;
+  .head-title{
+    padding-bottom: 30px;
+  }
+  .send-message-content{
+    display: flex;
+    .form{
+      width: 59%;
+      form{
+        display: flex;
+        flex-direction: column;
+        padding-right: 150px;
+        div{
+          width: 100%;
+        }
+        .form-input{
+          display: flex;
+        }
+        .from-submit{
+          display: flex;
+          .el-form-item{
+            &:last-child{
+              text-align: right;
+              button{
+                background-color: var(--primary);
+                border: 0 solid transparent;
+                padding: 15px 40px;
+                border-radius: 10px;
+                font-size: 17px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .seller{
+      width: 41%;
+      >div{
+        padding: 30px 37px 33px 37px;
+        background-color: #FFFFFF;
+        border-style: solid;
+        border-width: 1px 1px 1px 1px;
+        border-color: #E7EDF3;
+        box-shadow: 1.2px 1.6px 0px 0px rgba(196, 196, 196, 24%);
+        border-radius: 10px;
+        &:first-child{
+          position: relative;
+          bottom: -10px;
+        }
+      }
+      .seller-name{
+        font-size: 22px;
+        line-height: 28px;
+        font-weight: bold;
+        color: #222732;
+      }
+      .seller-desc{
+        padding-bottom: 45px;
+      }
+      .seller-email{
+        padding-bottom: 30px;
+        padding-top: 20px;
+        i{
+          padding-right: 15px;
+        }
+      }
+    }
+  }
+}
+.related-listings{
+  padding: 50px 0;
+  h1{
+    margin-bottom: 30px;
+  }
+  .related-listings-car-list{
+    display: flex;
+  }
+}
+</style>
+
+<style lang="scss">
+.send-message {
+  .el-form-item__content{
+    margin-left: 15px !important;
+    .el-input__inner{
+      min-height: 53px;
+      border-radius: 10px;
+      width: 100%;
+      padding: 10px 27px;
+      font-size: 14px;
+      line-height: 16px;
+      margin: 0;
+      box-shadow: 1px 1px 0 0 rgba(196, 196, 196, 24%);
+      border: 1px solid #e7edf3;
+    }
+  }
 }
 </style>
