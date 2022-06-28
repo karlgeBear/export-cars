@@ -7,20 +7,70 @@
         <div class="car-info">
           <div class="car-info-left">
             <div class="car-info-imgs">
-              <img src="~/assets/imgs/cars/car-detail.jpg" alt="car">
+              <div class="block">
+                <el-carousel trigger="click" height="532px" :autoplay="false" @change="swiperChange" ref="swiper">
+                  <el-carousel-item v-for="(item,index) in swiperImgs" :key="index">
+                    <img :src="item" :alt="'car' + index">
+                  </el-carousel-item>
+                </el-carousel>
+                <div class="swiper-relative">
+                  <div class="swiper-relative__move" :style="{ left: moveStep}">
+                    <ul class="swiper-relative__imgs">
+                      <li class="swiper-relative__img" v-for="(item,index) in swiperImgs" :key="index">
+                        <img :src="item" :alt="'car' + index" :class="{imgActive: swiperImgIndex == index}">
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
               <div class="picture-num">
                 <i class="far fa-images"></i>
-                1/1
+                {{swiperImgs.length}}/{{swiperImgs.length}}
               </div>
             </div>
             <div class="car-info-description">
               <div class="description head-title">
                 Description
               </div>
-              <div class="vin">123</div>
+              <div class="car-description" v-if="isShowCarDesc">
+                <p>How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.</p>
+                <p>If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three thousand miles from New York to Liverpool in the nine days, between the 12th and the 21st of December. It is true that, once arrived, the affair on board the Henrietta, added to that of the Bank of England, might create more difficulties for Mr. Fogg than he imagined or could desire.</p>
+                <p>During the first days, they went along smoothly enough. The sea was not very unpropitious, the wind seemed stationary in the north-east, the sails were hoisted, and the Henrietta ploughed across the waves like a real trans-Atlantic steamer.</p>
+                <div class="text-btn">
+                  <button class="show-less text-click" @click="switchCarDesc">Show less</button>
+                </div>
+              </div>
+              <div class="car-description__inner" v-if="!isShowCarDesc">
+                <p>How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.</p>
+                <p>If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three…</p>
+                <div class="text-btn">
+                  <button class="show-more text-click" @click="switchCarDesc">Show-more</button>
+                </div>
+              </div>
             </div>
             <div class="car-info__vehicle-history">
-              <div class="card-border-top"></div>
+              <div class="card-border-top car-features-pills">
+                <div class="car-features-pills__single">
+                  <i class="far fa-check-circle"></i>
+                  <span>Brake assist</span>
+                </div>
+                <div class="car-features-pills__single">
+                  <i class="far fa-check-circle"></i>
+                  <span>Forward-collision warning</span>
+                </div>
+                <div class="car-features-pills__single">
+                  <i class="far fa-check-circle"></i>
+                  <span>Lane keeping assist</span>
+                </div>
+                <div class="car-features-pills__single">
+                  <i class="far fa-check-circle"></i>
+                  <span>Parking assist systems</span>
+                </div>
+                <div class="car-features-pills__single">
+                  <i class="far fa-check-circle"></i>
+                  <span>Sideview camera</span>
+                </div>
+              </div>
               <div class="card-bottom">
                 <div class="download-report">
                   <h1 class="download-report__title head-title">Vehicle history</h1>
@@ -31,7 +81,7 @@
                   </div>
                 </div>
                 <div class="read-history">
-                  Before you decide to buy a car, read its <a href="#" class="highColor">history</a> for free.
+                  Before you decide to buy a car, read its <a href="#" class="text-click">history</a> for free.
                 </div>
               </div>
 
@@ -153,6 +203,18 @@ export default {
 
   data() {
     return {
+      isShowCarDesc:false,
+      swiperImgIndex : 0,
+      moveStep: 0,
+      swiperImgs: [
+        require('~/assets/imgs/cars/swiper-car-1.jpg'),
+        require('~/assets/imgs/cars/swiper-car-2.jpg'),
+        require('~/assets/imgs/cars/swiper-car-3.jpg'),
+        require('~/assets/imgs/cars/swiper-car-4.jpg'),
+        require('~/assets/imgs/cars/swiper-car-5.jpg'),
+        require('~/assets/imgs/cars/swiper-car-6.jpg'),
+        require('~/assets/imgs/cars/swiper-car-7.jpg')
+      ],
       carInfo: [
         'Bentley',
         'Continental',
@@ -186,22 +248,46 @@ export default {
 
     };
   },
-
+  computed: {
+    // moveStep() {
+    //   return this.swiperImgIndex
+    //   // if(this.swiperImgIndex > 4){
+    //   //   return this.swiperImgIndex*164 + '-px'
+    //   // }else {
+    //   //   return 0
+    //   // }
+    // }
+  },
   mounted() {
-
+    console.log('test:',this.swiperImgs.length - this.swiperImgIndex)
   },
 
   methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    switchCarDesc(){
+      this.isShowCarDesc = !this.isShowCarDesc
+    },
+    swiperChange(index){
+      // Corresponding to the following picture with add boder and moving by click the arrow
+      console.log(index)
+      let sum = this.swiperImgs.length + 1
+      this.swiperImgIndex = index
+      if(index > 3){
+        this.moveStep += 164
+      }else if(index > sum){
+        this.moveStep = 0
+      }
+      this.moveStep =  `-${num}px`
+    }
   },
 };
 </script>
@@ -224,10 +310,10 @@ export default {
     .car-info-imgs{
       cursor: pointer;
       width: 100%;
-      overflow: hidden;
       position: relative;
       img{
         width: 100%;
+        height: 100%;
         border-radius: 10px;
       }
       .picture-num{
@@ -237,25 +323,86 @@ export default {
         color: #fff;
         font-size: 20px;
         font-weight: 800;
+        z-index: 10;
         i{
           opacity: 0.5;
           margin-right: 5px;
         }
       }
+      .swiper-relative{
+        margin: 20px 0;
+        position: relative;
+        height: 120px;
+        overflow: hidden;
+        .swiper-relative__move{
+           position: absolute;
+           left: 0;
+           top: 0;
+           width: 100%;
+           border: 1px solid blanchedalmond;
+           transition: all .3s ease-in-out;
+          .swiper-relative__imgs{
+            white-space: nowrap;
+            .swiper-relative__img{
+              display: inline-block;
+              width: 20%;
+              padding: 0 10px;
+              .imgActive{
+                width: 100%;
+                border: 2px solid var(--primary);
+              }
+            }
+          }
+        }
+
+      }
     }
-    .description{
-      padding: 30px 0;
+    .car-info-description{
+      color: #222732;
+      font-size: 16px;
+      line-height: 30px;
+      .description.head-title{
+        padding: 30px 0;
+      }
+      .car-description{
+        margin-bottom: 30px;
+      }
+      p{
+        margin-bottom: 16px;
+      }
     }
-    .vin{
-      margin-bottom: 30px;
-    }
+
     .car-info__vehicle-history{
       .card-border-top{
+        width: 100%;
         padding: 32px 35px 16px 34px;
         background: var(--bg);
         margin-bottom: 1px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+      }
+      .car-features-pills{
+        display: inline-block;
+        .car-features-pills__single{
+          padding: 15px 20px;
+          background-color: #FFFFFF;
+          margin: 10px;
+          border: 1px solid #e7edf3;
+          float: left;
+          border-radius: 10px;
+          color: #222732;
+          font-size: 16px;    
+          line-height: 24px;
+          font-weight: 600;
+          i{
+            display: inline-block;
+            float: left;
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 24px;
+            line-height: 24px;
+          }
+        }
       }
       .card-bottom{
         display: flex;
@@ -502,5 +649,49 @@ export default {
       border: 1px solid #e7edf3;
     }
   }
+  .el-checkbox__input.is-checked+.el-checkbox__label{
+    color: inherit;
+  }
+  .el-checkbox__input.is-checked .el-checkbox__inner{
+    background-color: var(--primary);
+    color: var(--primary);
+    border-color:inherit;
+  }
+  .el-checkbox__input.is-focus .el-checkbox__inner{
+    border-color: var(--primary);
+  }
+  .el-checkbox__inner:hover{
+    border-color: var(--primary);
+  }
+}
+
+.el-carousel--horizontal{
+  border-radius: 10px;
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0;
+}
+.el-carousel__arrow{
+    box-shadow: 0px 3px 40px 0 #dbe0e8;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s ease;
+    color: black;
+    &:hover{
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+    i{
+      font-size: 22px;
+      font-weight: 600;
+    }
 }
 </style>

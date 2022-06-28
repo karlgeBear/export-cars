@@ -70,6 +70,15 @@ h1, h2, h3, h4, h5, h6{
 .highColor{
   color: var(--primary);
 }
+button,.btn,a{
+  cursor: pointer;
+}
+.text-click{
+  text-decoration: underline;
+  color: var(--primary);
+  cursor: pointer;
+  background-color: #ffffff;
+}
 .el-select input::placeholder{
   font-size: 16px;
   color: #2f3b48 !important;
@@ -78,9 +87,6 @@ h1, h2, h3, h4, h5, h6{
 .el-input input::placeholder{
   font-size: 16px;
   color: #909399 !important;
-}
-button{
-  cursor: pointer;
 }
 @media screen and (min-width: 1023px) {
   .default {
