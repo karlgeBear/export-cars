@@ -1,7 +1,7 @@
 <template>
   <div id="Home">
     <Nav :diyrate="1" />
-    <section class="search">
+    <div class="search">
       <div class="container">
         <div class="search__box">
           <h1 class="search__box-title">
@@ -393,8 +393,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="featured-listings">
+    </div>
+    <div class="featured-listings">
       <div class="container">
         <div class="featured-title">
           <div class="handy-picked">Handy picked</div>
@@ -596,8 +596,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="popular-makes">
+    </div>
+    <div class="popular-makes">
       <div class="container">
         <div class="popular-makes-tabs">
           <div class="popular-makes-tab-title">
@@ -764,8 +764,8 @@
           <a href="#" title="without relative">View 4 Audi</a>
         </div>
       </div>
-    </section>
-    <section class="why-choose-us">
+    </div>
+    <div class="why-choose-us">
       <div class="container">
         <h1 class="title">Why choose us?</h1>
         <div class="because-our-info">
@@ -792,8 +792,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="our-team">
+    </div>
+    <div class="our-team">
       <div class="bg-modify"></div>
       <div class="container">
         <div class="our-team__info">
@@ -948,8 +948,8 @@
         </div>
 
       </div>
-    </section>
-    <section class="how-to-buy-car">
+    </div>
+    <div class="how-to-buy-car">
       <div class="container">
         <div class="how-to-buy-car-top swiper">
           <div class="swiper-wraper">
@@ -988,7 +988,7 @@
           </div>
       </div>
 
-    </section>
+    </div>
     <Footer />
   </div>
 </template>

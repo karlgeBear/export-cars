@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="bottom-content">
-        <div class="copy">Copyright © 2021. All rights reserved.</div>
+        <div class="copy">Copyright © 2022. All rights reserved.</div>
         <div class="vehica-profiles">
           <div class="vehica-icon"><a href="#"><i class="fa-facebook-f"></i></a></div>
           <div class="vehica-icon"><a href="#"><i class="fa-twitter"></i></a></div>

@@ -2,7 +2,7 @@
   <div class="new-cars">
     <Nav :diyrate="2" :diynavbg="1"/>
     <BreadNav />
-    <section class="filter-car-items">
+    <div class="filter-car-items">
       <div class="container">
         <div class="filter-list" :class="{showMoreFilters:showMoreFiters}">
           <div class="first-row row">
@@ -201,8 +201,8 @@
         </div>
         </div>
       </div>
-    </section>
-    <section class="filter-car-bar">
+    </div>
+    <div class="filter-car-bar">
       <div class="container">
         <div class="filter-compare-search__key">
           <div class="compare"><i class="fas fa-exchange-alt"></i>Compare</div>
@@ -215,8 +215,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="filter-results">
+    </div>
+    <div class="filter-results">
       <div class="container">
         <div class="filter-sort">
           <div class="filter-sort-left">
@@ -246,7 +246,7 @@
         </div>
       </div>
       
-    </section>
+    </div>
     <div class="container">
       <p>Final Page</p>
       <ul>
@@ -263,7 +263,7 @@
           <nuxt-child keep-alive></nuxt-child>
       </div>
     </div>
-    <section class="carlist-loading">
+    <div class="carlist-loading">
       <div class="container">
         <div :class="{carlistLayout:carlistLayout}">
           <Carlist :carlistLayout="carlistLayout"/>
@@ -275,7 +275,7 @@
           <Carlist :carlistLayout="carlistLayout"/>
         </div>
       </div>
-    </section>
+    </div>
     <Footer />
   </div>
 </template>
