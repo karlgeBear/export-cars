@@ -2,7 +2,7 @@
   <div class="new-cars-detail">
     <Nav :diyrate="2" :diynavbg="1"/>
     <BreadNav />
-    <section class="new-cars-detail-content">
+    <div class="new-cars-detail-content">
       <div class="container">
         <div class="car-info">
           <div class="car-info-left">
@@ -16,7 +16,7 @@
                 <div class="swiper-relative">
                   <div class="swiper-relative__move" :style="{ left: moveStep}">
                     <ul class="swiper-relative__imgs">
-                      <li class="swiper-relative__img" v-for="(item,index) in swiperImgs" :key="index">
+                      <li class="swiper-relative__img" v-for="(item,index) in swiperImgs" :key="index" @click="$refs.swiper.setActiveItem(index)">
                         <img :src="item" :alt="'car' + index" :class="{imgActive: swiperImgIndex == index}">
                       </li>
                     </ul>
@@ -25,7 +25,7 @@
               </div>
               <div class="picture-num">
                 <i class="far fa-images"></i>
-                {{swiperImgs.length}}/{{swiperImgs.length}}
+                {{swiperImgIndex+1}}/{{swiperImgs.length}}
               </div>
             </div>
             <div class="car-info-description">
@@ -130,8 +130,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="send-message">
+    </div>
+    <div class="send-message">
       <div class="container">
         <h1 class="head-title">Send message</h1>
         <div class="send-message-content">
@@ -180,8 +180,8 @@
 
       </div>
 
-    </section>
-    <section class="related-listings">
+    </div>
+    <div class="related-listings">
       <div class="container">
         <h1 class="head-title">Related Listings</h1>
         <div class="related-listings-car-list">
@@ -192,7 +192,7 @@
         </div>
 
       </div>
-    </section>
+    </div>
     <Footer />
   </div>
 </template>
@@ -279,14 +279,19 @@ export default {
     swiperChange(index){
       // Corresponding to the following picture with add boder and moving by click the arrow
       console.log(index)
-      let sum = this.swiperImgs.length + 1
+      let sum = this.swiperImgs.length
       this.swiperImgIndex = index
-      if(index > 3){
-        this.moveStep += 164
-      }else if(index > sum){
-        this.moveStep = 0
-      }
-      this.moveStep =  `-${num}px`
+      let left = index > 4 ? `-${(sum-5)*164}px` : '0px'
+      this.moveStep = left
+      console.log('总长:',sum,'超出范围所剩个数:',sum-index,'left:',left) 
+
+      // let {}
+      // 需求: 点击对应的btn,点击btn会传一个index值过来
+      // 已知变量： sum(索引的总数量) index(索引值)
+      // 问题：如何让sum-index所得的值反过来排列 
+      // 例如：sum=7; currentIndex= 1; result = sum-currentIndex;
+        //     result: 6, 5, 4, 3, 2, 1, 0
+        //     解决：   0, 1, 2, 3, 4, 5, 6
     }
   },
 };
@@ -318,7 +323,7 @@ export default {
       }
       .picture-num{
         position: absolute;
-        bottom: 20px;
+        bottom: 170px;
         right: 40px;
         color: #fff;
         font-size: 20px;
