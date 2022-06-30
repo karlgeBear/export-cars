@@ -31,30 +31,30 @@
           <h4>Recent Posts</h4>
           <div class="recent-post">
             <div class="recent-post__img">
-              <img src="~/assets/imgs/cars/blog-card-768x513.jpg" alt="blog-card-car">
+              <a href="#"><img src="~/assets/imgs/cars/blog-card-768x513.jpg" alt="blog-card-car"></a>
             </div>
             <div class="recent-post__content">
               <a href="#">How Close are we to Autonomous Cars?</a>
-              <a href="#">Read more</a>
+              <a href="#" class="text-click">Read more</a>
             </div>
           </div>
           <div class="recent-post">
            <div class="recent-post__img">
-            <img src="~/assets/imgs/cars/blog-card-768x513.jpg" alt="blog-card-car">
+            <a href="#"><img src="~/assets/imgs/cars/blog-card-768x513.jpg" alt="blog-card-car"></a>
            </div>
             <div class="recent-post__content">
               <a href="#">How Close are we to Autonomous Cars?</a>
-              <a href="#">Read more</a>
+              <a href="#" class="text-click">Read more</a>
             </div>
           </div>
-          <div class="post-link text-clik">Read All Posts</div>
+          <div class="post-link text-click"><a href="#">Read All Posts</a></div>
         </div> 
         <div class="about-us">
           <h4>About Us</h4>
           <div class="about-us__content">
             <div class="about-us-person">
               <div class="about-us-person__avatar">
-                <img src="" alt="">
+                <img src="~/assets/imgs/ourTeamMember/blog-editor-150x150.jpg" alt="blog-editor">
               </div>
               <div class="about-us-person__info">
                 <div class="about-us-person__name">John Hendricks</div>
@@ -67,16 +67,19 @@
           </div>
         </div>
         <div class="popular-tags">
-          <a href="">premium</a>
-          <a href="">sedan</a>
-          <a href="">speed</a>
-          <a href="">sport</a>
-          <a href="">supercars</a>
-          <a href="">suv</a>
+          <h4>Popular Tags</h4>
+          <div class="popular-tags__links">
+            <a href="#">premium</a>
+            <a href="#">sedan</a>
+            <a href="#">speed</a>
+            <a href="#">sport</a>
+            <a href="#">supercars</a>
+            <a href="#">suv</a>
+          </div>
+
         </div>
       </div>
     </div>
-    <h1>BLOG</h1>
     <Footer />
   </div>
 </template>
@@ -181,6 +184,121 @@ export default {
           a{
             float: left;
             color: #222732;
+          }
+        }
+      }
+    }
+    .recent-posts{
+      .recent-post{
+        display: flex;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #dfe3eb;
+        margin-bottom: 20px;
+        .recent-post__img{
+          width: 100px;
+          margin-right: 20px;
+          a{
+            position: relative;
+            display: block;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #eff0f1;
+            img{
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transform: scale3d(1, 1, 1);
+              transition: opacity 0.8s, transform 0.8s;
+              &:hover{
+                transform: scale(1.11);
+              }
+            }
+          }
+        }
+        .recent-post__content{
+          a{
+            &:first-child{
+              display: block;
+              font-size: 16px;
+              line-height: 25px;
+              margin-bottom: 21px;
+              color: #222732;
+              font-weight: bold;
+              transition: all 0.2s ease;
+            }
+          }
+        }
+      }
+    }
+    .about-us{
+      border-radius: 10px;
+      border-style: solid;
+      border-width: 1px 1px 1px 1px;
+      border-color: #E7EDF3;
+      box-shadow: 0px 0px 10px 0px #e7edf3;
+      transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+      padding: 20px;
+      h4{
+        margin: 0px 0px 16px 0px;
+        padding: 0px 0px 10px 0px;
+        border-style: solid;
+        border-width: 0px 0px 1px 0px;
+        border-color: #EFEFEF;
+      }
+      .about-us-person{
+        display: flex;
+        margin-bottom: 20px;
+        .about-us-person__avatar{
+          width: 54px;
+          height: 54px;
+          margin-right: 20px;
+          img{
+            border-radius: 50%;
+          }
+        }
+        .about-us-person__name{
+          font-size: 16px;
+          line-height: 20px;
+          font-weight: 800;
+          margin-bottom: 3px;
+        }
+        .about-us-person__intro{
+          font-size: 12px;
+          line-height: 17px;
+          color: var(--primary);
+        }
+      }
+      .about-us-person__desc{
+        color: #95989D;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 27px;
+      }
+    }
+    .popular-tags{
+      .popular-tags__links{
+        text-align: center;
+        a{
+          display: inline-block;
+          border-radius: 8px;
+          background-color: rgba(246, 246, 246, 0.7);
+          color: rgba(0, 0, 0, 0.48);
+          line-height: 24px;
+          padding: 7px 25px;
+          margin-bottom: 8px;
+          transition: all 0.1s ease;
+          border: 1px solid #E7EDF3;
+          font-size: 14px !important;
+          font-weight: 600;
+          &:hover{
+            color: #222732;
+            border: 1px solid var(--primary);
+            background-color: var(--primary-light);
           }
         }
       }
