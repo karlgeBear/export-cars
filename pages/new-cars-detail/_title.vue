@@ -136,33 +136,7 @@
         <h1 class="head-title">Send message</h1>
         <div class="send-message-content">
           <div class="form">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-              <div class="form-input">
-                <el-form-item prop="name">
-                  <el-input v-model="ruleForm.name" placeholder="Name"></el-input>
-                </el-form-item>
-                <el-form-item prop="email">
-                  <el-input v-model="ruleForm.email" placeholder="Email*"></el-input>
-                </el-form-item>
-                <el-form-item prop="phone">
-                  <el-input v-model.number="ruleForm.phone" maxlength="11" show-word-limit placeholder="Phone*"></el-input>
-                </el-form-item>
-              </div>
-              <div class="form-text-area">
-                <el-form-item prop="message" >
-                  <el-input type="textarea" :rows="9" placeholder="Messge" v-model="ruleForm.message">
-                  </el-input>
-                </el-form-item>
-              </div>
-              <div class="from-submit">
-                <el-form-item prop="accept">
-                  <el-checkbox v-model="ruleForm.accept">I accept the <a href="#" class="highColor">privacy policy</a></el-checkbox> 
-                </el-form-item>
-                <el-form-item>
-                  <el-button type="primary" @click="submitForm(ruleForm)">send</el-button>
-                </el-form-item>
-              </div>
-            </el-form>
+              <CommonSendMessage />
           </div>
           <div class="seller">
             <div class="seller-top">
@@ -227,24 +201,7 @@ export default {
         'Continental',
         'Continental',
         'Continental'
-      ],
-      ruleForm: {
-        email: '',
-        phone: '',
-        name:'',
-        message: '',
-        accept: false
-      },
-      rules: {
-        email: [
-          { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-          { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change']}
-        ],
-        phone: [
-          { required: true, message: '请输入您的手机号码', trigger: 'blur' },
-          {pattern: /^1[3456789]\d{9}$/, message: '手机号码格式不正确', trigger: ['blur', 'change']}
-        ]
-      },
+      ]
 
     };
   },
@@ -263,16 +220,6 @@ export default {
   },
 
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!');
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
-    },
     switchCarDesc(){
       this.isShowCarDesc = !this.isShowCarDesc
     },
@@ -565,7 +512,8 @@ export default {
   .send-message-content{
     display: flex;
     .form{
-      width: 59%;
+      width: 50%;
+      padding-right: 100px;
       form{
         display: flex;
         flex-direction: column;
@@ -639,36 +587,6 @@ export default {
 </style>
 
 <style lang="scss">
-.send-message {
-  .el-form-item__content{
-    margin-left: 15px !important;
-    .el-input__inner{
-      min-height: 53px;
-      border-radius: 10px;
-      width: 100%;
-      padding: 10px 27px;
-      font-size: 14px;
-      line-height: 16px;
-      margin: 0;
-      box-shadow: 1px 1px 0 0 rgba(196, 196, 196, 24%);
-      border: 1px solid #e7edf3;
-    }
-  }
-  .el-checkbox__input.is-checked+.el-checkbox__label{
-    color: inherit;
-  }
-  .el-checkbox__input.is-checked .el-checkbox__inner{
-    background-color: var(--primary);
-    color: var(--primary);
-    border-color:inherit;
-  }
-  .el-checkbox__input.is-focus .el-checkbox__inner{
-    border-color: var(--primary);
-  }
-  .el-checkbox__inner:hover{
-    border-color: var(--primary);
-  }
-}
 
 .el-carousel--horizontal{
   border-radius: 10px;
