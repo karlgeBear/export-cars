@@ -79,6 +79,9 @@ button,.btn,a{
   cursor: pointer;
   background-color: #ffffff;
 }
+img{
+  width: 100%;
+}
 .el-select input::placeholder{
   font-size: 16px;
   color: #2f3b48 !important;
