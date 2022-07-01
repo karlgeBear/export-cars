@@ -100,5 +100,10 @@ export default {
     port: 8888, // default: 3000
     // host: '0.0.0.0', // default: localhost,
     timing: false
-  }
+  },
+
+  //指明后台接口的请求地址，所有/api开头的接口都将向根目录下server目录中请求
+  serverMiddleware: {
+    '/api': '~/server'
+    },
 }
