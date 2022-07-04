@@ -12,6 +12,15 @@
   - layouts
   - sever
   - .eslintrc.js
+  - .env
+    - 在项目启动 或打包后，得到全局的一个变量信息，从而我们去做一些事情。
+    - 环境变量通常包含哪些信息：
+     ```
+    NODE_ENV：项目脚手架里定义的，告诉我们是开发环境（development）还是线上环境（production）
+    PROJECT_NAME: 项目名称，告诉我们当前项目是哪个项目。在多项目配合的大型项目很重要。
+    API_SERVER：接口地址所属的服务。
+    MODE：当前项目所处的环境（dev、test、uat、pre、prd）
+     ```
 ## 2. 配置文件nuxt.config
 - 静态文件打包配置
 ## 3. package.json

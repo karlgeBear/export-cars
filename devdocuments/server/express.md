@@ -1,6 +1,6 @@
-## body-parser
+## 1. body-parser
       是一个HTTP请求体解析的中间件，使用这个模块可以解析JSON、Raw、文本、URL-encoded格式的请求体
-## res.header
+## 2. res.header
 ```res.header('Access-Control-Allow-Credentials', true);```
 - Access-Control-Allow-Credentials:服务器用来设置是否允许前端携带Cookies的标志位
 - withCredentials: 前端用来表示是否给服务器发请求的时候带上Cookies的标志位

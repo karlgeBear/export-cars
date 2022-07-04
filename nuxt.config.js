@@ -105,5 +105,8 @@ export default {
   //指明后台接口的请求地址，所有/api开头的接口都将向根目录下server目录中请求
   serverMiddleware: {
     '/api': '~/server'
-    },
+  },
+
+  // 运行项目时跳过 'Are you interested in participating?'
+  telemetry: false
 }
