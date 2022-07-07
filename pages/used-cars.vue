@@ -693,24 +693,6 @@ export default {
     background: #fff;
     border-radius: 10px;
   }
-  .el-input--suffix .el-input__inner{
-    padding: 10px 0 10px 27px;
-    min-height: 51px;
-    margin: 0;
-    font-size: 14px;
-    line-height: 16px;
-    width: 100%;
-    color: var(--primary);
-    font-weight: 900;
-    border-radius: 10px;
-  }
-  .el-input.is-active .el-input__inner, .el-input__inner:focus{
-    color: var(--primary);
-    font-weight: 900;
-  }
-  .el-select .el-input__inner:focus{
-    border-color: var(--primary);
-  }
   .el-icon-circle-close:before{
     color: var(--primary);
     font-size: 16px;
@@ -720,12 +702,6 @@ export default {
   }
   .el-select-dropdown.el-popper{
     top: 45px !important;
-  }
-  .el-select-dropdown__item.selected{
-    color: var(--primary);
-  }
-  .el-input.is-focus .el-input__inner,.selectedHighBorder .el-input--suffix .el-input__inner{
-    border-color: var(--primary);
   }
 }
 .filter-car-bar{

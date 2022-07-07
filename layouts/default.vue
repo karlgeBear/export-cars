@@ -91,6 +91,31 @@ img{
   font-size: 16px;
   color: #909399 !important;
 }
+.el-input--suffix .el-input__inner {
+    padding: 10px 0 10px 27px;
+    min-height: 51px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 16px;
+    width: 100%;
+    color: var(--primary);
+    font-weight: 900;
+    border-radius: 10px;
+}
+.el-select .el-input__inner:focus {
+  border-color: var(--primary);
+}
+.el-input.is-active .el-input__inner, .el-input__inner:focus{
+  color: var(--primary);
+  font-weight: 900;
+}
+.el-input.is-focus .el-input__inner,
+.selectedHighBorder .el-input--suffix .el-input__inner,
+.el-select-dropdown__item.selected,
+.el-select .el-input.is-focus .el-input__inner,
+.el-select .el-input__inner:focus{
+  border-color: var(--primary);
+}
 @media screen and (min-width: 1023px) {
   .default {
     padding-top: 100px;

@@ -3,35 +3,30 @@
     <Nav :diyrate="1" />
     <div class="search">
       <div class="container">
-        <div class="search__box">
-          <h1 class="search__box-title">
+        <CommonSearchBg>
+          <h1 slot="title" class="search__box-title">
             Find Your <span class="highColor">Perfect</span> Car
           </h1>
-          <div class="filter">
-            <div class="cars-type">
+          <div slot="car-type" class="cars-type">
               <div class="all type-item" v-for="(item, index) in ['All', 'New', 'Used']" :key="index" :class="{ triangle: isTriangle == index }" @click="isTriangle = isTriangle == index ? isTriangle : index">
                 {{ item }}
               </div>
-            </div>
-            <div class="select">
-              <div class="select__box">
-                <el-select v-model="value" placeholder="All Makes">
-                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                  </el-option>
-                </el-select>
-                <el-select v-model="value" disabled placeholder="All Models">
-                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                  </el-option>
-                </el-select>
-                <el-select v-model="value" placeholder="Max price">
-                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-                  </el-option>
-                </el-select>
-                <button class="btn"><i class="fa-search"></i></button>
-              </div>
-              <div class="select-opacity-border"></div>
-            </div>
-            <div class="some-filter-car-types">
+          </div>
+          <div slot="select1" class="select__box">
+            <el-select v-model="value" placeholder="All Makes">
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+              </el-option>
+            </el-select>
+            <el-select v-model="value" disabled placeholder="All Models">
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+              </el-option>
+            </el-select>
+            <el-select v-model="value" placeholder="Max price">
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+              </el-option>
+            </el-select>
+          </div>
+          <div slot="type" class="type-box">
               <div class="type">
                 <div class="type-icon">
                   <a href="#">
@@ -119,9 +114,8 @@
                 </div>
                 <div class="type-text"><a href="#">Convertible</a></div>
               </div>
-            </div>
           </div>
-        </div>
+        </CommonSearchBg>
       </div>
     </div>
     <div class="featured-listings">
@@ -995,116 +989,69 @@ export default {
   background-size: cover;
   margin-top: -105px;
   padding-top: 130px;
-  .search__box {
-    color: #fff;
-    .search__box-title {
-      text-align: center;
-      font-size: 61px;
-      line-height: 62px;
-      font-weight: 900;
+  .search__box-title {
+    text-align: center;
+    font-size: 61px;
+    line-height: 62px;
+    font-weight: 900;
+  }
+  .cars-type {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    .type-item {
+      padding: 10px;
+      margin: 0 18px 18px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      &::after {
+        opacity: 0;
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #fff;
+        position: absolute;
+        bottom: -26px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        display: inline-block;
+        transition: bottom 0.3s ease-in-out;
+      }
     }
-    .filter {
-      max-width: 800px;
-      margin: 0 auto;
-      width: 100%;
-      .cars-type {
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
-        .type-item {
-          padding: 10px;
-          margin: 0 18px 18px;
-          font-size: 17px;
-          font-weight: 600;
-          cursor: pointer;
-          position: relative;
-          &::after {
-            opacity: 0;
-            content: "";
-            width: 0;
-            height: 0;
-            border-left: 7px solid transparent;
-            border-right: 7px solid transparent;
-            border-bottom: 7px solid #fff;
-            position: absolute;
-            bottom: -26px;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            display: inline-block;
-            transition: bottom 0.3s ease-in-out;
-          }
-        }
-        .triangle {
-          position: relative;
-          color: var(--primary);
-          &::after {
-            opacity: 1;
-            bottom: -18px;
-          }
-        }
+    .triangle {
+      position: relative;
+      color: var(--primary);
+      &::after {
+        opacity: 1;
+        bottom: -18px;
       }
-      .select {
-        position: relative;
-        z-index: 10;
-        .select__box {
-          padding: 15px;
-          background-color: #ffffff;
-          border-radius: 20px;
-          display: flex;
-          justify-content: center;
-          .btn {
-            width: 57px;
-            height: 53px;
-            background-color: var(--primary);
-            border-radius: 10px;
-            i {
-              font-family: "Font Awesome 5 Free";
-              font-weight: 600;
-              color: #ffffff;
-            }
+    }
+  }
+  .type-box{
+    display: flex;
+    justify-content: space-around;
+    .type {
+      .type-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 15px 15px;
+        a {
+          display: inline-block;
+          width: 80px;
+          height: 80px;
+          border: 2px solid #ffffff;
+          border-radius: 50%;
+          transition: border-color 0s ease-in-out 0s;
+          &:hover {
+            border-color: var(--primary);
           }
-        }
-        .select-opacity-border {
-          content: "";
-          display: block;
-          position: absolute;
-          bottom: -9px;
-          left: 0;
-          background: #fff;
-          width: 100%;
-          height: 50%;
-          border-bottom-left-radius: 20px;
-          border-bottom-right-radius: 20px;
-          opacity: 0.59;
-          z-index: -1;
-        }
-      }
-
-      .some-filter-car-types {
-        margin-top: 80px;
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        .type {
-          .type-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 15px 15px;
-            a {
-              display: inline-block;
-              width: 80px;
-              height: 80px;
-              border: 2px solid #ffffff;
-              border-radius: 50%;
-              transition: border-color 0s ease-in-out 0s;
-              &:hover {
-                border-color: var(--primary);
-              }
-              svg {
-                padding-top: 12px;
-              }
-            }
+          svg {
+            padding-top: 12px;
           }
         }
       }
@@ -1691,25 +1638,14 @@ export default {
   }
 }
 </style>
-<style lang="scss">
+<style lang="scss" scoped>
 .search {
   .el-select {
     padding-right: 10px;
   }
-  .el-input--suffix .el-input__inner {
-    min-height: 51px;
-    font-size: 14px;
-    line-height: 16px;
-    width: 100%;
-    color: #2f3b48;
-    border-radius: 10px;
-  }
   .el-select .el-input .el-select__caret {
     color: #222732;
     font-weight: 600;
-  }
-  .el-select .el-input__inner:focus {
-    border-color: var(--primary);
   }
   .el-select-dropdown__item {
     color: #222732;
