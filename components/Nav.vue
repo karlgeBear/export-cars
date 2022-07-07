@@ -9,8 +9,8 @@
           <div class="nav-menu">
             <ul class="nav-menu-list">
               <li class="nav-menu-item"><NuxtLink to="/" title="Home" class="nav-link" :class="{selected:diyrate==1}">Home</NuxtLink></li>
-              <li class="nav-menu-item"><NuxtLink to="/new-cars" title="new-cars" class="nav-link" :class="{selected:diyrate==2}">New car</NuxtLink></li>
-              <li class="nav-menu-item"><NuxtLink to="/used-cars" title="used-cars" class="nav-link" :class="{selected:diyrate==3}">Used car</NuxtLink></li>
+              <li class="nav-menu-item"><NuxtLink to="/used-cars" title="used-cars" class="nav-link" :class="{selected:diyrate==2}">Used car</NuxtLink></li>
+              <li class="nav-menu-item"><NuxtLink to="/new-cars" title="new-cars" class="nav-link" :class="{selected:diyrate==3}">New car</NuxtLink></li>
               <li class="nav-menu-item"><NuxtLink to="/blog" title="blog" class="nav-link" :class="{selected:diyrate==4}">Blog</NuxtLink></li>
               <li class="nav-menu-item"><NuxtLink to="/contact" title="contact" class="nav-link" :class="{selected:diyrate==5}">Contact</NuxtLink></li>
             </ul>
@@ -61,7 +61,7 @@
 
 <script>
 export default {
-  name: 'ExportCarsNav',
+  name: 'Nav',
   props:['diynavbg','diyrate'],
   data() {
     return {

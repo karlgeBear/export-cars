@@ -86,7 +86,7 @@
 
 <script>
 export default {
-  name: 'ExportCarsBlog',
+  name: 'Blog',
 
   data() {
     return {

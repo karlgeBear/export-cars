@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'new-cars-childindex',
+  name: 'used-cars-childindex',
 
   data() {
     return {

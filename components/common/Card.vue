@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: "ExportCarsCard",
+  name: "Card",
 
   data() {
     return {};

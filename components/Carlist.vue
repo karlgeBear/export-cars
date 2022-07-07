@@ -60,7 +60,7 @@
 
 <script>
 export default {
-  name: 'ExportCarsCarlist',
+  name: 'Carlist',
   props:['carlistLayout'],
   data() {
     return {

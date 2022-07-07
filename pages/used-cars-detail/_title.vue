@@ -1,8 +1,8 @@
 <template>
-  <div class="new-cars-detail">
+  <div class="used-cars-detail">
     <Nav :diyrate="2" :diynavbg="1"/>
     <BreadNav />
-    <div class="new-cars-detail-content">
+    <div class="used-cars-detail-content">
       <div class="container">
         <div class="car-info">
           <div class="car-info-left">
@@ -173,7 +173,7 @@
 
 <script>
 export default {
-  name: 'ExportCarsTitle',
+  name: 'Title',
 
   data() {
     return {

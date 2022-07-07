@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ExportCarsIndex',
+  name: 'Index',
 
   data() {
     return {

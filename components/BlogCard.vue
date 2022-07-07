@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: 'ExportCarsBlogCard',
+  name: 'CarsBlogCard',
 
   data() {
     return {

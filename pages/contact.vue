@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: 'ExportCarsContact',
+  name: 'Contact',
 
   data() {
     return {

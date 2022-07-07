@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'ExportCarsBreadNav',
+  name: 'BreadNav',
   data() {
     return {
       breadData: []
