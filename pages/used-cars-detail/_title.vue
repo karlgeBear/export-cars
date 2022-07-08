@@ -158,12 +158,7 @@
     <div class="related-listings">
       <div class="container">
         <h1 class="head-title">Related Listings</h1>
-        <div class="related-listings-car-list">
-          <CommonCard />
-          <CommonCard />
-          <CommonCard />
-          <CommonCard />
-        </div>
+        <CommonCarList :carListData="carListData" cardW="23%"></CommonCarList>
 
       </div>
     </div>
@@ -201,8 +196,45 @@ export default {
         'Continental',
         'Continental',
         'Continental'
+      ],
+      carListData: [
+        {
+          title:'Ferrari LaFerrari 2-door coupe red',
+          price:'810,000',
+          year:'2021',
+          Transmission:'Auto',
+          Kilometers: 17882,
+          pictures:require('~/assets/imgs/cars/swiper-car-1.jpg'),
+          pictureSum: 6
+        },
+        {
+          title:'Ferrari LaFerrari 2-door coupe red',
+          price:'810,000',
+          year:'2021',
+          Transmission:'Auto',
+          Kilometers: 17882,
+          pictures:require('~/assets/imgs/cars/swiper-car-2.jpg'),
+          pictureSum: 6
+        },
+        {
+          title:'Ferrari LaFerrari 2-door coupe red',
+          price:'810,000',
+          year:'2021',
+          Transmission:'Auto',
+          Kilometers: 17882,
+          pictures:require('~/assets/imgs/cars/swiper-car-3.jpg'),
+          pictureSum: 6
+        },
+        {
+          title:'Ferrari LaFerrari 2-door coupe red',
+          price:'810,000',
+          year:'2021',
+          Transmission:'Auto',
+          Kilometers: 17882,
+          pictures:require('~/assets/imgs/cars/swiper-car-4.jpg'),
+          pictureSum: 6
+        }
       ]
-
     };
   },
   computed: {
