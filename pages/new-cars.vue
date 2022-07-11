@@ -21,7 +21,7 @@
             <el-select v-model="value" placeholder="价格">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
-            </el-select>
+            </el-select> 
             <el-select v-model="value" placeholder="续航">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
