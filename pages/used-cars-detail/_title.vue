@@ -2,135 +2,65 @@
   <div class="used-cars-detail">
     <Nav :diyrate="2" :diynavbg="1"/>
     <BreadNav />
-    <div class="used-cars-detail-content">
-      <div class="container">
-        <div class="car-info">
-          <div class="car-info-left">
-            <div class="car-info-imgs">
-              <div class="block">
-                <el-carousel trigger="click" height="532px" :autoplay="false" @change="swiperChange" ref="swiper">
-                  <el-carousel-item v-for="(item,index) in swiperImgs" :key="index">
-                    <img :src="item" :alt="'car' + index">
-                  </el-carousel-item>
-                </el-carousel>
-                <div class="swiper-relative">
-                  <div class="swiper-relative__move" :style="{ left: moveStep}">
-                    <ul class="swiper-relative__imgs">
-                      <li class="swiper-relative__img" v-for="(item,index) in swiperImgs" :key="index" @click="$refs.swiper.setActiveItem(index)">
-                        <img :src="item" :alt="'car' + index" :class="{imgActive: swiperImgIndex == index}">
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="picture-num">
-                <i class="far fa-images"></i>
-                {{swiperImgIndex+1}}/{{swiperImgs.length}}
-              </div>
-            </div>
-            <div class="car-info-description">
-              <div class="description head-title">
-                Description
-              </div>
-              <div class="car-description" v-if="isShowCarDesc">
-                <p>How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.</p>
-                <p>If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three thousand miles from New York to Liverpool in the nine days, between the 12th and the 21st of December. It is true that, once arrived, the affair on board the Henrietta, added to that of the Bank of England, might create more difficulties for Mr. Fogg than he imagined or could desire.</p>
-                <p>During the first days, they went along smoothly enough. The sea was not very unpropitious, the wind seemed stationary in the north-east, the sails were hoisted, and the Henrietta ploughed across the waves like a real trans-Atlantic steamer.</p>
-                <div class="text-btn">
-                  <button class="show-less text-click" @click="switchCarDesc">Show less</button>
-                </div>
-              </div>
-              <div class="car-description__inner" v-if="!isShowCarDesc">
-                <p>How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.</p>
-                <p>If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three…</p>
-                <div class="text-btn">
-                  <button class="show-more text-click" @click="switchCarDesc">Show-more</button>
-                </div>
-              </div>
-            </div>
-            <div class="car-info__vehicle-history">
-              <div class="card-border-top car-features-pills">
-                <div class="car-features-pills__single">
-                  <i class="far fa-check-circle"></i>
-                  <span>Brake assist</span>
-                </div>
-                <div class="car-features-pills__single">
-                  <i class="far fa-check-circle"></i>
-                  <span>Forward-collision warning</span>
-                </div>
-                <div class="car-features-pills__single">
-                  <i class="far fa-check-circle"></i>
-                  <span>Lane keeping assist</span>
-                </div>
-                <div class="car-features-pills__single">
-                  <i class="far fa-check-circle"></i>
-                  <span>Parking assist systems</span>
-                </div>
-                <div class="car-features-pills__single">
-                  <i class="far fa-check-circle"></i>
-                  <span>Sideview camera</span>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <div class="download-report">
-                  <h1 class="download-report__title head-title">Vehicle history</h1>
-                  <div class="download-report__btn"><a href="#"> DownLoad report</a></div>
-                  <div class="download-report-imgs">
-                    <img src="~/assets/imgs/icon/carfax_logo_eu_2.png" alt="car-arfax_logo_eu_2">
-                    <img src="~/assets/imgs/icon/paypal.png" alt="paypal">
-                  </div>
-                </div>
-                <div class="read-history">
-                  Before you decide to buy a car, read its <a href="#" class="text-click">history</a> for free.
-                </div>
-              </div>
-
-            </div>
+    <CommonSwiperPC >
+      <div class="car-info-description" slot="description">
+        <div class="description head-title">
+          Description
+        </div>
+        <div class="car-description" v-if="isShowCarDesc">
+          <p>How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.</p>
+          <p>If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three thousand miles from New York to Liverpool in the nine days, between the 12th and the 21st of December. It is true that, once arrived, the affair on board the Henrietta, added to that of the Bank of England, might create more difficulties for Mr. Fogg than he imagined or could desire.</p>
+          <p>During the first days, they went along smoothly enough. The sea was not very unpropitious, the wind seemed stationary in the north-east, the sails were hoisted, and the Henrietta ploughed across the waves like a real trans-Atlantic steamer.</p>
+          <div class="text-btn">
+            <button class="show-less text-click" @click="switchCarDesc">Show less</button>
           </div>
-          <div class="car-info-right">
-            <h1 class="car-title">TESR</h1>
-            <div class="car-features">
-              <span class="car-feature">2012<i class="fas fa-circle"></i></span>
-              <span class="car-feature">0 miles<i class="fas fa-circle"></i></span>
-              <span class="car-feature">Coupe<i class="fas fa-circle"></i></span>
-              <span class="car-feature">Electric</span>
-            </div>
-            <div class="car-price">$22,222</div>
-            <div class="favorites"><i class="far fa-star"></i>Add to favorites</div>
-            <div class="car-info-detail">
-              <div class="car-info-detail__key">
-                <ul>
-                  <li>Make:</li>
-                  <li>Model:</li>
-                  <li>Color:</li>
-                  <li>Drive Type:</li>
-                  <li>Transmission:</li>
-                  <li>Condition:</li>
-                  <li>Year:</li>
-                  <li>Mileage:</li>
-                  <li>Fuel Type:</li>
-                  <li>Engine Size:</li>
-                  <li>Doors:</li>
-                  <li>VIN:</li>
-                  <li>NEDC pure electric cruising range(km):</li>
-                </ul>
-              </div>
-              <div class="car-info-detail__value">
-                <ul>
-                  <li v-for="(item,index) in carInfo" :key="index">{{item}}</li>
-                </ul>
-              </div>
-            </div>
-            <div class="send-message btn"><a class="send-message-link" href="#">send-message btn</a></div>
-            <div class="offer-car-id">offter ID #20482</div>
-            <div class="pay-mothods">
-              <a class="share"><i class="fab fa-facebook"></i>Share</a>
-              <a class="tweet"><i class="fab fa-twitter"></i>Tweet</a>
-            </div>
+        </div>
+        <div class="car-description__inner" v-if="!isShowCarDesc">
+          <p>How the adventure ended will be seen anon. Aouda was anxious, though she said nothing. As for Passepartout, he thought Mr. Fogg’s manoeuvre simply glorious. The captain had said “between eleven and twelve knots,” and the Henrietta confirmed his prediction.</p>
+          <p>If, then—for there were “ifs” still—the sea did not become too boisterous, if the wind did not veer round to the east, if no accident happened to the boat or its machinery, the Henrietta might cross the three…</p>
+          <div class="text-btn">
+            <button class="show-more text-click" @click="switchCarDesc">Show-more</button>
           </div>
         </div>
       </div>
-    </div>
+      <div class="car-info__vehicle-history" slot="history">
+          <div class="card-border-top car-features-pills">
+            <div class="car-features-pills__single">
+              <i class="far fa-check-circle"></i>
+              <span>Brake assist</span>
+            </div>
+            <div class="car-features-pills__single">
+              <i class="far fa-check-circle"></i>
+              <span>Forward-collision warning</span>
+            </div>
+            <div class="car-features-pills__single">
+              <i class="far fa-check-circle"></i>
+              <span>Lane keeping assist</span>
+            </div>
+            <div class="car-features-pills__single">
+              <i class="far fa-check-circle"></i>
+              <span>Parking assist systems</span>
+            </div>
+            <div class="car-features-pills__single">
+              <i class="far fa-check-circle"></i>
+              <span>Sideview camera</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <div class="download-report">
+              <h1 class="download-report__title head-title">Vehicle history</h1>
+              <div class="download-report__btn"><a href="#"> DownLoad report</a></div>
+              <div class="download-report-imgs">
+                <img src="~/assets/imgs/icon/carfax_logo_eu_2.png" alt="car-arfax_logo_eu_2">
+                <img src="~/assets/imgs/icon/paypal.png" alt="paypal">
+              </div>
+            </div>
+            <div class="read-history">
+              Before you decide to buy a car, read its <a href="#" class="text-click">history</a> for free.
+            </div>
+          </div>
+      </div>
+    </CommonSwiperPC>
     <div class="send-message">
       <div class="container">
         <h1 class="head-title">Send message</h1>
@@ -173,30 +103,6 @@ export default {
   data() {
     return {
       isShowCarDesc:false,
-      swiperImgIndex : 0,
-      moveStep: 0,
-      swiperImgs: [
-        require('~/assets/imgs/cars/swiper-car-1.jpg'),
-        require('~/assets/imgs/cars/swiper-car-2.jpg'),
-        require('~/assets/imgs/cars/swiper-car-3.jpg'),
-        require('~/assets/imgs/cars/swiper-car-4.jpg'),
-        require('~/assets/imgs/cars/swiper-car-5.jpg'),
-        require('~/assets/imgs/cars/swiper-car-6.jpg'),
-        require('~/assets/imgs/cars/swiper-car-7.jpg')
-      ],
-      carInfo: [
-        'Bentley',
-        'Continental',
-        'Continental',
-        'Continental',
-        'Continental',
-        'Continental',
-        'Continental',
-        'Continental',
-        'Continental',
-        'Continental',
-        'Continental'
-      ],
       carListData: [
         {
           title:'Ferrari LaFerrari 2-door coupe red',
@@ -248,30 +154,12 @@ export default {
     // }
   },
   mounted() {
-    console.log('test:',this.swiperImgs.length - this.swiperImgIndex)
   },
 
   methods: {
     switchCarDesc(){
       this.isShowCarDesc = !this.isShowCarDesc
     },
-    swiperChange(index){
-      // Corresponding to the following picture with add boder and moving by click the arrow
-      console.log(index)
-      let sum = this.swiperImgs.length
-      this.swiperImgIndex = index
-      let left = index > 4 ? `-${(sum-5)*164}px` : '0px'
-      this.moveStep = left
-      console.log('总长:',sum,'超出范围所剩个数:',sum-index,'left:',left) 
-
-      // let {}
-      // 需求: 点击对应的btn,点击btn会传一个index值过来
-      // 已知变量： sum(索引的总数量) index(索引值)
-      // 问题：如何让sum-index所得的值反过来排列 
-      // 例如：sum=7; currentIndex= 1; result = sum-currentIndex;
-        //     result: 6, 5, 4, 3, 2, 1, 0
-        //     解决：   0, 1, 2, 3, 4, 5, 6
-    }
   },
 };
 </script>
@@ -282,258 +170,6 @@ export default {
     font-size: 22px;
     font-weight: 900;
     line-height: 28px;
-}
-.car-info{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-  .car-info-left{
-    position: relative;
-    margin-right: 15px;
-    width: 60%;
-    .car-info-imgs{
-      cursor: pointer;
-      width: 100%;
-      position: relative;
-      img{
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-      }
-      .picture-num{
-        position: absolute;
-        bottom: 170px;
-        right: 40px;
-        color: #fff;
-        font-size: 20px;
-        font-weight: 800;
-        z-index: 10;
-        i{
-          opacity: 0.5;
-          margin-right: 5px;
-        }
-      }
-      .swiper-relative{
-        margin: 20px 0;
-        position: relative;
-        height: 120px;
-        overflow: hidden;
-        .swiper-relative__move{
-           position: absolute;
-           left: 0;
-           top: 0;
-           width: 100%;
-           border: 1px solid blanchedalmond;
-           transition: all .3s ease-in-out;
-          .swiper-relative__imgs{
-            white-space: nowrap;
-            .swiper-relative__img{
-              display: inline-block;
-              width: 20%;
-              padding: 0 10px;
-              .imgActive{
-                width: 100%;
-                border: 2px solid var(--primary);
-              }
-            }
-          }
-        }
-
-      }
-    }
-    .car-info-description{
-      color: #222732;
-      font-size: 16px;
-      line-height: 30px;
-      .description.head-title{
-        padding: 30px 0;
-      }
-      .car-description{
-        margin-bottom: 30px;
-      }
-      p{
-        margin-bottom: 16px;
-      }
-    }
-
-    .car-info__vehicle-history{
-      .card-border-top{
-        width: 100%;
-        padding: 32px 35px 16px 34px;
-        background: var(--bg);
-        margin-bottom: 1px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-      }
-      .car-features-pills{
-        display: inline-block;
-        .car-features-pills__single{
-          padding: 15px 20px;
-          background-color: #FFFFFF;
-          margin: 10px;
-          border: 1px solid #e7edf3;
-          float: left;
-          border-radius: 10px;
-          color: #222732;
-          font-size: 16px;    
-          line-height: 24px;
-          font-weight: 600;
-          i{
-            display: inline-block;
-            float: left;
-            color: var(--primary);
-            margin-right: 10px;
-            font-size: 24px;
-            line-height: 24px;
-          }
-        }
-      }
-      .card-bottom{
-        display: flex;
-        background-color: var(--bg);
-        background-color: #F2F5FB;
-        background-image: url('~assets/imgs/Layer-56.png');
-        background-position: bottom right;
-        background-repeat: no-repeat;
-        background-size: initial;
-        margin-bottom: 50px;
-        .download-report{
-          display: flex;
-          flex-direction: column;
-          padding: 0px 10px 35px 34px;
-          border-bottom-left-radius: 10px;
-          border-bottom-right-radius: 10px;
-          .download-report__title{
-            padding: 30px 0;
-          }
-          .download-report__btn a{
-            display: inline-block;
-            font-size: 16px;
-            line-height: 21px;
-            border-style: solid;
-            border-width: 1px 1px 1px 1px;
-            border-radius: 10px 10px 10px 10px;
-            padding: 13px 25px 13px 25px;
-            border-radius: 10px;
-            border: 1px solid var(--primary);
-            background-color: #FFF0EB;
-            transition: all ease-in-out .3s;
-            margin-bottom: 35px;
-            &:hover{
-              background-color: var(--primary);
-            }
-          }
-          .download-report-imgs{
-            display: flex;
-            img{
-              height: 25px;
-              &:last-child{
-                height: 30px;
-              }
-            }
-          }
-        }
-        .read-history{
-          align-self: center;
-          width: 35%;
-          padding-left: 25px;
-          line-height: 27px;
-          margin-left: 45px;
-        }
-      }
-    }
-  }
-  .car-info-right{
-    margin-left: 15px;
-    padding-left: 30px;
-    padding-right: 95px;
-    width: 40%;
-    .car-title{
-      font-size: 30px;
-      line-height: 1.3;
-      color: #222732;
-    }
-    .car-features{
-      color: #a7a8a8;
-      padding: 25px 0;
-      border-bottom: 1px solid #E8E8E8;
-      i{
-        color: var(--primary);
-        padding-left: 3px;
-      }
-    }
-    .car-price{
-      font-size: 35px;
-      line-height: 44px;
-      font-weight: 800;
-      color: var(--primary);
-      padding: 20px 0;
-    }
-    .favorites{
-      color: #a7a8a8;
-      font-size: 16px;
-      i{
-        font-size: 20px;
-        padding-right: 5px;
-      }
-    }
-    .car-info-detail{
-      display: flex;
-      margin-top: 20px;
-      background-color: var(--bg); 
-      padding: 25px 40px 18px 40px;
-      border-radius: 10px;
-      line-height: 30px;
-      .car-info-detail__key{
-        font-weight: 700;
-      }
-    }
-    .send-message.btn{
-      background: none;
-      padding: 0;
-      .send-message-link{
-        font-size: 17px;
-        display: inline-block;
-        width: 100%;
-        font-weight: 600;
-        line-height: 20px;
-        border-radius: 10px 10px 10px 10px;
-        padding: 15px 15px 15px 15px;
-        background-color: var(--primary);
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        color: #fff;
-      }
-    }
-    .offer-car-id{
-      text-align: center;
-      margin: 30px 0;
-    }
-    .pay-mothods{
-      display: flex;
-      justify-content: center;
-      padding: 30px 0;
-      a{
-        display: inline-block;
-        font-size: 14px;
-        line-height: 16px;
-        color: #fff;
-        padding: 8px 12px;
-        border-radius: 4px;
-        margin: 0 10px;
-        &:first-child{
-          background-color: #39579A;
-        }
-        &:last-child{
-          background-color: #01ABF0;
-        }
-        i{
-          padding-right: 12px;
-        }
-      }
-    }
-  }
 }
 .send-message{
   background-color: var(--bg);
@@ -616,37 +252,105 @@ export default {
     display: flex;
   }
 }
-</style>
-
-<style lang="scss">
-
-.el-carousel--horizontal{
-  border-radius: 10px;
+.car-info-description{
+  color: #222732;
+  font-size: 16px;
+  line-height: 30px;
+  .description.head-title{
+    padding: 30px 0;
+  }
+  .car-description{
+    margin-bottom: 30px;
+  }
+  p{
+    margin-bottom: 16px;
+  }
 }
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 150px;
-  margin: 0;
-}
-.el-carousel__arrow{
-    box-shadow: 0px 3px 40px 0 #dbe0e8;
-    background-color: #fff;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
+
+.car-info__vehicle-history{
+  .card-border-top{
+    width: 100%;
+    padding: 32px 35px 16px 34px;
+    background: var(--bg);
+    margin-bottom: 1px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .car-features-pills{
     display: inline-block;
-    text-align: center;
-    transition: all 0.2s ease;
-    color: black;
-    &:hover{
-      background-color: var(--primary-light);
-      color: var(--primary);
-    }
-    i{
-      font-size: 22px;
+    .car-features-pills__single{
+      padding: 15px 20px;
+      background-color: #FFFFFF;
+      margin: 10px;
+      border: 1px solid #e7edf3;
+      float: left;
+      border-radius: 10px;
+      color: #222732;
+      font-size: 16px;    
+      line-height: 24px;
       font-weight: 600;
+      i{
+        display: inline-block;
+        float: left;
+        color: var(--primary);
+        margin-right: 10px;
+        font-size: 24px;
+        line-height: 24px;
+      }
     }
+  }
+  .card-bottom{
+    display: flex;
+    background-color: var(--bg);
+    background-color: #F2F5FB;
+    background-image: url('~assets/imgs/Layer-56.png');
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: initial;
+    margin-bottom: 50px;
+    .download-report{
+      display: flex;
+      flex-direction: column;
+      padding: 0px 10px 35px 34px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      .download-report__title{
+        padding: 30px 0;
+      }
+      .download-report__btn a{
+        display: inline-block;
+        font-size: 16px;
+        line-height: 21px;
+        border-style: solid;
+        border-width: 1px 1px 1px 1px;
+        border-radius: 10px 10px 10px 10px;
+        padding: 13px 25px 13px 25px;
+        border-radius: 10px;
+        border: 1px solid var(--primary);
+        background-color: #FFF0EB;
+        transition: all ease-in-out .3s;
+        margin-bottom: 35px;
+        &:hover{
+          background-color: var(--primary);
+        }
+      }
+      .download-report-imgs{
+        display: flex;
+        img{
+          height: 25px;
+          &:last-child{
+            height: 30px;
+          }
+        }
+      }
+    }
+    .read-history{
+      align-self: center;
+      width: 35%;
+      padding-left: 25px;
+      line-height: 27px;
+      margin-left: 45px;
+    }
+  }
 }
 </style>
