@@ -60,6 +60,14 @@
             </div>
           </div>
       </div>
+      <div class="btn-id-pay" slot="btn-id-pay">
+        <div class="send-message btn"><a class="send-message-link" href="#">send-message btn</a></div>
+        <div class="offer-car-id">offter ID #20482</div>
+        <div class="pay-mothods">
+          <a class="share"><i class="fab fa-facebook"></i>Share</a>
+          <a class="tweet"><i class="fab fa-twitter"></i>Tweet</a>
+        </div>
+      </div>
     </CommonSwiperPC>
     <div class="send-message">
       <div class="container">
@@ -266,7 +274,51 @@ export default {
     margin-bottom: 16px;
   }
 }
-
+.send-message.btn{
+  background: none;
+  padding: 0;
+  .send-message-link{
+    font-size: 17px;
+    display: inline-block;
+    width: 100%;
+    font-weight: 600;
+    line-height: 20px;
+    border-radius: 10px 10px 10px 10px;
+    padding: 15px 15px 15px 15px;
+    background-color: var(--primary);
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+}
+.offer-car-id{
+  text-align: center;
+  margin: 30px 0;
+}
+.pay-mothods{
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+  a{
+    display: inline-block;
+    font-size: 14px;
+    line-height: 16px;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 0 10px;
+    &:first-child{
+      background-color: #39579A;
+    }
+    &:last-child{
+      background-color: #01ABF0;
+    }
+    i{
+      padding-right: 12px;
+    }
+  }
+}
 .car-info__vehicle-history{
   .card-border-top{
     width: 100%;
