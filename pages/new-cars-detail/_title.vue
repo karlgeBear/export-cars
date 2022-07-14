@@ -31,18 +31,143 @@
           </div>
         </div>
         <div class="pk-swiper">
-          <div class="arrow-left">
+          <div class="arrow-left" @click="left">
             <i class="el-icon-arrow-left"></i>
           </div>
           <div class="pk-swiper-content">
-            Put some swiper picture here 
+            <div class="pk-card">
+              <ul class="pk-card-list" :style="{left:pkCardSwiperW + 'px'}">
+                <li class="pk-card-item" v-for="(item,index) in pkCardSwiper" :key="index" ref="pkCardItem">
+                  <a href="#">
+                    <div class="pk-card-img">
+                      <img :src="item.picture" alt="pk-car">
+                    </div>
+                    <div class="right">
+                      <div class="title">{{item.title}}</div>
+                      <div class="price-range">
+                        <span class="highColor">{{item.rank}}</span>
+                        <button>PK</button>
+                      </div>
+                      <div class="competitiveness">
+                        竞争力指数 <span class="highColor">{{item.competitivenessIndex}}</span> 分
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="arrow-right">
+          <div class="arrow-right" @click="right">
             <i class="el-icon-arrow-right"></i>
           </div>
         </div>
       </div>
     </CommonSwiperPC>
+    <div class="section">
+      <div class="container">
+        <div class="section-left">
+          <section class="article">
+            <h1 class="section-title">文章</h1>
+            <a href="#" class="highColor">查看更多></a>
+            <div class="article-list">
+              <div class="article-item" v-for="(item,index) in article" :key="index">
+                <img :src="item.picture" alt="article-car">
+                <div class="article-item-content">
+                  <h2 class="sub-title">{{item.title}}</h2>
+                  <div class="article-item-desc">
+                    <p>{{item.descrition[0]}}</p>
+                    <p>{{item.descrition[1]}}</p>
+                  </div>
+
+                  <button class="btn">阅读更多</button>
+                </div>
+
+              </div>
+            </div>
+          </section>
+          <section class="car-model">
+            <h1 class="section-title">车型</h1>
+            <div class="select-box" @mouseleave="mouseleave(1)">
+              <span class="highColor" @mouseenter="mouseenter(1)">{{carModelTitle}}年款∨</span>
+              <ul class="select-list" v-show="isShowCarModel">
+                <li class="select-item" v-for="(item,index) in [2022,2021,2020,2019,2018,2017]"
+                :class="{focus:modelFocusIndex == index}"
+                @click="model(item,index)"
+                :key="index">
+                  {{item}} 年款
+                </li>
+              </ul>
+            </div>
+            <table class="car-model-table">
+              <tr>
+                <th>纯电动</th>
+                <th>纯电续航</th>
+                <th>指导价</th>
+                <!-- <th></th> -->
+              </tr>
+              <tr v-for="(item,index) in carModel" :key="index">
+                <td>{{item.name}}</td>
+                <td>{{item.driveLife}}</td>
+                <td>{{item.guidePrice}}</td>
+                <td>
+                  <button>PK</button>
+                </td>
+              </tr>
+            </table>
+          </section>
+        </div>
+        <div class="section-right">
+          <section class="car-recommend">
+            <h1 class="section-title">竞争力车型推荐</h1>
+            <div class="select-box" @mouseleave="mouseleave(2)">
+              <span class="highColor" @mouseenter="mouseenter(2)">{{carRemmondTitle}}∨</span>
+              <ul class="select-list" v-show="isShowCarRemmond">
+                <li class="select-item" v-for="(item,index) in carModelRecommend.carModel"
+                :class="{focus:recommendFocusIndex == index}"
+                @click="recommend(item,index)"
+                :key="index">
+                  {{item}} 年款
+                </li>
+              </ul>
+            </div>
+            <div class="car-remmend-ranking">
+              <ul class="the-top-three">
+                <li v-for="(item,index) in carModelRecommend.carMdodelData[0][0].topThree" :key="index">
+                  <div class="rank-num">{{index+1}}</div>
+                  <img :src="item.picture" alt="remmend-car">
+                  <div class="car-remmend-info">
+                    <h2>{{item.title}}</h2>
+                    <p class="price-range highColor">{{item.rank}}万元</p>
+                    <p class="competitiveness">竞争力指数<span class="highColor">{{item.competitivenessIndex}}</span></p>
+                  </div>
+                </li>
+              </ul>
+              <ul>
+                <li></li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="container">
+        <div class="section-left">
+          <section class="img">
+            <h1 >图片</h1>
+          </section>
+          <section class="video">
+            <h1>视频</h1>
+          </section>
+          <section class="inpression">
+            <h1>口碑印象</h1>
+          </section>
+        </div>
+        <div class="section-right">
+          <section class="history">
+              <h1>浏览过的车型</h1>
+          </section>
+        </div>
+      </div>
+    </div>
     <Footer />
   </div>
 </template>
@@ -53,9 +178,13 @@ export default {
 
   data() {
     return {
-      isShowCarDesc:false,
-      swiperImgIndex : 0,
-      moveStep: 0,
+      pkCardSwiperW: 0,
+      modelFocusIndex: 0,
+      recommendFocusIndex:0,
+      isShowCarModel:false,
+      isShowCarRemmond:false,
+      carModelTitle: '2021',
+      carRemmondTitle: '小型轿车',
       swiperImgs: [
         require('~/assets/imgs/cars/swiper-car-1.jpg'),
         require('~/assets/imgs/cars/swiper-car-2.jpg'),
@@ -77,7 +206,166 @@ export default {
         'Continental',
         'Continental',
         'Continental'
-      ]
+      ],
+      pkCardSwiper:[
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-1.jpg'),
+          title:'奥迪',
+          rank:'79.65 - 1234',
+          competitivenessIndex:7.12
+        },
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-1.jpg'),
+          title:'奥迪',
+          rank:'79.65 - 1234',
+          competitivenessIndex:7.12
+        },
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-1.jpg'),
+          title:'奥迪',
+          rank:'79.65 - 1234',
+          competitivenessIndex:7.12
+        },
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-1.jpg'),
+          title:'奥迪',
+          rank:'79.65 - 1234',
+          competitivenessIndex:7.12
+        },
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-1.jpg'),
+          title:'奥迪',
+          rank:'79.65 - 1234',
+          competitivenessIndex:7.12
+        },
+      ],
+      article:[
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-2.jpg'),
+          title:'特斯拉竟然8年160万公里',
+          descrition: [
+            '1、2014年德国出租车司机买了一辆Model S(配置|询价) P85的试驾车，他花了9年时间，将这辆Model S开161万公里！',
+            '2、8年时间更换了三次电池，换了8个电机，截止到今年......'
+          ]
+        },
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-2.jpg'),
+          title:'特斯拉竟然8年160万公里',
+          descrition: [
+            '1、2014年德国出租车司机买了一辆Model S(配置|询价) P85的试驾车，他花了9年时间，将这辆Model S开161万公里！',
+            '2、8年时间更换了三次电池，换了8个电机，截止到今年......'
+          ]
+        }
+        
+      ],
+      carModel:[
+        {
+          name:'2022款Model S 长续航升级版',
+          driveLife:'719',
+          guidePrice: '98.3'
+        },
+        {
+          name:'2022款Model S 长续航升级版',
+          driveLife:'719',
+          guidePrice: '98.3'
+        },
+        {
+          name:'2022款Model S 长续航升级版',
+          driveLife:'719',
+          guidePrice: '98.3'
+        },
+        {
+          name:'2022款Model S 长续航升级版',
+          driveLife:'719',
+          guidePrice: '98.3'
+        },
+      ],
+      carModelRecommend:{
+        carModel:['小型轿车','紧凑型轿车','中型轿车','中大型轿车','小型SUV','紧凑型SUV','中型SUV','多用途车','纯电动','插电式混动'],
+        carMdodelData:[
+          [
+            {
+              topThree:[
+                {
+                  picture:require('~/assets/imgs/cars/swiper-car-3.jpg'),
+                  title:'奥迪',
+                  rank:'79.65 - 1234',
+                  competitivenessIndex:7.12
+                },
+                {
+                  picture:require('~/assets/imgs/cars/swiper-car-3.jpg'),
+                  title:'奥迪',
+                  rank:'79.65 - 1234',
+                  competitivenessIndex:7.12
+                },
+                {
+                  picture:require('~/assets/imgs/cars/swiper-car-3.jpg'),
+                  title:'奥迪',
+                  rank:'79.65 - 1234',
+                  competitivenessIndex:7.12
+                },
+              ],
+              others:[
+                {
+                  title:'奥迪',
+                  competitivenessIndex:7.12
+                },
+                {
+                  title:'奥迪',
+                  competitivenessIndex:7.12
+                },
+                {
+                  title:'奥迪',
+                  competitivenessIndex:7.12
+                },
+                {
+                  title:'奥迪',
+                  competitivenessIndex:7.12
+                },
+                {
+                  title:'奥迪',
+                  competitivenessIndex:7.12
+                },
+                {
+                  title:'奥迪',
+                  competitivenessIndex:7.12
+                },
+                {
+                  title:'奥迪',
+                  competitivenessIndex:7.12
+                },
+              ]
+            }
+          ]
+        ],
+      },
+      imgs:{
+          appearance:[
+            require('~/assets/imgs/cars/swiper-car-3.jpg'),
+            require('~/assets/imgs/cars/swiper-car-3.jpg'),
+            require('~/assets/imgs/cars/swiper-car-3.jpg'),
+            require('~/assets/imgs/cars/swiper-car-3.jpg'),
+          ],
+          interior:[],
+          detail:[],
+          space:[],
+          engineGround:[],
+          official:[],
+          carShow:[]
+      },
+      browsingHistory:[
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-2.jpg'),
+          title:'奥迪 S6',
+          rank:'79.65 - 23432',
+        },
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-2.jpg'),
+          title:'奥迪 S6',
+          rank:'79.65 - 23432',
+        }
+      ],
+
     };
   },
   computed: {
@@ -91,40 +379,93 @@ export default {
     // }
   },
   mounted() {
-    console.log('test:',this.swiperImgs.length - this.swiperImgIndex)
+    let pkCardItemW = this.$refs.pkCardItem[0].offsetWidth
+    console.log('单个pkCardItem:',pkCardItemW) 
+    console.log(this.carModelRecommend.carMdodelData[0][0])
   },
 
   methods: {
-    switchCarDesc(){
-      this.isShowCarDesc = !this.isShowCarDesc
+    left(){
+      let pkCardItemW = 352
+      let maxW = pkCardItemW*(this.pkCardSwiper.length-2)
+      if(this.pkCardSwiperW == 0) {
+        this.pkCardSwiperW = -maxW
+      }else{
+        this.pkCardSwiperW += pkCardItemW
+      }
+      
+      console.log('向左移动',this.pkCardSwiperW,maxW)
     },
-    swiperChange(index){
-      // Corresponding to the following picture with add boder and moving by click the arrow
-      console.log(index)
-      let sum = this.swiperImgs.length
-      this.swiperImgIndex = index
-      let left = index > 4 ? `-${(sum-5)*164}px` : '0px'
-      this.moveStep = left
-      console.log('总长:',sum,'超出范围所剩个数:',sum-index,'left:',left) 
-
-      // let {}
-      // 需求: 点击对应的btn,点击btn会传一个index值过来
-      // 已知变量： sum(索引的总数量) index(索引值)
-      // 问题：如何让sum-index所得的值反过来排列 
-      // 例如：sum=7; currentIndex= 1; result = sum-currentIndex;
-        //     result: 6, 5, 4, 3, 2, 1, 0
-        //     解决：   0, 1, 2, 3, 4, 5, 6
-    }
+    right(){
+      let pkCardItemW = 352
+      let maxW = pkCardItemW*(this.pkCardSwiper.length-2)
+      if(Math.abs(this.pkCardSwiperW) == maxW) {
+        this.pkCardSwiperW = 0
+      }else{
+        this.pkCardSwiperW -= pkCardItemW
+      }
+      
+      console.log('向右移动',this.pkCardSwiperW,maxW)
+    },
+    mouseenter(num){
+      switch(num){
+        case 1:
+          this.isShowCarModel = true;
+        break;
+        case 2:
+          this.isShowCarRemmond = true;
+        break;
+      }
+    },
+    mouseleave(num){
+      switch(num){
+        case 1:
+          this.isShowCarModel = false;
+        break;
+        case 2:
+          this.isShowCarRemmond = false;
+        break;
+      }
+    },
+    model(val,index){
+      this.modelFocusIndex = index
+      this.carModelTitle = val
+      this.isShowCarModel = false
+    },
+    recommend(val,index){
+      this.recommendFocusIndex = index
+      this.carRemmondTitle = val
+      this.isShowCarRemmond = false
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.head-title{
+.section-title{
     color: #222732;
-    font-size: 22px;
+    font-size: 34px;
     font-weight: 900;
-    line-height: 28px;
+    line-height: 34px;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 30px;
+    &::before{
+      content: '';
+      width: 6px;
+      height: 26px;
+      background: #FF4605;
+      border-radius: 20px 20px 20px 20px;
+      opacity: 1;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+}
+.sub-title{
+  font-weight: 700;
+  font-size: 20px;
 }
 .small-circle{
   &::before{
@@ -168,19 +509,72 @@ export default {
     
   }
   .pk-swiper{
+    max-width: 736px;
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 20px;
     .arrow-left,.arrow-right{
-      height: 100px;
       background-color: var(--bg);
       border-radius: 8px;
-
+      cursor: pointer;
       i{
-        vertical-align: middle;
-        height: 100px;
-        line-height: 100px;
         font-weight: 900;
+        padding: 30px 0;
+      }
+    }
+    .pk-swiper-content{
+      width: 705px;
+    }
+    .pk-card{
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 107%;
+      .pk-card-list{
+        width: 100%;
+        display: flex;
+        position: absolute;
+        transition: all .3s ease-in-out;
+        li{
+          padding: 0 10px;
+           a{
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #BEBEBE;
+            .pk-card-img{
+              &:first-child{
+                width: 100px;
+                font-size: 0;
+              }
+            }
+            .right{
+              padding: 10px 15px;
+              line-height: 12px;
+              .price-range{
+                font-weight: 700;
+                font-size: 14px;
+                white-space: pre;
+                button{
+                  margin-left: 50px;
+                  padding: 10px 20px;
+                  background-color: var(--primary);
+                  border-radius: 20px;
+                  color: #ffffff;
+                  font-weight: 700;
+                }
+              }
+              .competitiveness{
+                font-size: 12px;
+                span{
+                  font-weight: 700;
+                }
+              }
+              .title{
+                font-weight: 700;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -336,37 +730,142 @@ export default {
     }
   }
 }
-</style>
-
-<style lang="scss">
-
-.el-carousel--horizontal{
-  border-radius: 10px;
+.focus{
+  color: var(--primary) !important;
+  background-color: var(--primary-light);
 }
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 150px;
-  margin: 0;
-}
-.el-carousel__arrow{
-    box-shadow: 0px 3px 40px 0 #dbe0e8;
-    background-color: #fff;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    display: inline-block;
-    text-align: center;
-    transition: all 0.2s ease;
-    color: black;
-    &:hover{
-      background-color: var(--primary-light);
-      color: var(--primary);
+.section{
+  .highColor{
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+  }
+  .container{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    >div{
+      width: 50%;
+      section{
+        position: relative;
+        margin-top: 30px;
+        a{
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translateY(50%);
+        }
+        .select-box{
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          z-index: 1;
+          .select-list{
+            margin-top: 10px;
+            border: 1px solid var(--bg);
+            background: #ffffff;
+            .select-item{
+              border-bottom: 1px solid var(--bg);
+              color: #606266;
+              padding: 8px;
+              cursor: pointer;
+              &:hover{
+                background-color: var(--primary-light);
+              }
+            }
+          }
+        }
+      }
     }
-    i{
-      font-size: 22px;
-      font-weight: 600;
+
+    .section-left{
+      margin-right: 15px;
+      position: relative;
+      a{
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      .article-list{
+        display: flex;
+        flex-wrap: wrap;
+        >div{
+          width: 50%;
+          img{
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: block;
+          }
+          .article-item-content{
+            padding: 20px;
+            border: 1px solid #DDDDDD;
+            border-top: 0 solid #DDDDDD;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            .article-item-desc{
+              padding-top: 10px;
+              padding-bottom: 10px;
+              p{
+                font-size: 12px;
+                color: #999999;
+                line-height: 20px;
+              }
+            }
+            .btn{
+              padding: 10px 15px;
+              background-color: var(--primary);
+              color: #ffffff;
+              border-radius: 13px;
+              font-size: 13px;
+              font-weight: 600;
+            }
+          }
+          &:nth-child(2n-1){
+            padding-right: 15px;
+          }
+          &:nth-child(2n){
+            padding-left: 15px;
+          }
+        }
+      }
+      .car-model-table{
+        tr{
+          th{
+            width: 219px;
+            padding: 22px 0;
+            background-color: #EFF3FA;
+            font-size: 20px;
+            font-weight: bold;
+            &:not(last-child){
+              border-right: 3px solid #ffffff;
+            }
+          }
+          td{
+            font-size: 16px;
+            padding: 15px 0;
+            text-align: center;
+            button{
+              padding: 5px 10px;
+              border-radius: 12px;
+              background-color: var(--primary);
+              color: #ffffff;
+              font-size: 12px;
+            }
+          }
+        }
+
+      }
     }
+    .section-right{
+      margin-left: 15px;
+      span.highColor{
+        display: inline-block;
+        width: 152px;
+      }
+    }
+  }
+  
 }
 </style>
