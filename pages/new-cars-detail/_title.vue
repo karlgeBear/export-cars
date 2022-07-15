@@ -68,7 +68,7 @@
         <div class="section-left">
           <section class="article">
             <h1 class="section-title">文章</h1>
-            <a href="#" class="highColor">查看更多></a>
+            <a href="#" class="highColor">查看更多 ></a>
             <div class="article-list">
               <div class="article-item" v-for="(item,index) in article" :key="index">
                 <img :src="item.picture" alt="article-car">
@@ -88,7 +88,7 @@
           <section class="car-model">
             <h1 class="section-title">车型</h1>
             <div class="select-box" @mouseleave="mouseleave(1)">
-              <span class="highColor" @mouseenter="mouseenter(1)">{{carModelTitle}}年款∨</span>
+              <span class="highColor" @mouseenter="mouseenter(1)">{{carModelTitle}}年款 ∨</span>
               <ul class="select-list" v-show="isShowCarModel">
                 <li class="select-item" v-for="(item,index) in [2022,2021,2020,2019,2018,2017]"
                 :class="{focus:modelFocusIndex == index}"
@@ -132,18 +132,32 @@
             </div>
             <div class="car-remmend-ranking">
               <ul class="the-top-three">
-                <li v-for="(item,index) in carModelRecommend.carMdodelData[0][0].topThree" :key="index">
+                <li class="the-top-three__item" v-for="(item,index) in carModelRecommend.carMdodelData[0][0].topThree" :key="index">
                   <div class="rank-num">{{index+1}}</div>
-                  <img :src="item.picture" alt="remmend-car">
-                  <div class="car-remmend-info">
-                    <h2>{{item.title}}</h2>
-                    <p class="price-range highColor">{{item.rank}}万元</p>
-                    <p class="competitiveness">竞争力指数<span class="highColor">{{item.competitivenessIndex}}</span></p>
-                  </div>
+                  <a href="#">
+                    <img :src="item.picture" alt="remmend-car">
+                    <div class="car-remmend-info">
+                      <h2 class="sub-title">{{item.title}}</h2>
+                      <p class="price-range highColor">{{item.rank}}万元</p>
+                      <p class="competitiveness">竞争力指数<span class="highColor">{{item.competitivenessIndex}} 分</span></p>
+                    </div>
+                    <div class="arrow-right">></div>
+                  </a>
+
                 </li>
               </ul>
-              <ul>
-                <li></li>
+              <ul class="ohters">
+                <li class="others" v-for="(item,index) in carModelRecommend.carMdodelData[0][0].others" :key="index">
+                  <div class="rank-num">{{index+4}}</div>
+                  <a href="#">
+                    <div class="car-remmend-info">
+                      <h2>{{item.title}}</h2>
+                      <p class="competitiveness">竞争力指数<span class="highColor">{{item.competitivenessIndex}} 分</span></p>
+                    </div>
+                    <div class="arrow-right">></div>
+                  </a>
+
+                </li>
               </ul>
             </div>
           </section>
@@ -152,18 +166,66 @@
       <div class="container">
         <div class="section-left">
           <section class="img">
-            <h1 >图片</h1>
+            <h1 class="section-title">图片</h1>
+            <a href="#" class="highColor">查看更多 ></a>
+            <div class="section-img-tabbar">
+              <ul class="tabbar-list">
+                <li class="tabbar-item" 
+                  v-for="(item,index) in imgs.tabbar" 
+                  :key="index" 
+                  :class="{tabbarImgSelected:tabbarImgIndex == index}"
+                  @click="imgtabChange(index)"
+                >
+                    {{item}}
+                </li>
+              </ul>
+              <ul class="tabbar-show-img">
+                <li v-for="(item,index) in imgs.appearance" :key="index">
+                  <a :href="item" :download="item.split('/')[-1]">
+                    <img :src="item" :alt="item.split('/').slice[-1]">
+                  </a>
+                </li>
+              </ul>
+            </div>
           </section>
           <section class="video">
-            <h1>视频</h1>
+            <h1 class="section-title">视频</h1>
+            <a href="#" class="highColor">查看更多 ></a>
           </section>
           <section class="inpression">
-            <h1>口碑印象</h1>
+            <h1 class="section-title">口碑印象</h1>
+            <ul class="car-relate-list__webgit">
+              <li>
+                <div class="relate-title">特斯拉 Model S 频道介绍</div>
+                <div class="relate-content">新浪汽车提供特斯拉Model S报价，以及特斯拉Model S实拍图/配置/口碑/论坛等信息，关注特斯拉Model S，就上特斯拉Model S频道，新车上市，降价优惠一网打尽！欢迎浏览特斯拉Model S触屏版。</div>
+              </li>
+              <li>
+                <div class="relate-title">相关阅读</div>
+                <div class="relate-content">特斯拉Model S 特斯拉Model S报价 特斯拉Model S多少钱 特斯拉Model S怎么样 特斯拉Model S参数配置 特斯拉Model S图片 特斯拉Model S报价及图片 特斯拉Model S视频 特斯拉Model S资讯 特斯拉Model S4S店</div>
+              </li>
+              <li>
+                <div class="relate-title">车系对比</div>
+                <div class="relate-content">特斯拉Model S和Ghibli哪个好？ 特斯拉Model S和奥迪S6哪个好？ 特斯拉Model S和宝马M3哪个好？ 特斯拉Model S和AMG C哪个好？ 特斯拉Model S和奥迪RS 4哪个好？ 特斯拉Model S和雷克萨斯LS哪个好？</div>
+              </li>
+              <li>
+                <div class="relate-title">热门推荐</div>
+                <div class="relate-content">微型车 小型车 紧凑型 中型车 大型车 两厢车 三厢车 SUV MPV 跑车 国产车大全 德系车大全 美系车大全 日系车大全 合资车大全 10万以内性价比高的车 10-15万性价比高的车 15-20万性价比高的车 20-25万性价比高的车</div>
+              </li>
+            </ul>
           </section>
         </div>
         <div class="section-right">
           <section class="history">
-              <h1>浏览过的车型</h1>
+              <h1 class="section-title">浏览过的车型</h1>
+              <ul class="browsing-car-list">
+                <li class="browsing-car-item" v-for="(item,index) in browsingHistory" :key="index">
+                  <a href="#">
+                    <img :src="item.picture" :alt="item.picture.split('/').slice[-1]">
+                    <h2>{{item.title}}</h2>
+                    <div class="rank highColor">{{item.rank}}</div>
+                  </a>
+                </li>
+              </ul>
           </section>
         </div>
       </div>
@@ -181,6 +243,7 @@ export default {
       pkCardSwiperW: 0,
       modelFocusIndex: 0,
       recommendFocusIndex:0,
+      tabbarImgIndex :0,
       isShowCarModel:false,
       isShowCarRemmond:false,
       carModelTitle: '2021',
@@ -340,6 +403,7 @@ export default {
         ],
       },
       imgs:{
+          tabbar:['外观','内饰','细节','空间','引擎地盘','官方','车展'],
           appearance:[
             require('~/assets/imgs/cars/swiper-car-3.jpg'),
             require('~/assets/imgs/cars/swiper-car-3.jpg'),
@@ -354,6 +418,11 @@ export default {
           carShow:[]
       },
       browsingHistory:[
+        {
+          picture:require('~/assets/imgs/cars/swiper-car-2.jpg'),
+          title:'奥迪 S6',
+          rank:'79.65 - 23432',
+        },
         {
           picture:require('~/assets/imgs/cars/swiper-car-2.jpg'),
           title:'奥迪 S6',
@@ -379,9 +448,9 @@ export default {
     // }
   },
   mounted() {
-    let pkCardItemW = this.$refs.pkCardItem[0].offsetWidth
-    console.log('单个pkCardItem:',pkCardItemW) 
-    console.log(this.carModelRecommend.carMdodelData[0][0])
+    // let pkCardItemW = this.$refs.pkCardItem[0].offsetWidth
+    // console.log('单个pkCardItem:',pkCardItemW) 
+    // console.log(this.carModelRecommend.carMdodelData[0][0])
   },
 
   methods: {
@@ -437,6 +506,9 @@ export default {
       this.carRemmondTitle = val
       this.isShowCarRemmond = false
     },
+    imgtabChange(index){
+      this.tabbarImgIndex = index
+    }
   },
 };
 </script>
@@ -444,7 +516,7 @@ export default {
 <style lang="scss" scoped>
 .section-title{
     color: #222732;
-    font-size: 34px;
+    font-size: 30px;
     font-weight: 900;
     line-height: 34px;
     padding-left: 20px;
@@ -483,6 +555,18 @@ export default {
   background-color: var(--primary-light);
   border-radius: 10px;
   color: var(--primary);
+}
+.tabbarImgSelected{
+  color: var(--primary);
+  &::after{
+    content: '';
+    width: 80%;
+    position: absolute;
+    border: 1px solid var(--primary);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 .top-tabbar{
   margin-top: 40px;
@@ -737,25 +821,19 @@ export default {
 .section{
   .highColor{
     cursor: pointer;
-    padding-left: 10px;
-    padding-right: 10px;
-    
+  }
+  a.highColor{
+    transform: translateY(50%)
   }
   .container{
     margin-top: 50px;
     margin-bottom: 50px;
     display: flex;
     >div{
-      width: 50%;
+      // width: 50%;
       section{
         position: relative;
         margin-top: 30px;
-        a{
-          position: absolute;
-          top: 50%;
-          right: 0;
-          transform: translateY(50%);
-        }
         .select-box{
           display: inline-block;
           position: absolute;
@@ -777,16 +855,113 @@ export default {
             }
           }
         }
+        .the-top-three__item{
+          display: flex;
+          align-items: center;
+          .rank-num{
+            height: 100%;
+            font-size: 40px;
+            font-weight: bold;
+            color: var(--primary);
+            display: inline-block;
+            margin-right: 25px;
+          }
+          a{
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid #DDDDDD;
+            img{
+              width: 120px;
+              // height: 75px;
+              object-fit: cover;
+              // image-rendering: -webkit-optimize-contrast;
+              // image-rendering: crisp-edges;
+              border-radius: 13px;
+            }
+            .car-remmend-info{
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              .highColor{
+                font-weight: bolder;
+              }
+            }
+            .arrow-right{
+              background-color: var(--bg);
+              height: 90px;
+              line-height: 90px;
+              font-size: 20px;
+              padding: 0 3px;
+              font-weight: bolder;
+              border-radius: 15px;
+            }
+          }
+        }
+        .others{
+          display: flex;
+          align-items: center;
+          font-size: 20px;
+          font-weight: 700;
+          .rank-num{
+            margin-right: 25px;
+            padding-left: 10px;
+          }
+          a{
+            display: flex;
+            width: 80%;
+            padding: 24px 0;
+            border-bottom: 1px solid #DDDDDD;   
+            .car-remmend-info{
+              display: flex;
+              width: 100%;
+              justify-content: space-between;
+              .highColor{
+                width: inherit;
+              }
+            }
+          }
+
+
+        }
       }
     }
 
     .section-left{
+      width: 60%;
       margin-right: 15px;
       position: relative;
-      a{
+      a.highColor{
         position: absolute;
         top: 0;
         right: 0;
+      }
+      .section-img-tabbar{
+        .tabbar-list{
+          display: flex;
+          font-size: 18px;
+          font-weight:bold;
+          margin-bottom: 20px;
+          padding-left: 10px;
+          li{
+            margin-right: 50px;
+            padding-bottom: 5px;
+            position: relative;
+            cursor: pointer;
+          }
+        }
+        .tabbar-show-img{
+          display: flex;
+          flex-wrap: wrap;
+          li{
+            width: 50%;
+            padding: 10px 10px 10px 10px;
+            img{
+              border-radius: 10px;
+            }
+          }
+        }
       }
       .article-list{
         display: flex;
@@ -833,17 +1008,17 @@ export default {
       .car-model-table{
         tr{
           th{
-            width: 219px;
-            padding: 22px 0;
-            background-color: #EFF3FA;
-            font-size: 20px;
-            font-weight: bold;
             &:not(last-child){
+              width: 245px;
+              padding: 22px 0;
+              background-color: #EFF3FA;
+              font-size: 20px;
+              font-weight: bold;
               border-right: 3px solid #ffffff;
             }
           }
           td{
-            font-size: 16px;
+            font-size: 18px;
             padding: 15px 0;
             text-align: center;
             button{
@@ -857,12 +1032,72 @@ export default {
         }
 
       }
+      .car-relate-list__webgit{
+        li{
+          display: flex;
+          align-items: center;
+          padding: 20px;
+          background-color: #F4F4F4;
+          border-radius: 11px;
+          margin-bottom: 20px;
+          .relate-title{
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px;
+            padding-left: 30px;
+            width: 30%;
+            position: relative;
+            &::before{
+              content: '';
+              height: 20px;
+              border: 2px solid var(--primary);
+              border-radius: 9px;
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+          .relate-content{
+            font-size: 14px;
+            margin: 10px 25px;
+            padding: 10px 25px;
+            color: #999999;
+            line-height: 26px;
+            border-left: 1px solid #CDCDCD;
+          }
+        }
+      }
     }
     .section-right{
+      width: 40%;
       margin-left: 15px;
+      padding-left: 30px;
       span.highColor{
         display: inline-block;
         width: 152px;
+      }
+      .browsing-car-list{
+        display: flex;
+        flex-wrap: wrap;
+        .browsing-car-item{
+          width: 50%;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          font-weight: bold;
+          &:nth-child(2n-1){
+            padding-right: 15px;
+          }
+          &:nth-child(2n){
+            padding-right: 15px;
+          }
+          img{
+            border-radius: 10px;
+          }
+          h2,div{
+            padding-top: 10px;
+          }
+        }
       }
     }
   }
