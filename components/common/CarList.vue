@@ -13,7 +13,7 @@ export default {
     };
   },
   props:{
-    carListData:Array,
+    carListData:[Array,Object],
     cardW:String
   },
   mounted() {

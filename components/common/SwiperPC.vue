@@ -289,4 +289,8 @@ export default {
       font-weight: 600;
     }
 }
+.el-carousel__indicator--horizontal .el-carousel__button {
+  display: none;
+}  
+
 </style>

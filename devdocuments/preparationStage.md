@@ -23,6 +23,9 @@
      ```
 ## 2. 配置文件nuxt.config
 - 静态文件打包配置
+- plugins
+  - 用法：plugins文件夹中新增插件对应的js文件进行配置与操作，然后在nuxt.config.js文件的plugins配置项中引入新建的js文件就可以运用了。
+  - 注意: 在plugins中的配置项中，ssr最好选择false，因为基本上所有的前端第三方插件都是运行在浏览器而不是服务端。
 ## 3. package.json
 - eslint
 - sass
